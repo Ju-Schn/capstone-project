@@ -1,4 +1,3 @@
-import { StyledButton } from './StyledButton';
 import styled from 'styled-components';
 
 export default function Card({ question, answer }) {

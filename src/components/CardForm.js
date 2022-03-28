@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const TEXT_MAX_LENGTH = 200;
 
-export default function CardForm({ onSubmit }) {
+export default function CardForm({ onSubmit, cards }) {
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby="create-card" autoComplete="off" name="create">
-      <h2 id="create-card">Erstelle eine Karte</h2>
+      <h2 id="create-card">{cards ? 'Erstelle eine Karte' : 'Erstelle deine erste Karte!'}</h2>
       <label htmlFor="question">Gib hier deine Frage ein:</label>
       <input name="question" type="text" placeholder="z.B. Wer hat react entwickelt?" maxLength={TEXT_MAX_LENGTH} id="question" required></input>
       <label htmlFor="answer">Und hier die richtige Antwort:</label>

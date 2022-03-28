@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 
 function App() {
   const [cards, setCards] = useState([]);
 
-  return <div className="App"></div>;
+  return <>cards?.questionText</>;
 }
 
 export default App;
