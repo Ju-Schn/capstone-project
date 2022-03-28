@@ -12,8 +12,8 @@ export default function CardForm({ onSubmit }) {
       <label htmlFor="answer">Und hier die richtige Antwort:</label>
       <input name="answer" type="text" placeholder="z.B. Jordan Walke" maxLength={TEXT_MAX_LENGTH} id="answer" required></input>
       <Wrapper>
-        <StyledButton variant="submit" children="Erstellen" />
-        <StyledButton children="zur Liste" />
+        <StyledButton variant="submit">Erstellen</StyledButton>
+        <StyledButton>zur Liste</StyledButton>
       </Wrapper>
     </StyledForm>
   );

@@ -18,3 +18,9 @@ Submit.args = {
   children: 'Erstellen',
   variant: 'submit',
 };
+
+export const ShowHide = Template.bind({});
+ShowHide.args = {
+  children: '^',
+  variant: 'showHide',
+};

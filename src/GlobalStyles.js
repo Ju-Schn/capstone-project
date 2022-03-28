@@ -13,6 +13,11 @@ body {
   font-size: 112.5%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  padding: 0px;
+  margin: 0px;
+}
+
 input, label, textarea {
   font-size: 1em
 }

@@ -13,4 +13,15 @@ export const StyledButton = styled.button`
       background-color: #618c03;
       color: #f4e9c9;
     `}
+
+  ${props =>
+    props.variant === 'showHide' &&
+    css`
+      background-color: #d97904;
+      border-radius: 50%;
+      padding: 8px;
+      display: flex;
+      align-self: center;
+      align-items: center;
+    `}
 `;
