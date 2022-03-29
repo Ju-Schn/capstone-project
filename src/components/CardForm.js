@@ -6,7 +6,7 @@ const TEXT_MAX_LENGTH = 200;
 export default function CardForm({ onSubmit, cards }) {
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby="create-card" autoComplete="off" name="create">
-      <h2 id="create-card">{cards ? 'Erstelle eine Karte' : 'Erstelle deine erste Karte!'}</h2>
+      <h2 id="create-card"> {cards.length > 0 ? 'Erstelle eine Karte' : 'Erstelle deine erste Karte'}</h2>
       <label htmlFor="question">Gib hier deine Frage ein:</label>
       <input name="question" type="text" placeholder="z.B. Wer hat react entwickelt?" maxLength={TEXT_MAX_LENGTH} id="question" required></input>
       <label htmlFor="answer">Und hier die richtige Antwort:</label>
@@ -20,13 +20,13 @@ export default function CardForm({ onSubmit, cards }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const form = event.target.elements.create.value;
-    const question = event.target.elements.question.value;
-    const questionText = question.elements.text.value.trim();
-    const answer = event.target.elements.answer.value;
-    const answerText = answer.elements.text.value.trim();
-    if (question && answer) onSubmit({ questionText, answerText });
-    form.reset();
+    const form = event.target;
+    const questionText = form.elements.question.value.trim();
+    const answerText = form.elements.answer.value.trim();
+    if (questionText && answerText) {
+      onSubmit(questionText, answerText);
+      form.reset();
+    }
   }
 }
 

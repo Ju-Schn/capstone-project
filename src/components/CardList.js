@@ -1,20 +1,19 @@
 import Card from './Card';
-import CardForm from './CardForm';
 import styled from 'styled-components';
+import { StyledButton } from './StyledButton';
 
 export default function CardList({ cards }) {
   return (
-    <StyledList role="list" aria-label="Karten">
-      {cards ? (
-        cards.map(({ questionText, answerText, _id }) => (
+    <FlexWrapper>
+      <StyledList role="list" aria-label="Karten">
+        {cards.map(({ question, answer, _id }) => (
           <li key={_id}>
-            <Card _id={_id} question={questionText} answer={answerText} />
+            <Card _id={_id} question={question} answer={answer} />
           </li>
-        ))
-      ) : (
-        <CardForm />
-      )}
-    </StyledList>
+        ))}
+      </StyledList>
+      <StyledButton children={'Karte erstellen'} />
+    </FlexWrapper>
   );
 }
 
@@ -23,4 +22,9 @@ const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
+`;
+
+const FlexWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
 `;

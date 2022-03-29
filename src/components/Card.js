@@ -4,7 +4,7 @@ export default function Card({ question, answer }) {
   return (
     <FileCard>
       <h2>Frage: </h2>
-      <span> {question}</span>
+      <span>{question}</span>
       <h2>Antwort: </h2>
       <span>{answer}</span>
     </FileCard>
