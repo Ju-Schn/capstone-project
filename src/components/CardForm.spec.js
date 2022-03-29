@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CardForm from './CardForm';
 
-describe('EntryForm', () => {
+describe('CardForm', () => {
   it('shows a question and the answer', () => {
     const callback = jest.fn();
-    render(<CardForm onSubmit={callback} />);
+    render(<CardForm cards={[1, 2, 3]} onSubmit={callback} />);
 
     const form = screen.getByRole('form', { name: 'Erstelle eine Karte' });
     expect(form).toBeInTheDocument();
@@ -25,28 +25,16 @@ describe('EntryForm', () => {
     expect(callback).toHaveBeenCalledWith('dolor sit.');
   });
 
-  it('has a maxLength of 200 for text in both inputs', () => {
+  it('does not submit when at least one input is empty or only whitespace', () => {
     const neverCalled = jest.fn();
-    render(<CardForm onSubmit={neverCalled} />);
+    render(<CardForm cards={[1, 2, 3]} onSubmit={neverCalled} />);
 
     const questionInput = screen.getByLabelText('Gib hier deine Frage ein:');
-    userEvent.type(questionInput, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores e{enter}'); // 201 characters, maxLength = 200
+    userEvent.type(questionInput, ' {enter}');
 
     const answerInput = screen.getByLabelText('Und hier die richtige Antwort:');
-    userEvent.type(answerInput, 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores e{enter}');
+    userEvent.type(answerInput, '{enter}');
 
     expect(neverCalled).not.toHaveBeenCalled();
   });
-
-  it('does not submit when at least one input is empty or only whitespace');
-  const neverCalled = jest.fn();
-  render(<CardForm onSubmit={neverCalled} />);
-
-  const questionInput = screen.getByLabelText('Gib hier deine Frage ein:');
-  userEvent.type(questionInput, ' ');
-
-  const answerInput = screen.getByLabelText('Und hier die richtige Antwort:');
-  userEvent.type(answerInput, '');
-
-  expect(neverCalled).not.toHaveBeenCalled();
 });

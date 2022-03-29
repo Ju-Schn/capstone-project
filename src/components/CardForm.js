@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export default function CardForm({ onSubmit, cards, onClick }) {
   const TEXT_MAX_LENGTH = 200;
-  const disabled = cards.length < 1;
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby="create-card" autoComplete="off" name="create">
       <h2 id="create-card"> {cards.length > 0 ? 'Erstelle eine Karte' : 'Erstelle deine erste Karte'}</h2>
@@ -13,7 +12,7 @@ export default function CardForm({ onSubmit, cards, onClick }) {
       <input name="answer" type="text" placeholder="z.B. Jordan Walke" maxLength={TEXT_MAX_LENGTH} id="answer" required></input>
       <Wrapper>
         <StyledButton variant="submit">Erstellen</StyledButton>
-        <StyledButton variant={cards.length > 0 ? 'default' : 'disabled'} disabled={disabled} onClick={onClick}>
+        <StyledButton variant={cards.length > 0 ? 'default' : 'disabled'} disabled={cards.length < 1} onClick={onClick} type="button">
           zur Liste
         </StyledButton>
       </Wrapper>

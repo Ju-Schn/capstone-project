@@ -3,12 +3,12 @@ import Card from './Card';
 
 describe('Card', () => {
   it('renders a question and an answer', () => {
-    render(<Card questionText="Whats up?" answerText="Something." />);
+    render(<Card question="Whats up?" answer="Something." />);
 
-    const questionText = screen.getByText(/whats up/i);
-    const answerText = screen.getByText(/something/i);
+    const question = screen.getByText('Whats up?');
+    const answer = screen.getByText('Something.');
 
-    expect(questionText).toBeInTheDocument();
-    expect(answerText).toBeInTheDocument();
+    expect(question).toBeInTheDocument();
+    expect(answer).toBeInTheDocument();
   });
 });
