@@ -34,4 +34,15 @@ export const StyledButton = styled.button`
       box-shadow: none;
       cursor: default;
     `}
+
+    ${props =>
+    props.variant === 'create' &&
+    css`
+      background-color: #d97904;
+      color: #f4e9c9;
+      position: fixed;
+      width: 100vw;
+      bottom: 64px;
+      left: ;
+    `}
 `;

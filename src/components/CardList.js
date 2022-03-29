@@ -12,7 +12,7 @@ export default function CardList({ cards, onClick }) {
           </li>
         ))}
       </StyledList>
-      <StyledButton children={'Karte erstellen'} onClick={onClick} />
+      <StyledButton variant={'create'} children={'Karte erstellen'} onClick={onClick} />
     </FlexWrapper>
   );
 }
@@ -22,9 +22,12 @@ const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 0;
+  margin: 16px;
 `;
 
 const FlexWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  position: relative;
 `;

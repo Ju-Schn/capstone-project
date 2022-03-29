@@ -8,7 +8,7 @@ function App({ questionText, answerText, onClick }) {
   const [toCreate, setToCreate] = useState(false);
   const [toList, setToList] = useState(false);
 
-  return <>{cards.length > 0 && toCreate === false && toList === true ? <CardList question={questionText} answer={answerText} cards={cards} onClick={() => setToCreate(true)} /> : <CardForm cards={cards} onSubmit={handleNewCard} onClick={() => setToList(true)} />}</>;
+  return <>{cards.length > 0 && toCreate === false && toList === true ? <CardList question={questionText} answer={answerText} cards={cards} onClick={handleGoToCreate} /> : <CardForm cards={cards} onSubmit={handleNewCard} onClick={handleGoToList} />}</>;
 
   function handleNewCard(questionText, answerText) {
     const newCard = {
@@ -17,6 +17,16 @@ function App({ questionText, answerText, onClick }) {
       _id: nanoid(),
     };
     setCards([newCard, ...cards]);
+  }
+
+  function handleGoToCreate() {
+    setToCreate(true);
+    setToList(false);
+  }
+
+  function handleGoToList() {
+    setToList(true);
+    setToCreate(false);
   }
 }
 

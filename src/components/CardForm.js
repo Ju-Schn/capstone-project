@@ -1,9 +1,8 @@
 import { StyledButton } from './StyledButton';
 import styled from 'styled-components';
 
-const TEXT_MAX_LENGTH = 200;
-
 export default function CardForm({ onSubmit, cards, onClick }) {
+  const TEXT_MAX_LENGTH = 200;
   const disabled = cards.length < 1;
   return (
     <StyledForm onSubmit={handleSubmit} aria-labelledby="create-card" autoComplete="off" name="create">
@@ -39,6 +38,7 @@ const StyledForm = styled.form`
   gap: 25px;
   font-size: 24px;
   height: 100vh;
+  margin: 16px;
 
   h2 {
     text-align: center;
@@ -54,6 +54,7 @@ const StyledForm = styled.form`
     margin-bottom: 50px;
     color: #8c0e03;
     font-size: 16px;
+    font-family: inherit;
   }
 `;
 

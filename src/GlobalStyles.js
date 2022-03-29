@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
 * {
   box-sizing: border-box;
+  
 };
 
 
@@ -11,6 +12,10 @@ body {
   padding:0;
   font-family: 'Architects Daughter', sans-serif;
   font-size: 112.5%;
+  background-image: linear-gradient( #D97904 0%, #F2B705 100%);
+  background-attachment: fixed;
+  height: 100vh;
+  
 }
 
 h1, h2, h3, h4, h5, h6 {

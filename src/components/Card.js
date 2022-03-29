@@ -19,6 +19,7 @@ const FileCard = styled.section`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   padding: 0 30px 30px 30px;
 
   h2 {
