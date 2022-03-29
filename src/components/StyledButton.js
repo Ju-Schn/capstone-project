@@ -25,4 +25,13 @@ export const StyledButton = styled.button`
       align-self: center;
       align-items: center;
     `}
+
+    ${props =>
+    props.variant === 'disabled' &&
+    css`
+      background-color: #ccc;
+      color: #666;
+      box-shadow: none;
+      cursor: default;
+    `}
 `;

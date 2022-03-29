@@ -24,3 +24,9 @@ ShowHide.args = {
   children: '^',
   variant: 'showHide',
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  children: 'I am disabled',
+  variant: 'disabled',
+};

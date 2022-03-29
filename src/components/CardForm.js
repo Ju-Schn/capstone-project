@@ -14,7 +14,7 @@ export default function CardForm({ onSubmit, cards, onClick }) {
       <input name="answer" type="text" placeholder="z.B. Jordan Walke" maxLength={TEXT_MAX_LENGTH} id="answer" required></input>
       <Wrapper>
         <StyledButton variant="submit">Erstellen</StyledButton>
-        <StyledButton disabled={disabled} onClick={onClick}>
+        <StyledButton variant={cards.length > 0 ? 'default' : 'disabled'} disabled={disabled} onClick={onClick}>
           zur Liste
         </StyledButton>
       </Wrapper>
