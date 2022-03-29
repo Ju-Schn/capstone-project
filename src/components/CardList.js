@@ -27,7 +27,5 @@ const StyledList = styled.ul`
 `;
 
 const FlexWrapper = styled.section`
-  /* display: flex;
-  flex-direction: column; */
   position: relative;
 `;
