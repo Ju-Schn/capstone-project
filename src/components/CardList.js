@@ -2,7 +2,7 @@ import Card from './Card';
 import styled from 'styled-components';
 import { StyledButton } from './StyledButton';
 
-export default function CardList({ cards }) {
+export default function CardList({ cards, onClick }) {
   return (
     <FlexWrapper>
       <StyledList role="list" aria-label="Karten">
@@ -12,7 +12,7 @@ export default function CardList({ cards }) {
           </li>
         ))}
       </StyledList>
-      <StyledButton children={'Karte erstellen'} />
+      <StyledButton children={'Karte erstellen'} onClick={onClick} />
     </FlexWrapper>
   );
 }
