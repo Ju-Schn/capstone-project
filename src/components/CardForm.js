@@ -66,10 +66,11 @@ const StyledForm = styled.form`
   gap: 25px;
   font-size: 24px;
   height: 100vh;
-  margin: 16px;
+  margin: 0 16px;
 
   h2 {
     text-align: center;
+    margin-top: 16px;
   }
 
   input {

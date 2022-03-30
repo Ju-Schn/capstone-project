@@ -27,8 +27,7 @@ const StyledList = styled.ul`
   flex-direction: column;
   gap: 16px;
   padding: 0;
-  margin: 16px;
-  margin-bottom: 100px;
+  margin: 10px 16px 100px 16px;
 `;
 
 const FlexWrapper = styled.section`
