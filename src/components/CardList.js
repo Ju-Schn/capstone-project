@@ -16,11 +16,7 @@ export default function CardList({
       <StyledList role="list" aria-label="Karten">
         {cards.map(({ question, answer, _id }) => (
           <li key={_id}>
-            <Card
-              question={question}
-              answer={answer}
-              onDelete={() => onDelete(_id)}
-            />
+            <Card question={question} answer={answer} onDelete={onDelete} />
             <DeleteModal
               onDeleteCard={() => onDeleteCard(_id)}
               onKeep={onKeep}

@@ -43,8 +43,8 @@ function App() {
     setChangePage(!changePage);
   }
 
-  function handleDeleteCard(_id) {
-    const filteredCards = cards.filter(card => card._id !== _id);
+  function handleDeleteCard(cardId) {
+    const filteredCards = cards.filter(card => card._id !== cardId);
     setCards(filteredCards);
     setShowModal(false);
   }
