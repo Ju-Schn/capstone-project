@@ -44,8 +44,7 @@ function App() {
   }
 
   function handleDeleteCard(cardId) {
-    const filteredCards = cards.filter(card => card._id !== cardId);
-    setCards(filteredCards);
+    setCards();
     setShowModal(false);
   }
 }
