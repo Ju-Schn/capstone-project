@@ -16,7 +16,11 @@ export default function CardList({
       <StyledList role="list" aria-label="Karten">
         {cards.map(({ question, answer, _id }) => (
           <li key={_id}>
-            <Card question={question} answer={answer} onDelete={onDelete} />
+            <Card
+              question={question}
+              answer={answer}
+              onDelete={() => onDelete(_id)}
+            />
             <DeleteModal
               onDeleteCard={() => onDeleteCard(_id)}
               onKeep={onKeep}
@@ -41,6 +45,7 @@ const StyledList = styled.ul`
   gap: 16px;
   padding: 0;
   margin: 10px 16px 100px 16px;
+  position: relative;
 `;
 
 const FlexWrapper = styled.section`
