@@ -3,12 +3,23 @@ import { nanoid } from 'nanoid';
 import CardList from './components/CardList';
 import CardForm from './components/CardForm';
 
-function App({ questionText, answerText, onClick }) {
+function App() {
   const [cards, setCards] = useState([]);
-  const [toCreate, setToCreate] = useState(false);
-  const [toList, setToList] = useState(false);
+  const [changePage, setChangePage] = useState(true);
 
-  return <>{cards.length > 0 && toCreate === false && toList === true ? <CardList question={questionText} answer={answerText} cards={cards} onClick={handleGoToCreate} /> : <CardForm cards={cards} onSubmit={handleNewCard} onClick={handleGoToList} />}</>;
+  return (
+    <>
+      {cards.length > 0 && changePage === false ? (
+        <CardList cards={cards} onClick={handleChangePage} />
+      ) : (
+        <CardForm
+          cards={cards}
+          onSubmit={handleNewCard}
+          onClick={handleChangePage}
+        />
+      )}
+    </>
+  );
 
   function handleNewCard(questionText, answerText) {
     const newCard = {
@@ -19,14 +30,8 @@ function App({ questionText, answerText, onClick }) {
     setCards([newCard, ...cards]);
   }
 
-  function handleGoToCreate() {
-    setToCreate(true);
-    setToList(false);
-  }
-
-  function handleGoToList() {
-    setToList(true);
-    setToCreate(false);
+  function handleChangePage() {
+    setChangePage(!changePage);
   }
 }
 

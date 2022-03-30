@@ -4,15 +4,44 @@ import styled from 'styled-components';
 export default function CardForm({ onSubmit, cards, onClick }) {
   const TEXT_MAX_LENGTH = 200;
   return (
-    <StyledForm onSubmit={handleSubmit} aria-labelledby="create-card" autoComplete="off" name="create">
-      <h2 id="create-card"> {cards.length > 0 ? 'Erstelle eine Karte' : 'Erstelle deine erste Karte'}</h2>
+    <StyledForm
+      onSubmit={handleSubmit}
+      aria-labelledby="create-card"
+      autoComplete="off"
+      name="create"
+    >
+      <h2 id="create-card">
+        {' '}
+        {cards.length > 0
+          ? 'Erstelle eine Karte'
+          : 'Erstelle deine erste Karte!'}
+      </h2>
       <label htmlFor="question">Gib hier deine Frage ein:</label>
-      <input name="question" type="text" placeholder="z.B. Wer hat react entwickelt?" maxLength={TEXT_MAX_LENGTH} id="question" required></input>
+      <input
+        name="question"
+        type="text"
+        placeholder="z.B. Wer hat react entwickelt?"
+        maxLength={TEXT_MAX_LENGTH}
+        id="question"
+        required
+      />
       <label htmlFor="answer">Und hier die richtige Antwort:</label>
-      <input name="answer" type="text" placeholder="z.B. Jordan Walke" maxLength={TEXT_MAX_LENGTH} id="answer" required></input>
+      <input
+        name="answer"
+        type="text"
+        placeholder="z.B. Jordan Walke"
+        maxLength={TEXT_MAX_LENGTH}
+        id="answer"
+        required
+      />
       <Wrapper>
         <StyledButton variant="submit">Erstellen</StyledButton>
-        <StyledButton variant={cards.length > 0 ? 'default' : 'disabled'} disabled={cards.length < 1} onClick={onClick} type="button">
+        <StyledButton
+          variant={cards.length > 0 ? 'default' : 'disabled'}
+          disabled={cards.length < 1}
+          onClick={onClick}
+          type="button"
+        >
           zur Liste
         </StyledButton>
       </Wrapper>

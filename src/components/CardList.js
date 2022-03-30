@@ -8,7 +8,7 @@ export default function CardList({ cards, onClick }) {
       <StyledList role="list" aria-label="Karten">
         {cards.map(({ question, answer, _id }) => (
           <li key={_id}>
-            <Card _id={_id} question={question} answer={answer} />
+            <Card question={question} answer={answer} />
           </li>
         ))}
       </StyledList>
