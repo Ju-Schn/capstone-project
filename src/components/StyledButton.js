@@ -47,4 +47,14 @@ export default styled.button`
       bottom: 64px;
       left: ;
     `}
+
+    ${props =>
+    props.variant === 'noButton' &&
+    css`
+      background-color: inherit;
+      color: inherit;
+      box-shadow: none;
+      align-self: flex-end;
+      margin-top: 8px;
+    `}
 `;

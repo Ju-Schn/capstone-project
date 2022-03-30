@@ -30,3 +30,9 @@ Disabled.args = {
   children: 'I am disabled',
   variant: 'disabled',
 };
+
+export const NoButton = Template.bind({});
+Disabled.args = {
+  children: 'I am no Button',
+  variant: 'noButton',
+};

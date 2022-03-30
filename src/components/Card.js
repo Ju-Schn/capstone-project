@@ -9,7 +9,7 @@ export default function Card({ question, answer }) {
       <span>{question}</span>
       <h2>Antwort: </h2>
       <span>{answer}</span>
-      <StyledButton>
+      <StyledButton variant="noButton">
         <svg
           width="24"
           height="28"
@@ -37,7 +37,7 @@ const FileCard = styled.section`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 0 30px 30px 30px;
+  padding: 0 8px 0 32px;
 
   h2 {
     margin-top: 24px;
