@@ -57,4 +57,12 @@ export default styled.button`
       align-self: flex-end;
       margin-top: 8px;
     `}
+
+    ${props =>
+    props.variant === 'danger' &&
+    css`
+      background-color: #d92b04;
+      color: #f4e9c9;
+      margin-left: 16px;
+    `}
 `;

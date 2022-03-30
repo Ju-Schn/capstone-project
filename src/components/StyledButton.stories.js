@@ -1,4 +1,4 @@
-import { StyledButton } from './StyledButton';
+import StyledButton from './StyledButton';
 
 export default {
   title: 'components/StyledButton',
@@ -32,7 +32,13 @@ Disabled.args = {
 };
 
 export const NoButton = Template.bind({});
-Disabled.args = {
+NoButton.args = {
   children: 'I am no Button',
   variant: 'noButton',
+};
+
+export const Danger = Template.bind({});
+Danger.args = {
+  children: 'Danger',
+  variant: 'danger',
 };

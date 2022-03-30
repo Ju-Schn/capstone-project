@@ -7,11 +7,19 @@ import useLocalStorage from './hooks/useLocalStorage';
 function App() {
   const [cards, setCards] = useLocalStorage('cards', []);
   const [changePage, setChangePage] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       {cards.length > 0 && changePage === false ? (
-        <CardList cards={cards} onClick={handleChangePage} />
+        <CardList
+          cards={cards}
+          onCreate={handleChangePage}
+          onDeleteCard={handleDeleteCard}
+          onKeep={() => setShowModal(false)}
+          onDelete={() => setShowModal(true)}
+          showModal={showModal}
+        />
       ) : (
         <CardForm
           cards={cards}
@@ -33,6 +41,12 @@ function App() {
 
   function handleChangePage() {
     setChangePage(!changePage);
+  }
+
+  function handleDeleteCard(_id) {
+    const filteredCards = cards.filter(card => card._id !== _id);
+    setCards(filteredCards);
+    setShowModal(false);
   }
 }
 

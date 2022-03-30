@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 import StyledButton from './StyledButton';
 
-export default function Card({ question, answer }) {
+export default function Card({ question, answer, onDelete }) {
   return (
     <FileCard>
       <h2>Frage: </h2>
       <span>{question}</span>
       <h2>Antwort: </h2>
       <span>{answer}</span>
-      <StyledButton variant="noButton">
+      <StyledButton variant="noButton" onClick={onDelete}>
         <svg
           width="24"
           height="28"
