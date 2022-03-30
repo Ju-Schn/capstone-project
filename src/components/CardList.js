@@ -1,6 +1,6 @@
 import Card from './Card';
 import styled from 'styled-components';
-import { StyledButton } from './StyledButton';
+import StyledButton from './StyledButton';
 
 export default function CardList({ cards, onClick }) {
   return (

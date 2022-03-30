@@ -1,4 +1,4 @@
-import { StyledButton } from './StyledButton';
+import StyledButton from './StyledButton';
 import styled from 'styled-components';
 
 export default function CardForm({ onSubmit, cards, onClick }) {
