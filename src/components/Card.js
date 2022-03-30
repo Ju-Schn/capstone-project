@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ScreenReaderOnly from './ScreenReaderOnly';
 import StyledButton from './StyledButton';
 
 export default function Card({ question, answer }) {
@@ -21,6 +22,7 @@ export default function Card({ question, answer }) {
             fill="#D92B04"
           />
         </svg>
+        <ScreenReaderOnly>Lösche diese Karte</ScreenReaderOnly>
       </StyledButton>
     </FileCard>
   );
