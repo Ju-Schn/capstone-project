@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import StyledButton from './StyledButton';
 
-export default function DeleteModal(showModal, onKeep, onDeleteCard) {
+export default function DeleteModal({ showModal, onKeep, onDeleteCard }) {
   console.log(showModal);
   return (
     <>

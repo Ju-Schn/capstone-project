@@ -5,10 +5,11 @@ import DeleteModal from './DeleteModal';
 
 export default function CardList({
   cards,
-  // onDeleteCard,
+  onDeleteCard,
   onDelete,
-  // onKeep,
+  onKeep,
   onCreate,
+  showModal,
 }) {
   return (
     <FlexWrapper>
@@ -17,8 +18,9 @@ export default function CardList({
           <li key={_id}>
             <Card question={question} answer={answer} onDelete={onDelete} />
             <DeleteModal
-            // onDeleteCard={() => onDeleteCard(_id)}
-            // // onKeep={onKeep}
+              onDeleteCard={() => onDeleteCard(_id)}
+              onKeep={onKeep}
+              showModal={showModal}
             />
           </li>
         ))}
