@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      {cards.length > 0 && changePage === false ? (
+      {cards.length > 0 && changePage === false && toList === true ? (
         <CardList cards={cards} onClick={handleChangePage} />
       ) : (
         <CardForm
