@@ -10,7 +10,6 @@ export default function CardList({
   onKeep,
   onCreate,
   showModal,
-  _id,
 }) {
   return (
     <FlexWrapper>
@@ -27,11 +26,9 @@ export default function CardList({
           </li>
         ))}
       </StyledList>
-      <StyledButton
-        variant={'create'}
-        children={'Karte erstellen'}
-        onClick={onCreate}
-      />
+      <StyledButton variant={'create'} onClick={onCreate}>
+        Karte erstellen
+      </StyledButton>
     </FlexWrapper>
   );
 }

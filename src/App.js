@@ -9,6 +9,8 @@ function App() {
   const [changePage, setChangePage] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
+  console.log(cards + '-----');
+
   return (
     <>
       {cards.length > 0 && changePage === false ? (

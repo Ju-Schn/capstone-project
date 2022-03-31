@@ -9,16 +9,12 @@ export default function DeleteModal({ showModal, onKeep, onDeleteCard, _id }) {
         <GridModal>
           <span>Möchtest du die Karte wirklich löschen?</span>
           <span>
-            <StyledButton
-              variant={'submit'}
-              children={'Behalten'}
-              onClick={onKeep}
-            ></StyledButton>
-            <StyledButton
-              variant={'danger'}
-              children={'Löschen'}
-              onClick={() => onDeleteCard(_id)}
-            ></StyledButton>
+            <StyledButton variant={'submit'} onClick={onKeep}>
+              Behalten
+            </StyledButton>
+            <StyledButton variant={'danger'} onClick={() => onDeleteCard(_id)}>
+              Löschen
+            </StyledButton>
           </span>
         </GridModal>
       ) : null}
