@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import StyledButton from './StyledButton';
 
-export default function DeleteModal({ showModal, onKeep, onDeleteCard }) {
+export default function DeleteModal({ showModal, onKeep, onDeleteCard, _id }) {
+  console.log(_id);
   return (
     <>
       {showModal === true ? (
@@ -16,7 +17,7 @@ export default function DeleteModal({ showModal, onKeep, onDeleteCard }) {
             <StyledButton
               variant={'danger'}
               children={'Löschen'}
-              onClick={onDeleteCard}
+              onClick={() => onDeleteCard(_id)}
             ></StyledButton>
           </span>
         </GridModal>
