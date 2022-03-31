@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import CardList from './components/CardList';
-import CardForm from './components/CardForm';
+import CardForm from './components/cardForm/CardForm';
 import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {

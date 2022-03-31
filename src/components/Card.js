@@ -80,6 +80,7 @@ const FileCard = styled.section`
   flex-wrap: wrap;
   padding: 0 8px 0 32px;
   position: relative;
+  overflow-x: auto;
 
   h2 {
     margin-top: 24px;
