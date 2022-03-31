@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components';
 
-export const StyledButton = styled.button`
+export default styled.button`
   border-radius: 30px;
   background-color: #f2b705;
   color: #8c0e03;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   padding: 8px 16px;
   align-self: center;
 
@@ -44,5 +46,23 @@ export const StyledButton = styled.button`
       width: 100vw;
       bottom: 64px;
       left: ;
+    `}
+
+    ${props =>
+    props.variant === 'noButton' &&
+    css`
+      background-color: inherit;
+      color: inherit;
+      box-shadow: none;
+      align-self: flex-end;
+      margin-top: 8px;
+    `}
+
+    ${props =>
+    props.variant === 'danger' &&
+    css`
+      background-color: #d92b04;
+      color: #f4e9c9;
+      margin-left: 16px;
     `}
 `;
