@@ -22,6 +22,7 @@ export default styled.button`
     css`
       background-color: #d97904;
       border-radius: 50%;
+      margin: 16px 0;
       padding: 8px;
       display: flex;
       align-self: center;

@@ -1,14 +1,55 @@
 import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 import StyledButton from './StyledButton';
+import useToggle from '../hooks/useToggle';
 
 export default function Card({ question, answer, onTrashClick, _id }) {
+  const [solution, toggleSolution] = useToggle(false);
   return (
     <FileCard>
-      <h2>Frage: </h2>
-      <span>{question}</span>
-      <h2>Antwort: </h2>
-      <span>{answer}</span>
+      <ScreenReaderOnly>
+        <h2>Frage: </h2>
+      </ScreenReaderOnly>
+      <StyledQuestion>{question}</StyledQuestion>
+
+      <StyledButton onClick={toggleSolution} variant="showHide">
+        {solution ? (
+          <svg
+            fill="#f4e9c9"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            width="32px"
+            height="32px"
+          >
+            <path d="M 16 6.59375 L 15.28125 7.28125 L 2.78125 19.78125 L 4.21875 21.21875 L 16 9.4375 L 27.78125 21.21875 L 29.21875 19.78125 L 16.71875 7.28125 Z" />
+          </svg>
+        ) : (
+          <svg
+            fill="#f4e9c9"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            width="32px"
+            height="32px"
+          >
+            <path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" />
+          </svg>
+        )}
+        <ScreenReaderOnly>
+          {solution ? 'Antwort verbergen' : 'Antwort anzeigen'}
+        </ScreenReaderOnly>
+      </StyledButton>
+      <>
+        {solution ? (
+          <>
+            <ScreenReaderOnly>
+              <h2>Antwort: </h2>
+            </ScreenReaderOnly>
+            <span>{answer}</span>
+          </>
+        ) : (
+          ''
+        )}
+      </>
       <StyledButton variant="noButton" onClick={() => onTrashClick(_id)}>
         <svg
           width="24"
@@ -38,12 +79,14 @@ const FileCard = styled.section`
   flex-direction: column;
   flex-wrap: wrap;
   padding: 0 8px 0 32px;
+  position: relative;
+  overflow-x: auto;
 
   h2 {
     margin-top: 24px;
   }
+`;
 
-  span {
-    margin-top: 16px;
-  }
+const StyledQuestion = styled.span`
+  margin-top: 16px;
 `;

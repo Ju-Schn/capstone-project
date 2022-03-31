@@ -1,7 +1,7 @@
 import Card from './Card';
 import styled from 'styled-components';
 import StyledButton from './StyledButton';
-import DeleteModal from './DeleteModal';
+import DeleteModal from './modals/DeleteModal';
 
 export default function CardList({
   cards,
