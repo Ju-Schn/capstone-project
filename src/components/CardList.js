@@ -5,9 +5,9 @@ import DeleteModal from './DeleteModal';
 
 export default function CardList({
   cards,
-  onDeleteCard,
-  onDelete,
-  onKeep,
+  onDeleteConfirm,
+  onTrashClick,
+  onKeepConfirm,
   onCreate,
   showModal,
 }) {
@@ -16,15 +16,20 @@ export default function CardList({
       <StyledList role="list" aria-label="Karten">
         {cards.map(({ question, answer, _id }) => (
           <li key={_id}>
-            <Card question={question} answer={answer} onDelete={onDelete} />
-            <DeleteModal
+            <Card
               _id={_id}
-              onDeleteCard={onDeleteCard}
-              onKeep={onKeep}
-              showModal={showModal}
+              question={question}
+              answer={answer}
+              onTrashClick={onTrashClick}
             />
           </li>
         ))}
+        {showModal && (
+          <DeleteModal
+            onDeleteConfirm={onDeleteConfirm}
+            onKeepConfirm={onKeepConfirm}
+          />
+        )}
       </StyledList>
       <StyledButton variant={'create'} onClick={onCreate}>
         Karte erstellen

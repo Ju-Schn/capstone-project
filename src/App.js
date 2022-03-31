@@ -8,8 +8,7 @@ function App() {
   const [cards, setCards] = useLocalStorage('cards', []);
   const [changePage, setChangePage] = useState(true);
   const [showModal, setShowModal] = useState(false);
-
-  console.log(cards + '-----');
+  const [currentId, setCurrentId] = useState('');
 
   return (
     <>
@@ -17,9 +16,9 @@ function App() {
         <CardList
           cards={cards}
           onCreate={handleChangePage}
-          onDeleteCard={handleDeleteCard}
-          onKeep={() => setShowModal(false)}
-          onDelete={() => setShowModal(true)}
+          onDeleteConfirm={handleDeleteCard}
+          onKeepConfirm={() => setShowModal(false)}
+          onTrashClick={handleTrashClick}
           showModal={showModal}
         />
       ) : (
@@ -45,8 +44,13 @@ function App() {
     setChangePage(!changePage);
   }
 
-  function handleDeleteCard(_id) {
-    setCards(cards.filter(card => card._id !== _id));
+  function handleTrashClick(id) {
+    setShowModal(true);
+    setCurrentId(id);
+  }
+
+  function handleDeleteCard() {
+    setCards(cards.filter(card => card._id !== currentId));
     setShowModal(false);
   }
 }

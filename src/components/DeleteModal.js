@@ -1,24 +1,19 @@
 import styled from 'styled-components';
 import StyledButton from './StyledButton';
 
-export default function DeleteModal({ showModal, onKeep, onDeleteCard, _id }) {
-  console.log(_id);
+export default function DeleteModal({ onKeepConfirm, onDeleteConfirm }) {
   return (
-    <>
-      {showModal === true ? (
-        <GridModal>
-          <span>Möchtest du die Karte wirklich löschen?</span>
-          <span>
-            <StyledButton variant={'submit'} onClick={onKeep}>
-              Behalten
-            </StyledButton>
-            <StyledButton variant={'danger'} onClick={() => onDeleteCard(_id)}>
-              Löschen
-            </StyledButton>
-          </span>
-        </GridModal>
-      ) : null}
-    </>
+    <GridModal>
+      <span>Möchtest du die Karte wirklich löschen?</span>
+      <span>
+        <StyledButton variant={'submit'} onClick={onKeepConfirm}>
+          Behalten
+        </StyledButton>
+        <StyledButton variant={'danger'} onClick={onDeleteConfirm}>
+          Löschen
+        </StyledButton>
+      </span>
+    </GridModal>
   );
 }
 

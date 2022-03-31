@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import DeleteModal from './DeleteModal.js';
@@ -18,27 +18,29 @@ describe('DeleteModal', () => {
     expect(deleteButton).toBeInTheDocument();
   });
 
-  it('when clicking delete, the current card will be deleted', () => {
+  it('when clicking delete, the current card will be deleted', async () => {
     const deleteFunctionality = jest.fn();
-    render(<DeleteModal showModal={true} onDeleteCard={deleteFunctionality} />);
+    render(
+      <DeleteModal showModal={true} onDeleteConfirm={deleteFunctionality} />
+    );
 
     const deleteButton = screen.getByRole('button', {
       name: /löschen/i,
     });
 
-    userEvent.click(deleteButton);
+    await userEvent.click(deleteButton);
     expect(deleteFunctionality).toHaveBeenCalled();
   });
 
   it('when clicking keep the current card will be kept', () => {
     const keepFunctionality = jest.fn();
-    render(<DeleteModal showModal={true} onKeep={keepFunctionality} />);
+    render(<DeleteModal showModal={true} onKeepConfirm={keepFunctionality} />);
 
     const keepButton = screen.getByRole('button', {
       name: /behalten/i,
     });
 
-    userEvent.click(keepButton);
+    fireEvent.click(keepButton);
     expect(keepFunctionality).toHaveBeenCalled();
   });
 });
