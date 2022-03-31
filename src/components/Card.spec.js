@@ -6,11 +6,13 @@ describe('Card', () => {
     render(<Card question="Whats up?" answer="Something." />);
 
     const question = screen.getByText('Whats up?');
-    const answer = screen.getByText('Something.');
     const deleteButton = screen.getByRole('button', { name: /lösche/i });
+    const toggleSolutionButton = screen.getByRole('button', {
+      name: /antwort/i,
+    });
 
     expect(question).toBeInTheDocument();
-    expect(answer).toBeInTheDocument();
     expect(deleteButton).toBeInTheDocument();
+    expect(toggleSolutionButton).toBeInTheDocument();
   });
 });

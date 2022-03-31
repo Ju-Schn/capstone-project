@@ -1,14 +1,28 @@
 import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 import StyledButton from './StyledButton';
+import useToggle from '../hooks/useToggle';
 
 export default function Card({ question, answer, onTrashClick, _id }) {
+  const [solution, toggleSolution] = useToggle(false);
   return (
     <FileCard>
-      <h2>Frage: </h2>
+      <ScreenReaderOnly>
+        <h2>Frage: </h2>
+      </ScreenReaderOnly>
       <span>{question}</span>
-      <h2>Antwort: </h2>
-      <span>{answer}</span>
+      <>
+        {solution ? (
+          <>
+            <ScreenReaderOnly>
+              <h2>Antwort: </h2>
+            </ScreenReaderOnly>
+            <span>{answer}</span>
+          </>
+        ) : (
+          ''
+        )}
+      </>
       <StyledButton variant="noButton" onClick={() => onTrashClick(_id)}>
         <svg
           width="24"
@@ -23,6 +37,32 @@ export default function Card({ question, answer, onTrashClick, _id }) {
           />
         </svg>
         <ScreenReaderOnly>Lösche diese Karte</ScreenReaderOnly>
+      </StyledButton>
+      <StyledButton onClick={toggleSolution} variant="showHide">
+        {solution ? (
+          <svg
+            fill="#f4e9c9"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            width="32px"
+            height="32px"
+          >
+            <path d="M 16 6.59375 L 15.28125 7.28125 L 2.78125 19.78125 L 4.21875 21.21875 L 16 9.4375 L 27.78125 21.21875 L 29.21875 19.78125 L 16.71875 7.28125 Z" />
+          </svg>
+        ) : (
+          <svg
+            fill="#f4e9c9"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            width="32px"
+            height="32px"
+          >
+            <path d="M 4.21875 10.78125 L 2.78125 12.21875 L 15.28125 24.71875 L 16 25.40625 L 16.71875 24.71875 L 29.21875 12.21875 L 27.78125 10.78125 L 16 22.5625 Z" />
+          </svg>
+        )}
+        <ScreenReaderOnly>
+          {solution ? 'Antwort verbergen' : 'Antwort anzeigen'}
+        </ScreenReaderOnly>
       </StyledButton>
     </FileCard>
   );
