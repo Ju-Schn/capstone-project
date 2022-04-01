@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import CardList from './components/CardList';
 import CardForm from './components/cardForm/CardForm';
-import useLocalStorage from './hooks/useLocalStorage';
+import { useLocalStorage } from 'usehooks-ts';
 
 function App() {
   const [cards, setCards] = useLocalStorage('cards', []);
