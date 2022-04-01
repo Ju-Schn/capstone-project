@@ -70,7 +70,7 @@ export default function Card({ question, answer, onTrashClick, _id }) {
           width="24"
           height="28"
           viewBox="0 0 24 28"
-          fill="none"
+          fill="#D92B04"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -103,7 +103,7 @@ const FileCard = styled.section`
     `}
 
   span {
-    margin: 16px;
+    margin: 0 16px;
     margin-left: 32px;
   }
 `;
