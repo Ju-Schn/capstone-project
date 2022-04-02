@@ -12,31 +12,29 @@ export default function Home({
   onPinClick,
 }) {
   return (
-    <>
-      <FlexWrapper>
-        <StyledList role="list" aria-label="Karten">
-          {cards.map(({ question, answer, _id, isPinned }) => (
-            <li key={_id}>
-              <Card
-                _id={_id}
-                question={question}
-                answer={answer}
-                onTrashClick={onTrashClick}
-                onPinClick={onPinClick}
-                isPinned={isPinned}
-              />
-            </li>
-          ))}
-          {showModal && (
-            <DeleteModal
-              onDeleteConfirm={onDeleteConfirm}
-              onKeepConfirm={onKeepConfirm}
+    <PositionWrapper>
+      <StyledList role="list" aria-label="Karten">
+        {cards.map(({ question, answer, _id, isPinned }) => (
+          <li key={_id}>
+            <Card
+              _id={_id}
+              question={question}
+              answer={answer}
+              onTrashClick={onTrashClick}
+              onPinClick={onPinClick}
+              isPinned={isPinned}
             />
-          )}
-        </StyledList>
-      </FlexWrapper>
+          </li>
+        ))}
+        {showModal && (
+          <DeleteModal
+            onDeleteConfirm={onDeleteConfirm}
+            onKeepConfirm={onKeepConfirm}
+          />
+        )}
+      </StyledList>
       <Navigation />
-    </>
+    </PositionWrapper>
   );
 }
 
@@ -46,10 +44,10 @@ const StyledList = styled.ul`
   flex-direction: column;
   gap: 16px;
   padding: 0;
-  margin: 10px 16px 100px 16px;
-  position: relative;
+  margin: 8px 16px 100px 16px;
+  overflow-y: auto;
 `;
 
-const FlexWrapper = styled.section`
+const PositionWrapper = styled.section`
   position: relative;
 `;

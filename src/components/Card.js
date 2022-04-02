@@ -97,10 +97,9 @@ const FileCard = styled.section`
   color: #000;
   font-size: 24px;
   border-radius: 30px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   position: relative;
   overflow-x: auto;
 

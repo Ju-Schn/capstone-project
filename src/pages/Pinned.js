@@ -12,7 +12,7 @@ export default function Pinned({
   onPinClick,
 }) {
   return (
-    <>
+    <PositionWrapper>
       <StyledList role="list">
         {cards.map(card => {
           if (card.isPinned === true)
@@ -39,7 +39,7 @@ export default function Pinned({
         )}
       </StyledList>
       <Navigation />
-    </>
+    </PositionWrapper>
   );
 }
 
@@ -50,5 +50,9 @@ const StyledList = styled.ul`
   gap: 16px;
   padding: 0;
   margin: 10px 16px 100px 16px;
+  position: relative;
+`;
+
+const PositionWrapper = styled.section`
   position: relative;
 `;
