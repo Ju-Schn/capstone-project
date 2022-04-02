@@ -18,4 +18,5 @@ export const Pinned = Template.bind({});
 Pinned.args = {
   question: 'Are you happy?',
   answer: 'Yes, of course',
+  variant: 'pinned',
 };

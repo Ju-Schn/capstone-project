@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import CardForm from './CardForm';
+import CreateCard from './CreateCard';
 
 describe('CardForm', () => {
   it('does not submit when at least one input is empty or only whitespace', () => {
     const neverCalled = jest.fn();
-    render(<CardForm cards={[1, 2, 3]} onSubmit={neverCalled} />);
+    render(<CreateCard cards={[1, 2, 3]} onSubmit={neverCalled} />);
 
     const questionInput = screen.getByLabelText('Gib hier deine Frage ein:');
     userEvent.type(questionInput, ' {enter}');

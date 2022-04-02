@@ -1,34 +1,49 @@
+import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import CardList from './components/CardList';
-import CardForm from './components/cardForm/CardForm';
+import Home from './pages/Home';
+import CreateCard from './pages/CreateCard';
+import Pinned from './pages/Pinned';
 import { useLocalStorage } from 'usehooks-ts';
 
 function App() {
   const [cards, setCards] = useLocalStorage('cards', []);
-  const [changePage, setChangePage] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
 
   return (
-    <>
-      {cards.length > 0 && changePage === false ? (
-        <CardList
-          cards={cards}
-          onCreate={handleChangePage}
-          onDeleteConfirm={handleDeleteCard}
-          onKeepConfirm={() => setShowModal(false)}
-          onTrashClick={handleTrashClick}
-          showModal={showModal}
-        />
-      ) : (
-        <CardForm
-          cards={cards}
-          onSubmit={handleNewCard}
-          onClick={handleChangePage}
-        />
-      )}
-    </>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Home
+            cards={cards}
+            onDeleteConfirm={handleDeleteCard}
+            onKeepConfirm={() => setShowModal(false)}
+            onTrashClick={handleTrashClick}
+            showModal={showModal}
+            onPinClick={handlePinClick}
+          />
+        }
+      />
+      <Route
+        path="/create-card"
+        element={<CreateCard cards={cards} onSubmit={handleNewCard} />}
+      ></Route>
+      <Route
+        path="/pinned"
+        element={
+          <Pinned
+            onDeleteConfirm={handleDeleteCard}
+            onKeepConfirm={() => setShowModal(false)}
+            onTrashClick={handleTrashClick}
+            showModal={showModal}
+            onPinClick={handlePinClick}
+            cards={cards}
+          />
+        }
+      ></Route>
+    </Routes>
   );
 
   function handleNewCard(questionText, answerText) {
@@ -36,12 +51,9 @@ function App() {
       question: questionText,
       answer: answerText,
       _id: nanoid(),
+      isPinned: false,
     };
     setCards([newCard, ...cards]);
-  }
-
-  function handleChangePage() {
-    setChangePage(!changePage);
   }
 
   function handleTrashClick(id) {
@@ -52,6 +64,16 @@ function App() {
   function handleDeleteCard() {
     setCards(cards.filter(card => card._id !== currentId));
     setShowModal(false);
+  }
+
+  function handlePinClick(id) {
+    setCards(
+      cards.map(card => {
+        if (card._id === id) {
+          return { ...card, isPinned: !card.isPinned };
+        } else return card;
+      })
+    );
   }
 }
 
