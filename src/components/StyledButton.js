@@ -50,7 +50,17 @@ export default styled.button`
     `}
 
     ${props =>
-    props.variant === 'noButton' &&
+    props.variant === 'noButtonPin' &&
+    css`
+      background-color: inherit;
+      color: inherit;
+      box-shadow: none;
+      align-self: flex-end;
+      padding-bottom: 0;
+    `}
+
+    ${props =>
+    props.variant === 'noButtonTrash' &&
     css`
       background-color: inherit;
       color: inherit;

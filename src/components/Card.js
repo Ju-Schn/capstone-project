@@ -16,7 +16,7 @@ export default function Card({
   return (
     <FileCard isPinned={isPinned} variant={isPinned ? 'pinned' : 'default'}>
       {solution && (
-        <StyledButton variant="noButton" onClick={() => onPinClick(_id)}>
+        <StyledButton variant="noButtonPin" onClick={() => onPinClick(_id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 26 26"
@@ -73,7 +73,7 @@ export default function Card({
           ''
         )}
       </>
-      <StyledButton variant="noButton" onClick={() => onTrashClick(_id)}>
+      <StyledButton variant="noButtonTrash" onClick={() => onTrashClick(_id)}>
         <svg
           width="24"
           height="28"

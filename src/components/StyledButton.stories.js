@@ -31,10 +31,16 @@ Disabled.args = {
   variant: 'disabled',
 };
 
-export const NoButton = Template.bind({});
-NoButton.args = {
+export const NoButtonPin = Template.bind({});
+NoButtonPin.args = {
   children: 'I am no Button',
-  variant: 'noButton',
+  variant: 'noButtonPin',
+};
+
+export const NoButtonTrash = Template.bind({});
+NoButtonTrash.args = {
+  children: 'I am no Button',
+  variant: 'noButtonTrash',
 };
 
 export const Danger = Template.bind({});
