@@ -26,13 +26,13 @@ export default function Home({
             />
           </li>
         ))}
-        {showModal && (
-          <DeleteModal
-            onDeleteConfirm={onDeleteConfirm}
-            onKeepConfirm={onKeepConfirm}
-          />
-        )}
       </StyledList>
+      {showModal && (
+        <DeleteModal
+          onDeleteConfirm={onDeleteConfirm}
+          onKeepConfirm={onKeepConfirm}
+        />
+      )}
       <Navigation />
     </GridWrapper>
   );
@@ -49,8 +49,10 @@ const StyledList = styled.ul`
   margin-bottom: 0;
 `;
 
-const GridWrapper = styled.section`
+const GridWrapper = styled.main`
   display: grid;
   grid-template-rows: auto 48px;
   height: 100vh;
+  margin: 0;
+  padding: 0;
 `;

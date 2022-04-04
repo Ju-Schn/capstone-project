@@ -66,6 +66,7 @@ const StyledNav = styled.nav`
   justify-content: space-evenly;
   align-items: baseline;
   width: 100%;
+  z-index: 1;
 `;
 
 const StyledLink = styled(NavLink)`
