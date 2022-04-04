@@ -75,7 +75,7 @@ const StyledForm = styled.form`
   gap: 16px;
   font-size: 20px;
   margin: 0 16px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 
   h2 {
     text-align: center;
