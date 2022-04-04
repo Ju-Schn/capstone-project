@@ -13,7 +13,6 @@ export default function CreateCard({ onSubmit, cards }) {
         name="create"
       >
         <h2 id="create-card">
-          {' '}
           {cards.length > 0
             ? 'Erstelle eine Karte'
             : 'Erstelle deine erste Karte!'}

@@ -30,7 +30,7 @@ export default function Card({
           </svg>
           <ScreenReaderOnly>Pinne diese Karte</ScreenReaderOnly>
         </StyledButton>
-      )}{' '}
+      )}
       <ScreenReaderOnly>
         <h2>Frage: </h2>
       </ScreenReaderOnly>
@@ -101,7 +101,7 @@ const FileCard = styled.section`
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow-x: auto;
+  word-wrap: break-word;
 
   ${props =>
     props.variant === 'pinned' &&

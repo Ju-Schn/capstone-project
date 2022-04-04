@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CreateCard from './CreateCard';
 
-describe('CardForm', () => {
+describe('CreateCard', () => {
   it('does not submit when at least one input is empty or only whitespace', () => {
     const neverCalled = jest.fn();
     render(<CreateCard cards={[1, 2, 3]} onSubmit={neverCalled} />);
