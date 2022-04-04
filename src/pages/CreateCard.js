@@ -52,6 +52,7 @@ export default function CreateCard({ onSubmit, cards }) {
             required
           />
         </StyledForm>
+        <Navigation />
       </FormWrapper>
     </>
   );
