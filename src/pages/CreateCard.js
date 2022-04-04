@@ -37,7 +37,7 @@ export default function CreateCard({ onSubmit, cards }) {
         />
         <StyledButton variant="submit">Erstellen</StyledButton>
       </StyledForm>
-      <Navigation />
+      <Navigation variant="notFixed" />
     </>
   );
 
