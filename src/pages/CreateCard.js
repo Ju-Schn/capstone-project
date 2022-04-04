@@ -71,14 +71,13 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  font-size: 24px;
-  height: 100vh;
+  font-size: 20px;
   margin: 0 16px;
 
   h2 {
     text-align: center;
     margin-top: 16px;
-    font-size: 32px;
+    font-size: 24px;
   }
 
   input {
