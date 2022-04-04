@@ -7,6 +7,11 @@ export default function CreateCard({ onSubmit, cards }) {
   const TEXT_MAX_LENGTH = 200;
   return (
     <>
+      <h2 id="create-card">
+        {cards.length > 0
+          ? 'Erstelle eine Karte'
+          : 'Erstelle deine erste Karte!'}
+      </h2>
       <FormWrapper>
         <StyledForm
           onSubmit={handleSubmit}
@@ -14,11 +19,6 @@ export default function CreateCard({ onSubmit, cards }) {
           autoComplete="off"
           name="create"
         >
-          <h2 id="create-card">
-            {cards.length > 0
-              ? 'Erstelle eine Karte'
-              : 'Erstelle deine erste Karte!'}
-          </h2>
           <FlexWrapper>
             <label htmlFor="question">Gib hier deine Frage ein:</label>
             <StyledButton variant="submit">
