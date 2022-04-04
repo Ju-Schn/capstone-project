@@ -3,26 +3,34 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 import StyledButton from './StyledButton';
 import useToggle from '../hooks/useToggle';
 
-export default function Card({ question, answer, onTrashClick, _id }) {
+export default function Card({
+  question,
+  answer,
+  onTrashClick,
+  _id,
+  onPinClick,
+  isPinned,
+}) {
   const [solution, toggleSolution] = useToggle(false);
-  const [pinned, togglePinned] = useToggle(false);
 
   return (
-    <FileCard variant={pinned ? 'pinned' : 'default'}>
-      <StyledButton variant="noButton" onClick={togglePinned}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 26 26"
-          width="32px"
-          height="32px"
-          fill={pinned ? '#618c03' : '#8c0e03'}
-        >
-          <g id="surface14398506">
-            <path d="M 18.9375 0.21875 C 18.582031 0.148438 18.113281 0.382812 17.78125 0.8125 L 13.09375 7.40625 C 10.394531 6.640625 7.347656 7.308594 5.21875 9.4375 L 16.5625 20.75 C 18.71875 18.597656 19.378906 15.539062 18.5625 12.8125 L 18.59375 12.78125 L 25.1875 8.28125 C 25.769531 7.847656 25.980469 7.199219 25.625 6.84375 L 19.25 0.40625 C 19.164062 0.316406 19.054688 0.242188 18.9375 0.21875 Z M 18.9375 3.21875 L 20.6875 4.9375 L 16.21875 9 L 15.1875 8.03125 Z M 13.03125 9.28125 C 13.195312 9.28125 13.28125 9.3125 13.28125 9.3125 L 14.28125 10.28125 C 14.28125 10.28125 13.601562 10.371094 11.5625 12.40625 L 9.78125 10.625 C 11.34375 9.460938 12.539062 9.285156 13.03125 9.28125 Z M 8.625 14.78125 L 0.21875 25.78125 L 11.1875 17.34375 Z M 8.625 14.78125 " />
-          </g>
-        </svg>
-        <ScreenReaderOnly>Pinne diese Karte</ScreenReaderOnly>
-      </StyledButton>
+    <FileCard isPinned={isPinned} variant={isPinned ? 'pinned' : 'default'}>
+      {solution && (
+        <StyledButton variant="noButtonPin" onClick={() => onPinClick(_id)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 26 26"
+            width="32px"
+            height="32px"
+            fill={isPinned ? '#415E02' : '#8c0e03'}
+          >
+            <g id="surface14398506">
+              <path d="M 18.9375 0.21875 C 18.582031 0.148438 18.113281 0.382812 17.78125 0.8125 L 13.09375 7.40625 C 10.394531 6.640625 7.347656 7.308594 5.21875 9.4375 L 16.5625 20.75 C 18.71875 18.597656 19.378906 15.539062 18.5625 12.8125 L 18.59375 12.78125 L 25.1875 8.28125 C 25.769531 7.847656 25.980469 7.199219 25.625 6.84375 L 19.25 0.40625 C 19.164062 0.316406 19.054688 0.242188 18.9375 0.21875 Z M 18.9375 3.21875 L 20.6875 4.9375 L 16.21875 9 L 15.1875 8.03125 Z M 13.03125 9.28125 C 13.195312 9.28125 13.28125 9.3125 13.28125 9.3125 L 14.28125 10.28125 C 14.28125 10.28125 13.601562 10.371094 11.5625 12.40625 L 9.78125 10.625 C 11.34375 9.460938 12.539062 9.285156 13.03125 9.28125 Z M 8.625 14.78125 L 0.21875 25.78125 L 11.1875 17.34375 Z M 8.625 14.78125 " />
+            </g>
+          </svg>
+          <ScreenReaderOnly>Pinne diese Karte</ScreenReaderOnly>
+        </StyledButton>
+      )}
       <ScreenReaderOnly>
         <h2>Frage: </h2>
       </ScreenReaderOnly>
@@ -65,7 +73,7 @@ export default function Card({ question, answer, onTrashClick, _id }) {
           ''
         )}
       </>
-      <StyledButton variant="noButton" onClick={() => onTrashClick(_id)}>
+      <StyledButton variant="noButtonTrash" onClick={() => onTrashClick(_id)}>
         <svg
           width="24"
           height="28"
@@ -89,21 +97,20 @@ const FileCard = styled.section`
   color: #000;
   font-size: 24px;
   border-radius: 30px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   position: relative;
-  overflow-x: auto;
+  word-wrap: break-word;
+  width: 350px;
 
   ${props =>
     props.variant === 'pinned' &&
     css`
-      background-color: #c5ee00;
+      background-color: #ffc105;
     `}
 
   span {
-    margin: 0 16px;
-    margin-left: 32px;
+    margin: 16px 16px 0 32px;
   }
 `;

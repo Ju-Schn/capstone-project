@@ -1,26 +1,28 @@
-import Card from './Card';
+import Card from '../components/Card';
 import styled from 'styled-components';
-import StyledButton from './StyledButton';
-import DeleteModal from './modals/DeleteModal';
+import DeleteModal from '../components/modals/DeleteModal';
+import Navigation from '../components/Navigation';
 
-export default function CardList({
+export default function Home({
   cards,
   onDeleteConfirm,
   onTrashClick,
   onKeepConfirm,
-  onCreate,
   showModal,
+  onPinClick,
 }) {
   return (
-    <FlexWrapper>
+    <GridWrapper>
       <StyledList role="list" aria-label="Karten">
-        {cards.map(({ question, answer, _id }) => (
+        {cards.map(({ question, answer, _id, isPinned }) => (
           <li key={_id}>
             <Card
               _id={_id}
               question={question}
               answer={answer}
               onTrashClick={onTrashClick}
+              onPinClick={onPinClick}
+              isPinned={isPinned}
             />
           </li>
         ))}
@@ -31,23 +33,24 @@ export default function CardList({
           />
         )}
       </StyledList>
-      <StyledButton variant={'create'} onClick={onCreate}>
-        Karte erstellen
-      </StyledButton>
-    </FlexWrapper>
+      <Navigation />
+    </GridWrapper>
   );
 }
 
 const StyledList = styled.ul`
   list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
-  padding: 0;
-  margin: 10px 16px 100px 16px;
-  position: relative;
+  overflow-y: auto;
+  margin-bottom: 0;
 `;
 
-const FlexWrapper = styled.section`
-  position: relative;
+const GridWrapper = styled.section`
+  display: grid;
+  grid-template-rows: auto auto;
+  height: 100vh;
 `;

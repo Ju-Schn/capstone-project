@@ -15,6 +15,8 @@ export default styled.button`
     css`
       background-color: #618c03;
       color: #f4e9c9;
+      border-radius: 30px;
+      padding: 8px;
     `}
 
   ${props =>
@@ -50,7 +52,17 @@ export default styled.button`
     `}
 
     ${props =>
-    props.variant === 'noButton' &&
+    props.variant === 'noButtonPin' &&
+    css`
+      background-color: inherit;
+      color: inherit;
+      box-shadow: none;
+      align-self: flex-end;
+      padding-bottom: 0;
+    `}
+
+    ${props =>
+    props.variant === 'noButtonTrash' &&
     css`
       background-color: inherit;
       color: inherit;

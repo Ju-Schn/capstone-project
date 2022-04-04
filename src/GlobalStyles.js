@@ -14,7 +14,6 @@ body {
   font-size: 112.5%;
   background-image: linear-gradient( #D97904 0%, #F2B705 100%);
   background-attachment: fixed;
-  //height: 100vh;
   
 }
 

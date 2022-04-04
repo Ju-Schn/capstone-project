@@ -1,12 +1,12 @@
-import CardForm from './CardForm';
+import CreateCard from './CreateCard';
 
 export default {
-  title: 'components/CardForm',
-  component: CardForm,
+  title: 'pages/CreateCard',
+  component: CreateCard,
   argTypes: { onSubmit: 'onSubmit' },
 };
 
-const Template = args => <CardForm {...args} />;
+const Template = args => <CreateCard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
