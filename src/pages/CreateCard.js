@@ -52,7 +52,6 @@ export default function CreateCard({ onSubmit, cards }) {
             required
           />
         </StyledForm>
-        <Navigation variant="notFixed" />
       </FormWrapper>
     </>
   );
@@ -105,4 +104,6 @@ const FlexWrapper = styled.div`
 const FormWrapper = styled.div`
   display: grid;
   gap: 16px;
+  grid-template-rows: auto 48px;
+  height: 100vh;
 `;
