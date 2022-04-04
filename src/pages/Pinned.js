@@ -56,7 +56,6 @@ const StyledList = styled.ul`
 
 const PositionWrapper = styled.section`
   display: grid;
-
-  grid-template-rows: auto auto;
+  grid-template-rows: auto 48px;
   height: 100vh;
 `;
