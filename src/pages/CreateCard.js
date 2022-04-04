@@ -90,7 +90,6 @@ const StyledForm = styled.form`
     box-shadow: inset 0px -4px 4px rgba(0, 0, 0, 0.25);
     height: 50px;
     padding: 15px;
-    margin-bottom: 16px;
     color: #8c0e03;
     font-size: 16px;
     font-family: inherit;
@@ -105,4 +104,5 @@ const FlexWrapper = styled.div`
 
 const FormWrapper = styled.div`
   display: grid;
+  gap: 16px;
 `;
