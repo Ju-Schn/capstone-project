@@ -103,7 +103,6 @@ const FlexWrapper = styled.div`
 `;
 
 const FormWrapper = styled.div`
-  /* display: grid;
-  gap: 16px; */
-  position: relative;
+  display: grid;
+  gap: 16px;
 `;
