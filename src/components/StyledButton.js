@@ -15,9 +15,8 @@ export default styled.button`
     css`
       background-color: #618c03;
       color: #f4e9c9;
-      border-radius: 50%;
+      border-radius: 30px;
       padding: 8px;
-      font-size: 0;
     `}
 
   ${props =>

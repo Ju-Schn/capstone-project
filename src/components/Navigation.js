@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export default function Navigation() {
   return (
@@ -81,12 +81,7 @@ const StyledLink = styled(NavLink)`
   font-family: inherit;
   width: 100%;
   padding: 5px;
-
-  ${props =>
-    props.variant === 'notFixed' &&
-    css`
-      align-self: flex-end;
-    `}
+  z-index: 1;
 
   &.active {
     background-color: #ff8f05;

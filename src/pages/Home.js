@@ -12,7 +12,7 @@ export default function Home({
   onPinClick,
 }) {
   return (
-    <PositionWrapper>
+    <GridWrapper>
       <StyledList role="list" aria-label="Karten">
         {cards.map(({ question, answer, _id, isPinned }) => (
           <li key={_id}>
@@ -34,20 +34,23 @@ export default function Home({
         )}
       </StyledList>
       <Navigation />
-    </PositionWrapper>
+    </GridWrapper>
   );
 }
 
 const StyledList = styled.ul`
   list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
-  padding: 0;
-  margin: 8px 16px 100px 16px;
   overflow-y: auto;
+  margin-bottom: 0;
 `;
 
-const PositionWrapper = styled.section`
-  position: relative;
+const GridWrapper = styled.section`
+  display: grid;
+  grid-template-rows: auto auto;
+  height: 100vh;
 `;

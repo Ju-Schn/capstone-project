@@ -102,6 +102,7 @@ const FileCard = styled.section`
   flex-direction: column;
   position: relative;
   word-wrap: break-word;
+  width: 350px;
 
   ${props =>
     props.variant === 'pinned' &&

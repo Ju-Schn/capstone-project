@@ -45,14 +45,18 @@ export default function Pinned({
 
 const StyledList = styled.ul`
   list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
-  padding: 0;
-  margin: 10px 16px 100px 16px;
-  position: relative;
+  overflow-y: auto;
+  margin-bottom: 0;
 `;
 
 const PositionWrapper = styled.section`
-  position: relative;
+  display: grid;
+
+  grid-template-rows: auto auto;
+  height: 100vh;
 `;
