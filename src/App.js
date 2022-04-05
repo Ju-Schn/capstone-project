@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import Home from './pages/Home';
@@ -7,8 +7,6 @@ import Pinned from './pages/Pinned';
 import { useLocalStorage } from 'usehooks-ts';
 
 function App() {
-  const navigate = useNavigate();
-
   const [cards, setCards] = useLocalStorage('cards', []);
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
@@ -35,11 +33,6 @@ function App() {
             cards={cards}
             onSubmit={handleNewCard}
             onAddCard={handleNewCard}
-            // onGoOn={handleGoOn}
-            // showFormModal={showFormModal}
-            // onHomeClick={handleNavigation}
-            // onFormClick={handleNavigation}
-            // onPinnedClick={handleNavigation}
           />
         }
       ></Route>
@@ -67,7 +60,6 @@ function App() {
       isPinned: false,
     };
     setCards([newCard, ...cards]);
-    // setShowFormModal(false);
   }
 
   function handleTrashClick(id) {

@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 import StyledButton from '../StyledButton';
 
-export default function FormNavigation({
-  onPinnedClick,
-  onHomeClick,
-  onFormClick,
-}) {
+export default function FormNavigation({ onNavClick }) {
   return (
     <StyledNav>
-      <StyledButton onClick={() => onHomeClick('/')} variant={'navigation'}>
+      <StyledButton onClick={() => onNavClick('/')} variant={'navigation'}>
         <svg
           fill="#820D03"
           xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +30,7 @@ export default function FormNavigation({
         Alle Karten
       </StyledButton>
       <StyledButton
-        onClick={() => onFormClick('/pinned')}
+        onClick={() => onNavClick('/create-card')}
         variant={'navigationActive'}
       >
         <svg
@@ -51,7 +47,7 @@ export default function FormNavigation({
       </StyledButton>
       <StyledButton
         variant={'navigation'}
-        onClick={() => onPinnedClick('/pinned')}
+        onClick={() => onNavClick('/pinned')}
       >
         <svg
           width="40"
