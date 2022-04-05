@@ -16,7 +16,6 @@ export default styled.button`
       background-color: #618c03;
       color: #f4e9c9;
       border-radius: 30px;
-      padding: 8px;
     `}
 
   ${props =>
@@ -38,17 +37,6 @@ export default styled.button`
       color: #666;
       box-shadow: none;
       cursor: default;
-    `}
-
-    ${props =>
-    props.variant === 'create' &&
-    css`
-      background-color: #d97904;
-      color: #f4e9c9;
-      position: fixed;
-      width: 100vw;
-      bottom: 64px;
-      left: ;
     `}
 
     ${props =>
@@ -76,6 +64,5 @@ export default styled.button`
     css`
       background-color: #d92b04;
       color: #f4e9c9;
-      margin-left: 16px;
     `}
 `;

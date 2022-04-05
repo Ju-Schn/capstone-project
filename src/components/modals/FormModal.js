@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 import StyledButton from '../StyledButton';
 
-export default function DeleteModal({ onKeepConfirm, onDeleteConfirm }) {
+export default function FormModalModal({ onAddCard, onGoOn }) {
   return (
     <BackgroundModal>
       <GridModal>
-        <span>Möchtest du die Karte wirklich löschen?</span>
+        <Big>
+          Im Eingabefeld sind noch Daten, mit denen du bisher keine Karte
+          erstellt hast.
+        </Big>
+        <span>Möchtest du eine Karte erstellen?</span>
         <ButtonWrapper>
-          <StyledButton variant={'submit'} onClick={onKeepConfirm}>
-            Behalten
+          <StyledButton variant={'submit'} onClick={onAddCard}>
+            Karte erstellen
           </StyledButton>
-          <StyledButton variant={'danger'} onClick={onDeleteConfirm}>
-            Löschen
+          <StyledButton variant={'danger'} onClick={onGoOn}>
+            Verwerfen & weiter
           </StyledButton>
         </ButtonWrapper>
       </GridModal>
@@ -20,7 +24,7 @@ export default function DeleteModal({ onKeepConfirm, onDeleteConfirm }) {
 }
 
 const BackgroundModal = styled.div`
-  background-color: rgba(140, 14, 3, 0.8);
+  background-color: rgba(217, 121, 4, 0.8);
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -35,16 +39,23 @@ const GridModal = styled.section`
   grid-template-rows: auto auto;
   background-color: #f4e9c9;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  width: 300px;
+  width: 320px;
+  gap: 8px;
 
   span {
-    padding: 16px;
+    padding: 8px;
     text-align: center;
   }
 `;
 
+const Big = styled.span`
+  margin-top: 16px;
+  font-size: 24px;
+`;
+
 const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 16px; ;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
 `;
