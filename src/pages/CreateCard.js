@@ -127,7 +127,7 @@ const FormWrapper = styled.div`
   display: grid;
   gap: 32px;
   grid-template-rows: 48px auto 48px;
-  height: 85vh;
+  height: 100vh;
 `;
 
 const Header = styled.h2`

@@ -81,17 +81,6 @@ function App() {
       })
     );
   }
-
-  // function handleGoOn(prop) {
-  //   setShowFormModal(false);
-  //   navigate(prop);
-  // }
-
-  // function handleNavigation(questionText, answerText, prop) {
-  //   if (questionText && answerText) {
-  //     setShowFormModal(true);
-  //   } else navigate(prop);
-  // }
 }
 
 export default App;
