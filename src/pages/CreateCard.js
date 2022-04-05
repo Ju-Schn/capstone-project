@@ -1,6 +1,6 @@
 import StyledButton from '../components/StyledButton';
 import styled from 'styled-components';
-import FormNavigation from '../components/FormNavigation';
+import FormNavigation from '../components/navigations/FormNavigation';
 import FormModal from '../components/modals/FormModal';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -60,7 +60,7 @@ export default function CreateCard({
         <FormNavigation
           onHomeClick={handleHomeClick}
           onFormClick={handleFormClick}
-          onPinnedClick={handlePinnedClick}
+          // onPinnedClick={handlePinnedClick}
         />
       </FormWrapper>
     </>
@@ -90,7 +90,7 @@ export default function CreateCard({
       // onAddCard(questionText, answerText);
       onGoOn(prop);
       // form.reset()
-    }
+    } else navigate(prop);
   }
 
   function handleFormClick(prop) {
@@ -107,19 +107,18 @@ export default function CreateCard({
     }
   }
 
-  function handlePinnedClick(prop) {
-    // const form = document.getElementsByTagName('form')
-    const questionInput = document.getElementById('question');
-    const questionText = questionInput.value.trim();
-    const answerInput = document.getElementById('answer');
-    const answerText = answerInput.value.trim();
-    if (questionText && answerText) {
-      onPinnedClick(questionText, answerText);
-      onAddCard(questionText, answerText);
-      onGoOn(prop);
-      // form.reset()
-    }
-  }
+  // function handlePinnedClick(prop) {
+  //   const questionInput = document.getElementById('question');
+  //   const questionText = questionInput.value.trim();
+  //   const answerInput = document.getElementById('answer');
+  //   const answerText = answerInput.value.trim();
+  //   if (questionText && answerText) {
+  //     onPinnedClick(questionText, answerText);
+  //     onAddCard(questionText, answerText);
+  //     onGoOn(prop);
+
+  //   }
+  //}
 
   function handleGoOn(prop) {
     setShowFormModal(false);

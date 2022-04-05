@@ -1,7 +1,7 @@
 import Card from '../components/Card';
 import styled from 'styled-components';
 import DeleteModal from '../components/modals/DeleteModal';
-import Navigation from '../components/Navigation';
+import Navigation from '../components/navigations/Navigation';
 
 export default function Home({
   cards,
