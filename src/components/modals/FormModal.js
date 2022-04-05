@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import StyledButton from '../StyledButton';
 
-export default function FormModalModal({ onAddCard, onGoOn }) {
+export default function FormModal({ onAddCard, onGoOn }) {
   return (
     <BackgroundModal>
       <GridModal>

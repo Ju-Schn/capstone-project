@@ -1,9 +1,15 @@
 import StyledButton from '../components/StyledButton';
 import styled from 'styled-components';
 import Navigation from '../components/Navigation';
+import FormModal from '../components/modals/FormModal';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function CreateCard({ onSubmit, cards }) {
+export default function CreateCard({ onSubmit, cards, onAddCard, onGoOn }) {
   const TEXT_MAX_LENGTH = 200;
+  const navigate = useNavigate();
+  const [showFormModal, setShowFormModal] = useState(false);
+  console.log(showFormModal);
   return (
     <>
       <Header id="create-card">
@@ -40,7 +46,8 @@ export default function CreateCard({ onSubmit, cards }) {
           />
           <StyledButton variant="submit">Erstellen</StyledButton>
         </StyledForm>
-        <Navigation />
+        {showFormModal && <FormModal onAddCard={onAddCard} onGoOn={onGoOn} />}
+        <Navigation onPinnedClick={handleNavigation} />
       </FormWrapper>
     </>
   );
@@ -54,6 +61,17 @@ export default function CreateCard({ onSubmit, cards }) {
       onSubmit(questionText, answerText);
       form.reset();
     }
+  }
+
+  function handleNavigation(prop) {
+    // const form = document.getElementsByTagName('form');
+    // const questionText = form.elements.question.value.trim();
+    // const answerText = form.elements.answer.value.trim();
+    // if (questionText && answerText) {
+    setShowFormModal(true);
+    // onAddCard(questionText, answerText);
+    //     form.reset();
+    //   } else navigate(prop);
   }
 }
 

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function Navigation() {
+export default function Navigation(onPinnedClick) {
   return (
     <StyledNav>
       <StyledLink to="/">
@@ -42,7 +42,7 @@ export default function Navigation() {
         </svg>
         Erstellen
       </StyledLink>
-      <StyledLink to="/pinned">
+      <StyledLink to="/pinned" onClick={() => onPinnedClick('/pinned')}>
         <svg
           width="40"
           height="40"

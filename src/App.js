@@ -28,7 +28,14 @@ function App() {
       />
       <Route
         path="/create-card"
-        element={<CreateCard cards={cards} onSubmit={handleNewCard} />}
+        element={
+          <CreateCard
+            cards={cards}
+            onSubmit={handleNewCard}
+            onAddCard={handleNewCard}
+            onGoOn={handleGoOn}
+          />
+        }
       ></Route>
       <Route
         path="/pinned"
@@ -75,6 +82,8 @@ function App() {
       })
     );
   }
+
+  function handleGoOn() {}
 }
 
 export default App;
