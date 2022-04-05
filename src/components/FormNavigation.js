@@ -1,10 +1,14 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import StyledButton from './StyledButton';
 
-export default function Navigation() {
+export default function FormNavigation({
+  onPinnedClick,
+  onHomeClick,
+  onFormClick,
+}) {
   return (
     <StyledNav>
-      <StyledLink to="/">
+      <StyledButton onClick={() => onHomeClick('/')} variant={'navigation'}>
         <svg
           fill="#820D03"
           xmlns="http://www.w3.org/2000/svg"
@@ -28,8 +32,11 @@ export default function Navigation() {
           />
         </svg>
         Alle Karten
-      </StyledLink>
-      <StyledLink to="/create-card">
+      </StyledButton>
+      <StyledButton
+        onClick={() => onFormClick('/pinned')}
+        variant={'navigationActive'}
+      >
         <svg
           fill="#820D03"
           xmlns="http://www.w3.org/2000/svg"
@@ -41,8 +48,11 @@ export default function Navigation() {
           <path d="M115.8 1.9c-1.2-1.2-3.1-1.2-4.2 0l-2.7 2.7c-.1.1-.3.3-.4.5-.8 1.1-.7 2.7.3 3.7l4.9 5.1c1.1 1.2 1.1 3.1 0 4.2L93.4 38.4c-1.2 1.2-3.1 1.2-4.2 0 0 0 0 0 0 0-1.2-1.2-1.2-3.1 0-4.2l16.1-16.1c1.2-1.2 1.2-3 0-4.2l-.7-.7c-1-1-2.6-1.2-3.8-.4-.2.1-.3.2-.5.4L70 43.4c-.6.6-.9 1.3-.9 2.1 0 .8.3 1.6.9 2.1l3.7 3.7 1.9 1.9c1 1 1.3 2.7.5 3.9-1.1 1.6-3.3 1.8-4.6.5L70 56l-4.1-4.1c-.7-.7-1.7-1-2.7-.8-1 .2-1.8.9-2.2 1.8l-7 16.9c-.5 1.1-.2 2.5.6 3.4l0 0c.8.9 2.1 1.1 3.2.7l17-7.2c0 0 0 0 0 0 .3-.1.7-.4 1-.6l8.5-8.5 41.6-41.5c.6-.6.9-1.3.9-2.1 0-.8-.3-1.6-.9-2.1L115.8 1.9zM89 122c.8 0 1.5-.3 2.1-.9l30-30c.6-.6.9-1.3.9-2.1h0V39c0-1.7-1.3-3-3-3s-3 1.3-3 3v47H99c-7.2 0-13 5.8-13 13v20c0 1.2.7 2.3 1.9 2.8C88.2 121.9 88.6 122 89 122zM92 99c0-3.9 3.1-7 7-7h12.8L92 111.8V99z" />
         </svg>
         Erstellen
-      </StyledLink>
-      <StyledLink to="/pinned">
+      </StyledButton>
+      <StyledButton
+        variant={'navigation'}
+        onClick={() => onPinnedClick('/pinned')}
+      >
         <svg
           width="40"
           height="40"
@@ -56,7 +66,7 @@ export default function Navigation() {
           />
         </svg>
         Pinnwand
-      </StyledLink>
+      </StyledButton>
     </StyledNav>
   );
 }
@@ -67,26 +77,4 @@ const StyledNav = styled.nav`
   align-items: baseline;
   width: 100%;
   z-index: 1;
-`;
-
-const StyledLink = styled(NavLink)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f4e9c9;
-  border-radius: 10px 10px 0 0;
-  box-shadow: rgba(140, 14, 3, 0.3) 0px -15px 25px -5px,
-    rgba(140, 14, 3, 0.1) 0px -10px 10px -5px;
-  text-decoration: none;
-  color: #820d03;
-  font-family: inherit;
-  width: 100%;
-  padding: 5px;
-  z-index: 1;
-
-  &.active {
-    background-color: #ff8f05;
-    color: #820d03;
-    padding-top: 16px;
-  }
 `;

@@ -1,15 +1,23 @@
 import StyledButton from '../components/StyledButton';
 import styled from 'styled-components';
-import Navigation from '../components/Navigation';
+import FormNavigation from '../components/FormNavigation';
 import FormModal from '../components/modals/FormModal';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-export default function CreateCard({ onSubmit, cards, onAddCard, onGoOn }) {
-  const TEXT_MAX_LENGTH = 200;
+export default function CreateCard({
+  onFormClick,
+  onPinnedClick,
+  onSubmit,
+  cards,
+  onAddCard,
+  onGoOn,
+  // showFormModal,
+}) {
   const navigate = useNavigate();
+  const TEXT_MAX_LENGTH = 200;
+
   const [showFormModal, setShowFormModal] = useState(false);
-  console.log(showFormModal);
   return (
     <>
       <Header id="create-card">
@@ -46,8 +54,14 @@ export default function CreateCard({ onSubmit, cards, onAddCard, onGoOn }) {
           />
           <StyledButton variant="submit">Erstellen</StyledButton>
         </StyledForm>
-        {showFormModal && <FormModal onAddCard={onAddCard} onGoOn={onGoOn} />}
-        <Navigation onPinnedClick={handleNavigation} />
+        {showFormModal && (
+          <FormModal /*onAddCard={handleAddCard}*/ onGoOn={handleGoOn} />
+        )}
+        <FormNavigation
+          onHomeClick={handleHomeClick}
+          onFormClick={handleFormClick}
+          onPinnedClick={handlePinnedClick}
+        />
       </FormWrapper>
     </>
   );
@@ -63,16 +77,59 @@ export default function CreateCard({ onSubmit, cards, onAddCard, onGoOn }) {
     }
   }
 
-  function handleNavigation(prop) {
-    // const form = document.getElementsByTagName('form');
-    // const questionText = form.elements.question.value.trim();
-    // const answerText = form.elements.answer.value.trim();
-    // if (questionText && answerText) {
-    setShowFormModal(true);
-    // onAddCard(questionText, answerText);
-    //     form.reset();
-    //   } else navigate(prop);
+  function handleHomeClick(prop) {
+    // const form = document.getElementsByTagName('form')
+    console.log(prop);
+    const questionInput = document.getElementById('question');
+    const questionText = questionInput.value.trim();
+    const answerInput = document.getElementById('answer');
+    const answerText = answerInput.value.trim();
+    console.log(questionText + answerText);
+    if (questionText && answerText) {
+      setShowFormModal(true);
+      // onAddCard(questionText, answerText);
+      onGoOn(prop);
+      // form.reset()
+    }
   }
+
+  function handleFormClick(prop) {
+    // const form = document.getElementsByTagName('form')
+    const questionInput = document.getElementById('question');
+    const questionText = questionInput.value.trim();
+    const answerInput = document.getElementById('answer');
+    const answerText = answerInput.value.trim();
+    if (questionText && answerText) {
+      onFormClick(questionText, answerText);
+      onAddCard(questionText, answerText);
+      // onGoOn(prop);
+      // form.reset()
+    }
+  }
+
+  function handlePinnedClick(prop) {
+    // const form = document.getElementsByTagName('form')
+    const questionInput = document.getElementById('question');
+    const questionText = questionInput.value.trim();
+    const answerInput = document.getElementById('answer');
+    const answerText = answerInput.value.trim();
+    if (questionText && answerText) {
+      onPinnedClick(questionText, answerText);
+      onAddCard(questionText, answerText);
+      onGoOn(prop);
+      // form.reset()
+    }
+  }
+
+  function handleGoOn(prop) {
+    setShowFormModal(false);
+    navigate(prop);
+  }
+
+  // function handleAddCard(questionText, answerText) {
+  //   onAddCard(questionText, answerText);
+  //   setShowFormModal(false);
+  // }
 }
 
 const StyledForm = styled.form`
