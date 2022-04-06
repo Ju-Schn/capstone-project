@@ -28,7 +28,7 @@ function App() {
       />
       <Route
         path="/create-card"
-        element={<CreateCard cards={cards} onSubmit={handleNewCard} />}
+        element={<CreateCard cards={cards} onAddNewCard={handleNewCard} />}
       ></Route>
       <Route
         path="/pinned"

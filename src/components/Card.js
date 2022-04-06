@@ -3,6 +3,8 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 import StyledButton from './StyledButton';
 import useToggle from '../hooks/useToggle';
 
+import TrashcanRed from '../icons/trashcanRed.svg';
+
 export default function Card({
   question,
   answer,

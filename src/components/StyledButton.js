@@ -16,7 +16,6 @@ export default styled.button`
       background-color: #618c03;
       color: #f4e9c9;
       border-radius: 30px;
-      padding: 8px;
     `}
 
   ${props =>
@@ -38,17 +37,6 @@ export default styled.button`
       color: #666;
       box-shadow: none;
       cursor: default;
-    `}
-
-    ${props =>
-    props.variant === 'create' &&
-    css`
-      background-color: #d97904;
-      color: #f4e9c9;
-      position: fixed;
-      width: 100vw;
-      bottom: 64px;
-      left: ;
     `}
 
     ${props =>
@@ -76,6 +64,43 @@ export default styled.button`
     css`
       background-color: #d92b04;
       color: #f4e9c9;
-      margin-left: 16px;
+    `}
+
+    ${props =>
+    props.variant === 'navigation' &&
+    css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-self: flex-end;
+      background-color: #f4e9c9;
+      border-radius: 10px 10px 0 0;
+      box-shadow: rgba(140, 14, 3, 0.3) 0px -15px 25px -5px,
+        rgba(140, 14, 3, 0.1) 0px -10px 10px -5px;
+      text-decoration: none;
+      color: #820d03;
+      font-family: inherit;
+      width: 100%;
+      padding: 5px;
+    `}
+  
+
+    ${props =>
+    props.variant === 'navigationActive' &&
+    css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-self: flex-end;
+      background-color: #ff8f05;
+      border-radius: 10px 10px 0 0;
+      box-shadow: rgba(140, 14, 3, 0.3) 0px -15px 25px -5px,
+        rgba(140, 14, 3, 0.1) 0px -10px 10px -5px;
+      text-decoration: none;
+      color: #820d03;
+      font-family: inherit;
+      width: 100%;
+      padding: 5px;
+      padding-top: 16px;
     `}
 `;

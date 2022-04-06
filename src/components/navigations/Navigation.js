@@ -61,11 +61,14 @@ export default function Navigation() {
   );
 }
 
-const StyledNav = styled.nav`
+const StyledNav = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: baseline;
   width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
 `;
 
 const StyledLink = styled(NavLink)`
