@@ -72,6 +72,7 @@ export default styled.button`
       display: flex;
       flex-direction: column;
       align-items: center;
+      align-self: flex-end;
       background-color: #f4e9c9;
       border-radius: 10px 10px 0 0;
       box-shadow: rgba(140, 14, 3, 0.3) 0px -15px 25px -5px,
@@ -90,6 +91,7 @@ export default styled.button`
       display: flex;
       flex-direction: column;
       align-items: center;
+      align-self: flex-end;
       background-color: #ff8f05;
       border-radius: 10px 10px 0 0;
       box-shadow: rgba(140, 14, 3, 0.3) 0px -15px 25px -5px,

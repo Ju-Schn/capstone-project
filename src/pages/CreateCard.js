@@ -105,6 +105,7 @@ const StyledForm = styled.form`
   gap: 32px;
   font-size: 20px;
   margin: 0 16px;
+  overflow-y: auto;
 
   input {
     background-color: #f4e9c9;
@@ -127,13 +128,11 @@ const FlexWrapper = styled.div`
 
 const FormWrapper = styled.div`
   display: grid;
-  gap: 32px;
-  grid-template-rows: 48px auto 48px;
+  grid-template-rows: 48px auto 87px;
   height: 100vh;
 `;
 
 const Header = styled.h2`
   text-align: center;
-  margin: 16px 0;
   font-size: 32px;
 `;

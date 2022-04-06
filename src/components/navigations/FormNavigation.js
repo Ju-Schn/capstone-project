@@ -64,10 +64,12 @@ export default function FormNavigation({ onNavClick }) {
   );
 }
 
-const StyledNav = styled.nav`
+const StyledNav = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: baseline;
   width: 100%;
   z-index: 1;
+  position: fixed;
+  bottom: 0;
 `;
