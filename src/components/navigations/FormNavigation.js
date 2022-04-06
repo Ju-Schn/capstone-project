@@ -69,5 +69,7 @@ const StyledNav = styled.nav`
   justify-content: space-evenly;
   align-items: baseline;
   width: 100%;
+  position: fixed;
+  bottom: 0;
   z-index: 1;
 `;

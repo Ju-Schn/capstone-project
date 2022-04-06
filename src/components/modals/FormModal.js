@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import StyledButton from '../StyledButton';
 
-export default function FormModal({ onAddCard, onDiscard }) {
+export default function FormModal({ onAddNewCard, onDiscard }) {
   return (
     <BackgroundModal>
       <GridModal>
@@ -11,7 +11,7 @@ export default function FormModal({ onAddCard, onDiscard }) {
         </Big>
         <span>Möchtest du eine Karte erstellen?</span>
         <ButtonWrapper>
-          <StyledButton variant="submit" onClick={onAddCard}>
+          <StyledButton variant="submit" onClick={onAddNewCard}>
             Karte erstellen
           </StyledButton>
           <StyledButton variant="danger" onClick={onDiscard}>

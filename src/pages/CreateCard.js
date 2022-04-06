@@ -22,7 +22,7 @@ export default function CreateCard({ cards, onAddNewCard }) {
           : 'Erstelle deine erste Karte!'}
       </Header>
       <StyledForm
-        onAddNewCard={handleSubmit}
+        onSubmit={handleSubmit}
         aria-labelledby="create-card"
         autoComplete="off"
         name="create"
