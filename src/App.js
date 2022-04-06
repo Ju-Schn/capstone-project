@@ -56,9 +56,7 @@ function App() {
     const newCard = {
       question: questionText,
       answer: answerText,
-      category1: category1Text,
-      category2: category2Text,
-      category3: category3Text,
+      categories: [category1Text, category2Text, category3Text],
       _id: nanoid(),
       isPinned: false,
     };

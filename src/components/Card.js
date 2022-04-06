@@ -41,7 +41,7 @@ export default function Card({
       <ScreenReaderOnly>
         <Text>Kategorien:</Text>
       </ScreenReaderOnly>
-      <CategoryWrapper>
+      <CategoryWrapper role="list">
         <Category>{category1}</Category>
         {category2 ? <Category>{category2}</Category> : ''}
         {category3 ? <Category>{category3}</Category> : ''}
@@ -123,14 +123,16 @@ const FileCard = styled.section`
     `};
 `;
 
-const CategoryWrapper = styled.section`
+const CategoryWrapper = styled.ul`
   display: flex;
   font-size: 16px;
+  padding: 0;
+  list-style: none;
   gap: 16px;
   margin-top: 8px;
 `;
 
-const Category = styled.span`
+const Category = styled.li`
   background-color: rgb(217, 121, 4, 0.5);
   border-radius: 30px;
   padding: 8px;

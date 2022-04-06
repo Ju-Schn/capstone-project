@@ -10,9 +10,7 @@ export default function CreateCard({ cards, onAddNewCard }) {
   const [values, setValues] = useState({
     question: '',
     answer: '',
-    category1: '',
-    category2: '',
-    category3: '',
+    categories: [],
   });
   const [page, setPage] = useState('');
 
@@ -110,17 +108,13 @@ export default function CreateCard({ cards, onAddNewCard }) {
     event.preventDefault();
     const questionText = values.question.trim();
     const answerText = values.answer.trim();
-    const category1Text = values.category1.trim();
-    const category2Text = values.category2.trim();
-    const category3Text = values.category3.trim();
-    if (questionText && answerText && category1Text) {
-      onAddNewCard(
-        questionText,
-        answerText,
-        category1Text,
-        category2Text,
-        category3Text
-      );
+    const categories = [
+      values.category1.trim(),
+      values.category2.trim(),
+      values.category3.trim(),
+    ];
+    if (questionText && answerText && categories[0]) {
+      onAddNewCard(questionText, answerText, categories);
       setValues(initalValues);
     }
   }
@@ -128,16 +122,8 @@ export default function CreateCard({ cards, onAddNewCard }) {
   function handleAddCard() {
     const questionText = values.question;
     const answerText = values.answer;
-    const category1Text = values.category1;
-    const category2Text = values.category2;
-    const category3Text = values.category3;
-    onAddNewCard(
-      questionText,
-      answerText,
-      category1Text,
-      category2Text,
-      category3Text
-    );
+    const categories = [values.category1, values.category2, values.category3];
+    onAddNewCard(questionText, answerText, categories);
     setValues(initalValues);
     setShowFormModal(false);
     navigate(page);
