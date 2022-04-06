@@ -19,6 +19,12 @@ Submit.args = {
   variant: 'submit',
 };
 
+export const SubmitSticky = Template.bind({});
+Submit.args = {
+  children: 'Erstellen',
+  variant: 'submitSticky',
+};
+
 export const ShowHide = Template.bind({});
 ShowHide.args = {
   children: '^',

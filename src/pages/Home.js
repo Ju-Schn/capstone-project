@@ -14,18 +14,31 @@ export default function Home({
   return (
     <GridWrapper>
       <StyledList role="list" aria-label="Karten">
-        {cards.map(({ question, answer, _id, isPinned }) => (
-          <li key={_id}>
-            <Card
-              _id={_id}
-              question={question}
-              answer={answer}
-              onTrashClick={onTrashClick}
-              onPinClick={onPinClick}
-              isPinned={isPinned}
-            />
-          </li>
-        ))}
+        {cards.map(
+          ({
+            question,
+            answer,
+            _id,
+            isPinned,
+            category1,
+            category2,
+            category3,
+          }) => (
+            <li key={_id}>
+              <Card
+                _id={_id}
+                question={question}
+                answer={answer}
+                onTrashClick={onTrashClick}
+                onPinClick={onPinClick}
+                isPinned={isPinned}
+                category1={category1}
+                category2={category2}
+                category3={category3}
+              />
+            </li>
+          )
+        )}
       </StyledList>
       {showModal && (
         <DeleteModal

@@ -3,8 +3,6 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 import StyledButton from './StyledButton';
 import useToggle from '../hooks/useToggle';
 
-import TrashcanRed from '../icons/trashcanRed.svg';
-
 export default function Card({
   question,
   answer,
@@ -12,6 +10,9 @@ export default function Card({
   _id,
   onPinClick,
   isPinned,
+  category1,
+  category2,
+  category3,
 }) {
   const [solution, toggleSolution] = useToggle(false);
 
@@ -36,7 +37,15 @@ export default function Card({
       <ScreenReaderOnly>
         <h2>Frage: </h2>
       </ScreenReaderOnly>
-      <span>{question}</span>
+      <Text>{question}</Text>
+      <ScreenReaderOnly>
+        <Text>Kategorien:</Text>
+      </ScreenReaderOnly>
+      <CategoryWrapper>
+        <Category>{category1}</Category>
+        {category2 ? <Category>{category2}</Category> : ''}
+        {category3 ? <Category>{category3}</Category> : ''}
+      </CategoryWrapper>
       <StyledButton onClick={toggleSolution} variant="showHide">
         {solution ? (
           <svg
@@ -103,16 +112,32 @@ const FileCard = styled.section`
   display: flex;
   flex-direction: column;
   position: relative;
-  word-wrap: break-word;
   width: 350px;
+  padding: 16px 16px 8px 32px;
+  word-wrap: break-word;
 
   ${props =>
     props.variant === 'pinned' &&
     css`
       background-color: #ffc105;
-    `}
+    `};
+`;
 
-  span {
-    margin: 16px 16px 0 32px;
-  }
+const CategoryWrapper = styled.section`
+  display: flex;
+  font-size: 16px;
+  gap: 16px;
+  margin-top: 8px;
+`;
+
+const Category = styled.span`
+  background-color: rgb(217, 121, 4, 0.5);
+  border-radius: 30px;
+  padding: 8px;
+  max-width: 95%;
+  word-wrap: break-word;
+`;
+
+const Text = styled.span`
+  /* margin: 16px 16px 0 32px; */
 `;

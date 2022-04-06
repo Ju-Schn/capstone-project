@@ -19,6 +19,17 @@ export default styled.button`
     `}
 
   ${props =>
+    props.variant === 'submitSticky' &&
+    css`
+      background-color: #618c03;
+      color: #f4e9c9;
+      border-radius: 30px;
+      position: sticky;
+      bottom: 0;
+      z-index: 2;
+    `}
+
+  ${props =>
     props.variant === 'showHide' &&
     css`
       background-color: #d97904;
@@ -46,7 +57,7 @@ export default styled.button`
       color: inherit;
       box-shadow: none;
       align-self: flex-end;
-      padding-bottom: 0;
+      padding: 0;
     `}
 
     ${props =>
@@ -57,6 +68,7 @@ export default styled.button`
       box-shadow: none;
       align-self: flex-end;
       margin-top: 8px;
+      padding: 0;
     `}
 
     ${props =>
