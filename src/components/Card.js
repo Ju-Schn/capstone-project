@@ -10,9 +10,7 @@ export default function Card({
   _id,
   onPinClick,
   isPinned,
-  category1,
-  category2,
-  category3,
+  categories,
 }) {
   const [solution, toggleSolution] = useToggle(false);
 
@@ -42,9 +40,9 @@ export default function Card({
         <Text>Kategorien:</Text>
       </ScreenReaderOnly>
       <CategoryWrapper role="list">
-        <Category>{category1}</Category>
-        {category2 ? <Category>{category2}</Category> : ''}
-        {category3 ? <Category>{category3}</Category> : ''}
+        {categories.map(category => (
+          <Category>{category}</Category>
+        ))}
       </CategoryWrapper>
       <StyledButton onClick={toggleSolution} variant="showHide">
         {solution ? (

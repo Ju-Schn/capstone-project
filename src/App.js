@@ -61,6 +61,7 @@ function App() {
       isPinned: false,
     };
     setCards([newCard, ...cards]);
+    console.log(newCard);
   }
 
   function handleTrashClick(id) {
