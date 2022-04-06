@@ -7,10 +7,10 @@ export default function DeleteModal({ onKeepConfirm, onDeleteConfirm }) {
       <GridModal>
         <span>Möchtest du die Karte wirklich löschen?</span>
         <ButtonWrapper>
-          <StyledButton variant={'submit'} onClick={onKeepConfirm}>
+          <StyledButton variant="submit" onClick={onKeepConfirm}>
             Behalten
           </StyledButton>
-          <StyledButton variant={'danger'} onClick={onDeleteConfirm}>
+          <StyledButton variant="danger" onClick={onDeleteConfirm}>
             Löschen
           </StyledButton>
         </ButtonWrapper>
@@ -21,8 +21,8 @@ export default function DeleteModal({ onKeepConfirm, onDeleteConfirm }) {
 
 const BackgroundModal = styled.div`
   background-color: rgba(140, 14, 3, 0.8);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

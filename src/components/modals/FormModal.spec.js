@@ -4,22 +4,22 @@ import FormModal from './FormModal.js';
 
 describe('FormModal', () => {
   it('renders a text and two buttons', () => {
-    render(<FormModal showModal={true} />);
+    render(<FormModal />);
     const text = screen.getByText(/möchtest du/i);
-    const keepButton = screen.getByRole('button', {
+    const addButton = screen.getByRole('button', {
       name: /erstellen/i,
     });
-    const deleteButton = screen.getByRole('button', {
+    const discardButton = screen.getByRole('button', {
       name: /weiter/i,
     });
     expect(text).toBeInTheDocument();
-    expect(keepButton).toBeInTheDocument();
-    expect(deleteButton).toBeInTheDocument();
+    expect(addButton).toBeInTheDocument();
+    expect(discardButton).toBeInTheDocument();
   });
 
-  it('when clicking add, the current input will be added to a new card', async () => {
+  it('calls the onAddCard function on click of button to add a new card', async () => {
     const addFunctionality = jest.fn();
-    render(<FormModal showModal={true} onAddCard={addFunctionality} />);
+    render(<FormModal onAddCard={addFunctionality} />);
 
     const addButton = screen.getByRole('button', {
       name: /erstellen/i,
@@ -29,15 +29,15 @@ describe('FormModal', () => {
     expect(addFunctionality).toHaveBeenCalled();
   });
 
-  it('when clicking goOn the current input will be deleted and the page will be changed', () => {
-    const goOnFunctionality = jest.fn();
-    render(<FormModal showModal={true} onGoOn={goOnFunctionality} />);
+  it('calls the onDiscard function on click of button to discard input and change the page', async () => {
+    const discardFunctionality = jest.fn();
+    render(<FormModal onDiscard={discardFunctionality} />);
 
-    const goOnButton = screen.getByRole('button', {
+    const discardButton = screen.getByRole('button', {
       name: /weiter/i,
     });
 
-    fireEvent.click(goOnButton);
-    expect(goOnFunctionality).toHaveBeenCalled();
+    await userEvent.click(discardButton);
+    expect(discardFunctionality).toHaveBeenCalled();
   });
 });

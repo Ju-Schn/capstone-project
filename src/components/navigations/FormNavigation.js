@@ -4,7 +4,7 @@ import StyledButton from '../StyledButton';
 export default function FormNavigation({ onNavClick }) {
   return (
     <StyledNav>
-      <StyledButton onClick={() => onNavClick('/')} variant={'navigation'}>
+      <StyledButton onClick={() => onNavClick('/')} variant="navigation">
         <svg
           fill="#820D03"
           xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@ export default function FormNavigation({ onNavClick }) {
       </StyledButton>
       <StyledButton
         onClick={() => onNavClick('/create-card')}
-        variant={'navigationActive'}
+        variant="navigationActive"
       >
         <svg
           fill="#820D03"
@@ -45,10 +45,7 @@ export default function FormNavigation({ onNavClick }) {
         </svg>
         Erstellen
       </StyledButton>
-      <StyledButton
-        variant={'navigation'}
-        onClick={() => onNavClick('/pinned')}
-      >
+      <StyledButton variant="navigation" onClick={() => onNavClick('/pinned')}>
         <svg
           width="40"
           height="40"

@@ -5,13 +5,14 @@ import FormModal from '../components/modals/FormModal';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function CreateCard({ onSubmit, cards, onAddCard }) {
-  const navigate = useNavigate();
-  const TEXT_MAX_LENGTH = 200;
-
+export default function CreateCard({ cards, onAddNewCard }) {
   const [showFormModal, setShowFormModal] = useState(false);
   const [values, setValues] = useState({ question: '', answer: '' });
   const [page, setPage] = useState('');
+
+  const navigate = useNavigate();
+  const TEXT_MAX_LENGTH = 200;
+  const initalValues = { question: '', answer: '' };
 
   return (
     <FormWrapper>
@@ -21,7 +22,7 @@ export default function CreateCard({ onSubmit, cards, onAddCard }) {
           : 'Erstelle deine erste Karte!'}
       </Header>
       <StyledForm
-        onSubmit={handleSubmit}
+        onAddNewCard={handleSubmit}
         aria-labelledby="create-card"
         autoComplete="off"
         name="create"
@@ -53,7 +54,7 @@ export default function CreateCard({ onSubmit, cards, onAddCard }) {
         <StyledButton variant="submit">Erstellen</StyledButton>
       </StyledForm>
       {showFormModal && (
-        <FormModal onAddCard={handleAddCard} onGoOn={handleGoOn} />
+        <FormModal onAddNewCard={handleAddCard} onDiscard={handleDiscard} />
       )}
       <FormNavigation onNavClick={handleNavigation} />
     </FormWrapper>
@@ -61,19 +62,19 @@ export default function CreateCard({ onSubmit, cards, onAddCard }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const form = event.target;
     const questionText = values.question.trim();
     const answerText = values.answer.trim();
     if (questionText && answerText) {
-      onSubmit(questionText, answerText);
-      form.reset();
+      onAddNewCard(questionText, answerText);
+      setValues(initalValues);
     }
   }
 
   function handleAddCard() {
     const questionText = values.question;
     const answerText = values.answer;
-    onAddCard(questionText, answerText);
+    onAddNewCard(questionText, answerText);
+    setValues(initalValues);
     setShowFormModal(false);
     navigate(page);
   }
@@ -82,17 +83,18 @@ export default function CreateCard({ onSubmit, cards, onAddCard }) {
     setValues({ ...values, [event.target.name]: event.target.value });
   }
 
-  function handleNavigation(prop) {
+  function handleNavigation(path) {
     const questionText = values.question.trim();
     const answerText = values.answer.trim();
     if (questionText && answerText) {
       setShowFormModal(true);
-      setPage(prop);
-    } else navigate(prop);
+      setPage(path);
+    } else navigate(path);
   }
 
-  function handleGoOn() {
+  function handleDiscard() {
     setShowFormModal(false);
+    setValues(initalValues);
     navigate(page);
   }
 }

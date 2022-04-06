@@ -5,7 +5,7 @@ import DeleteModal from './DeleteModal.js';
 
 describe('DeleteModal', () => {
   it('renders a text and two buttons', () => {
-    render(<DeleteModal showModal={true} />);
+    render(<DeleteModal />);
     const text = screen.getByText('Möchtest du die Karte wirklich löschen?');
     const keepButton = screen.getByRole('button', {
       name: /behalten/i,
@@ -20,9 +20,7 @@ describe('DeleteModal', () => {
 
   it('when clicking delete, the current card will be deleted', async () => {
     const deleteFunctionality = jest.fn();
-    render(
-      <DeleteModal showModal={true} onDeleteConfirm={deleteFunctionality} />
-    );
+    render(<DeleteModal onDeleteConfirm={deleteFunctionality} />);
 
     const deleteButton = screen.getByRole('button', {
       name: /löschen/i,
@@ -34,7 +32,7 @@ describe('DeleteModal', () => {
 
   it('when clicking keep the current card will be kept', () => {
     const keepFunctionality = jest.fn();
-    render(<DeleteModal showModal={true} onKeepConfirm={keepFunctionality} />);
+    render(<DeleteModal onKeepConfirm={keepFunctionality} />);
 
     const keepButton = screen.getByRole('button', {
       name: /behalten/i,
