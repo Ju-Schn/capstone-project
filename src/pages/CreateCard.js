@@ -4,6 +4,7 @@ import FormNavigation from '../components/navigations/FormNavigation';
 import FormModal from '../components/modals/FormModal';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import Input from '../components/Input';
 
 export default function CreateCard({ cards, onAddNewCard }) {
   const [showFormModal, setShowFormModal] = useState(false);
@@ -40,10 +41,8 @@ export default function CreateCard({ cards, onAddNewCard }) {
         autoComplete="off"
         name="create"
       >
-        <FlexWrapper>
-          <label htmlFor="question">Gib hier deine Frage ein:</label>
-        </FlexWrapper>
-        <input
+        <Input
+          htmlFor="question"
           onChange={handleChange}
           name="question"
           type="text"
@@ -52,9 +51,10 @@ export default function CreateCard({ cards, onAddNewCard }) {
           id="question"
           required
           value={values.question}
+          labelText={'Gib hier deine Frage ein:'}
         />
-        <label htmlFor="answer">Und hier die richtige Antwort:</label>
-        <input
+        <Input
+          htmlFor="answer"
           onChange={handleChange}
           name="answer"
           type="text"
@@ -63,9 +63,10 @@ export default function CreateCard({ cards, onAddNewCard }) {
           id="answer"
           required
           value={values.answer}
+          labelText={'Und hier die richtige Antwort:'}
         />
-        <label htmlFor="category1">Gib hier eine Kategorie ein:</label>
-        <input
+        <Input
+          htmlFor="category1"
           onChange={handleChange}
           name="category1"
           type="text"
@@ -74,11 +75,10 @@ export default function CreateCard({ cards, onAddNewCard }) {
           required
           value={values.category1}
           maxLength={CATEGORY_MAY_LENGTH}
-        ></input>
-        <label htmlFor="category2">
-          Hier kannst du eine zweite Kategorie eingeben (freiwillig):
-        </label>
-        <input
+          labelText={'Gib hier eine Kategorie ein:'}
+        ></Input>
+        <Input
+          htmlFor="category2"
           onChange={handleChange}
           name="category2"
           type="text"
@@ -86,9 +86,12 @@ export default function CreateCard({ cards, onAddNewCard }) {
           placeholder="z.B. javascript"
           value={values.category2}
           maxLength={CATEGORY_MAY_LENGTH}
-        ></input>
-        <label htmlFor="category3">Und hier eine dritte (freiwillig):</label>
-        <input
+          labelText={
+            'Hier kannst du eine zweite Kategorie eingeben (freiwillig):'
+          }
+        ></Input>
+        <Input
+          htmlFor="category3"
           onChange={handleChange}
           name="category3"
           type="text"
@@ -96,7 +99,8 @@ export default function CreateCard({ cards, onAddNewCard }) {
           placeholder="z.B. coding"
           value={values.category3}
           maxLength={CATEGORY_MAY_LENGTH}
-        ></input>
+          labelText={'Und hier eine dritte (freiwillig):'}
+        ></Input>
         <StyledButton variant="submitSticky">Erstellen</StyledButton>
       </StyledForm>
       {showFormModal && (
@@ -171,25 +175,6 @@ const StyledForm = styled.form`
   font-size: 20px;
   margin: 0 16px;
   overflow-y: auto;
-
-  input {
-    background-color: #f4e9c9;
-    border-radius: 30px;
-    border: none;
-    box-shadow: inset 0px -4px 4px rgba(0, 0, 0, 0.25);
-    height: 50px;
-    padding: 15px;
-    color: #8c0e03;
-    font-size: 16px;
-    font-family: inherit;
-    margin-bottom: 24px;
-  }
-`;
-
-const FlexWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 `;
 
 const FormWrapper = styled.div`
