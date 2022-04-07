@@ -141,7 +141,3 @@ const Category = styled.li`
   max-width: 95%;
   word-wrap: break-word;
 `;
-
-const Text = styled.span`
-  /* margin: 16px 16px 0 32px; */
-`;
