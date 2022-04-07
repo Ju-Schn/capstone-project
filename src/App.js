@@ -46,14 +46,22 @@ function App() {
     </Routes>
   );
 
-  function handleNewCard(questionText, answerText) {
+  function handleNewCard(
+    questionText,
+    answerText,
+    category1Text,
+    category2Text,
+    category3Text
+  ) {
     const newCard = {
       question: questionText,
       answer: answerText,
+      categories: [category1Text, category2Text, category3Text],
       _id: nanoid(),
       isPinned: false,
     };
     setCards([newCard, ...cards]);
+    console.log(newCard);
   }
 
   function handleTrashClick(id) {

@@ -14,7 +14,7 @@ export default function Home({
   return (
     <GridWrapper>
       <StyledList role="list" aria-label="Karten">
-        {cards.map(({ question, answer, _id, isPinned }) => (
+        {cards.map(({ question, answer, _id, isPinned, categories }) => (
           <li key={_id}>
             <Card
               _id={_id}
@@ -23,6 +23,7 @@ export default function Home({
               onTrashClick={onTrashClick}
               onPinClick={onPinClick}
               isPinned={isPinned}
+              categories={categories}
             />
           </li>
         ))}
@@ -41,6 +42,7 @@ export default function Home({
 const StyledList = styled.ul`
   list-style: none;
   padding: 0;
+  padding-bottom: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -25,6 +25,7 @@ export default function Pinned({
                   onTrashClick={onTrashClick}
                   onPinClick={onPinClick}
                   isPinned={card.isPinned}
+                  categories={card.categories}
                 />
               </li>
             );

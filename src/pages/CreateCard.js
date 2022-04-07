@@ -7,12 +7,25 @@ import { useState } from 'react';
 
 export default function CreateCard({ cards, onAddNewCard }) {
   const [showFormModal, setShowFormModal] = useState(false);
-  const [values, setValues] = useState({ question: '', answer: '' });
+  const [values, setValues] = useState({
+    question: '',
+    answer: '',
+    category1: '',
+    category2: '',
+    category3: '',
+  });
   const [page, setPage] = useState('');
 
   const navigate = useNavigate();
   const TEXT_MAX_LENGTH = 200;
-  const initalValues = { question: '', answer: '' };
+  const CATEGORY_MAY_LENGTH = 20;
+  const initalValues = {
+    question: '',
+    answer: '',
+    category1: '',
+    category2: '',
+    category3: '',
+  };
 
   return (
     <FormWrapper>
@@ -51,7 +64,40 @@ export default function CreateCard({ cards, onAddNewCard }) {
           required
           value={values.answer}
         />
-        <StyledButton variant="submit">Erstellen</StyledButton>
+        <label htmlFor="category1">Gib hier eine Kategorie ein:</label>
+        <input
+          onChange={handleChange}
+          name="category1"
+          type="text"
+          id="category1"
+          placeholder="z.B. react"
+          required
+          value={values.category1}
+          maxLength={CATEGORY_MAY_LENGTH}
+        ></input>
+        <label htmlFor="category2">
+          Hier kannst du eine zweite Kategorie eingeben (freiwillig):
+        </label>
+        <input
+          onChange={handleChange}
+          name="category2"
+          type="text"
+          id="category2"
+          placeholder="z.B. javascript"
+          value={values.category2}
+          maxLength={CATEGORY_MAY_LENGTH}
+        ></input>
+        <label htmlFor="category3">Und hier eine dritte (freiwillig):</label>
+        <input
+          onChange={handleChange}
+          name="category3"
+          type="text"
+          id="category3"
+          placeholder="z.B. coding"
+          value={values.category3}
+          maxLength={CATEGORY_MAY_LENGTH}
+        ></input>
+        <StyledButton variant="submitSticky">Erstellen</StyledButton>
       </StyledForm>
       {showFormModal && (
         <FormModal onAddNewCard={handleAddCard} onDiscard={handleDiscard} />
@@ -64,8 +110,17 @@ export default function CreateCard({ cards, onAddNewCard }) {
     event.preventDefault();
     const questionText = values.question.trim();
     const answerText = values.answer.trim();
-    if (questionText && answerText) {
-      onAddNewCard(questionText, answerText);
+    const category1Text = values.category1.trim();
+    const category2Text = values.category2.trim();
+    const category3Text = values.category3.trim();
+    if (questionText && answerText && category1Text) {
+      onAddNewCard(
+        questionText,
+        answerText,
+        category1Text,
+        category2Text,
+        category3Text
+      );
       setValues(initalValues);
     }
   }
@@ -73,7 +128,16 @@ export default function CreateCard({ cards, onAddNewCard }) {
   function handleAddCard() {
     const questionText = values.question;
     const answerText = values.answer;
-    onAddNewCard(questionText, answerText);
+    const category1Text = values.category1;
+    const category2Text = values.category2;
+    const category3Text = values.category3;
+    onAddNewCard(
+      questionText,
+      answerText,
+      category1Text,
+      category2Text,
+      category3Text
+    );
     setValues(initalValues);
     setShowFormModal(false);
     navigate(page);
@@ -86,7 +150,8 @@ export default function CreateCard({ cards, onAddNewCard }) {
   function handleNavigation(path) {
     const questionText = values.question.trim();
     const answerText = values.answer.trim();
-    if (questionText && answerText) {
+    const category1Text = values.category1.trim();
+    if (questionText && answerText && category1Text) {
       setShowFormModal(true);
       setPage(path);
     } else navigate(path);
@@ -102,7 +167,7 @@ export default function CreateCard({ cards, onAddNewCard }) {
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 8px;
   font-size: 20px;
   margin: 0 16px;
   overflow-y: auto;
@@ -117,6 +182,7 @@ const StyledForm = styled.form`
     color: #8c0e03;
     font-size: 16px;
     font-family: inherit;
+    margin-bottom: 24px;
   }
 `;
 

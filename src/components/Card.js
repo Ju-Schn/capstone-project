@@ -3,8 +3,6 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 import StyledButton from './StyledButton';
 import useToggle from '../hooks/useToggle';
 
-import TrashcanRed from '../icons/trashcanRed.svg';
-
 export default function Card({
   question,
   answer,
@@ -12,6 +10,7 @@ export default function Card({
   _id,
   onPinClick,
   isPinned,
+  categories,
 }) {
   const [solution, toggleSolution] = useToggle(false);
 
@@ -37,6 +36,18 @@ export default function Card({
         <h2>Frage: </h2>
       </ScreenReaderOnly>
       <span>{question}</span>
+      <ScreenReaderOnly>
+        <span>Kategorien:</span>
+      </ScreenReaderOnly>
+      <CategoryWrapper role="list">
+        {categories?.map((category, index) =>
+          category ? (
+            <Category key={`${category}-${index}`}>{category}</Category>
+          ) : (
+            ''
+          )
+        )}
+      </CategoryWrapper>
       <StyledButton onClick={toggleSolution} variant="showHide">
         {solution ? (
           <svg
@@ -103,16 +114,30 @@ const FileCard = styled.section`
   display: flex;
   flex-direction: column;
   position: relative;
-  word-wrap: break-word;
   width: 350px;
+  padding: 16px 16px 8px 32px;
+  word-wrap: break-word;
 
   ${props =>
     props.variant === 'pinned' &&
     css`
       background-color: #ffc105;
-    `}
+    `};
+`;
 
-  span {
-    margin: 16px 16px 0 32px;
-  }
+const CategoryWrapper = styled.ul`
+  display: flex;
+  font-size: 16px;
+  padding: 0;
+  list-style: none;
+  gap: 16px;
+  margin-top: 8px;
+`;
+
+const Category = styled.li`
+  background-color: rgb(217, 121, 4, 0.5);
+  border-radius: 30px;
+  padding: 8px;
+  max-width: 95%;
+  word-wrap: break-word;
 `;

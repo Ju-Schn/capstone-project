@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FormModal from './FormModal.js';
 
@@ -19,7 +19,7 @@ describe('FormModal', () => {
 
   it('calls the onAddCard function on click of button to add a new card', async () => {
     const addFunctionality = jest.fn();
-    render(<FormModal onAddCard={addFunctionality} />);
+    render(<FormModal onAddNewCard={addFunctionality} />);
 
     const addButton = screen.getByRole('button', {
       name: /erstellen/i,
