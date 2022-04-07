@@ -4,14 +4,7 @@ import Card from './Card';
 
 describe('Card', () => {
   it('renders a question, category and two buttons', () => {
-    render(
-      <Card
-        question="Whats up?"
-        category1="cat1"
-        category2="cat2"
-        category3="cat3"
-      />
-    );
+    render(<Card question="Whats up?" categories={[1, 2, 3]} />);
 
     const question = screen.getByText('Whats up?');
     const category1 = screen.getByText(/1/i);
@@ -37,6 +30,7 @@ describe('Card', () => {
         onTrashClick={callback}
         question="Do you like testing?"
         answer="Yes, of course"
+        categories={[1, 2, 3]}
       />
     );
 

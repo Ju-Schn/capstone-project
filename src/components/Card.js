@@ -40,9 +40,13 @@ export default function Card({
         <Text>Kategorien:</Text>
       </ScreenReaderOnly>
       <CategoryWrapper role="list">
-        {categories.map(category => (
-          <Category>{category}</Category>
-        ))}
+        {categories.map((category, index) =>
+          category ? (
+            <Category key={`${category}-${index}`}>{category}</Category>
+          ) : (
+            ''
+          )
+        )}
       </CategoryWrapper>
       <StyledButton onClick={toggleSolution} variant="showHide">
         {solution ? (
