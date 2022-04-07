@@ -42,6 +42,7 @@ export default function Home({
 const StyledList = styled.ul`
   list-style: none;
   padding: 0;
+  padding-bottom: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
