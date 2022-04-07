@@ -35,12 +35,12 @@ export default function Card({
       <ScreenReaderOnly>
         <h2>Frage: </h2>
       </ScreenReaderOnly>
-      <Text>{question}</Text>
+      <span>{question}</span>
       <ScreenReaderOnly>
-        <Text>Kategorien:</Text>
+        <span>Kategorien:</span>
       </ScreenReaderOnly>
       <CategoryWrapper role="list">
-        {categories.map((category, index) =>
+        {categories?.map((category, index) =>
           category ? (
             <Category key={`${category}-${index}`}>{category}</Category>
           ) : (
