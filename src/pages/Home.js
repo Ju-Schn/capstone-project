@@ -85,4 +85,5 @@ const StyledDropdown = styled.select`
 const StyledOption = styled.option`
   border: none;
   border-radius: 30px;
+  font-family: 'Architects Daughter', sans-serif;
 `;

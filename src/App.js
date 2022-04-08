@@ -72,16 +72,17 @@ function App() {
       isPinned: false,
     };
     setCards([newCard, ...cards]);
+    handleCategories(newCard);
+  }
 
-    allCategories?.includes(category1Text)
-      ? setAllCategories([...allCategories])
-      : setAllCategories([...allCategories, category1Text]);
-    allCategories?.includes(category2Text)
-      ? setAllCategories([...allCategories])
-      : setAllCategories([...allCategories, category2Text]);
-    allCategories?.includes(category3Text)
-      ? setAllCategories([...allCategories])
-      : setAllCategories([...allCategories, category3Text]);
+  function handleCategories(newCard) {
+    newCard.categories.forEach(category => {
+      if (allCategories.includes(category)) {
+        setAllCategories([...allCategories]);
+      } else {
+        setAllCategories([...allCategories, category]);
+      }
+    });
   }
 
   function handleTrashClick(id) {
