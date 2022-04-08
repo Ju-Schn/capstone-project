@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import DeleteModal from './DeleteModal.js';
@@ -30,7 +30,7 @@ describe('DeleteModal', () => {
     expect(deleteFunctionality).toHaveBeenCalled();
   });
 
-  it('when clicking keep the current card will be kept', () => {
+  it('when clicking keep the current card will be kept', async () => {
     const keepFunctionality = jest.fn();
     render(<DeleteModal onKeepConfirm={keepFunctionality} />);
 
@@ -38,7 +38,7 @@ describe('DeleteModal', () => {
       name: /behalten/i,
     });
 
-    fireEvent.click(keepButton);
+    await userEvent.click(keepButton);
     expect(keepFunctionality).toHaveBeenCalled();
   });
 });

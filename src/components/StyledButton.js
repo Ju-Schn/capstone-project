@@ -19,16 +19,6 @@ export default styled.button`
     `}
 
   ${props =>
-    props.variant === 'search' &&
-    css`
-      background-color: #f2b705;
-      border-radius: 50%;
-      font-size: 0;
-      flex-grow: 0;
-      padding: 8px;
-    `}
-
-  ${props =>
     props.variant === 'submitSticky' &&
     css`
       background-color: #618c03;

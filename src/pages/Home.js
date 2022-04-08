@@ -2,8 +2,6 @@ import Card from '../components/Card';
 import styled from 'styled-components';
 import DeleteModal from '../components/modals/DeleteModal';
 import Navigation from '../components/navigations/Navigation';
-import Input from '../components/Input';
-import StyledButton from '../components/StyledButton';
 
 export default function Home({
   cards,
@@ -12,43 +10,19 @@ export default function Home({
   onKeepConfirm,
   showModal,
   onPinClick,
+  allCategories,
 }) {
   return (
     <GridWrapper>
-      <FlexWrapper>
-        <Input
-          labelText="Filtere nach Kategorie: "
-          variant="search"
-          placeholder="z.B. react"
-        />
+      <StyledDropdown name="categories">
+        <StyledOption value="">Wähle hier eine Kategorie:</StyledOption>
+        {allCategories?.map(category => (
+          <StyledOption value={category}>{category}</StyledOption>
+        ))}
+      </StyledDropdown>
 
-        <StyledButton variant="search">
-          <svg
-            fill="#8c0e03"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="32px"
-            height="32px"
-          >
-            <path d="M22 20L20 22 14 16 14 14 16 14z" />
-            <path
-              fill="none"
-              stroke="#8c0e03"
-              stroke-miterlimit="10"
-              stroke-width="2"
-              d="M9 3A6 6 0 1 0 9 15A6 6 0 1 0 9 3Z"
-            />
-            <path
-              fill="none"
-              stroke="#8c0e03"
-              stroke-miterlimit="10"
-              d="M13 13L15.5 15.5"
-            />
-          </svg>
-        </StyledButton>
-      </FlexWrapper>
       <StyledList role="list" aria-label="Karten">
-        {cards.map(({ question, answer, _id, isPinned, categories }) => (
+        {cards?.map(({ question, answer, _id, isPinned, categories }) => (
           <li key={_id}>
             <Card
               _id={_id}
@@ -87,14 +61,28 @@ const StyledList = styled.ul`
 
 const GridWrapper = styled.main`
   display: grid;
-  grid-template-rows: 96px auto 48px;
+  grid-template-rows: 48px auto 48px;
   height: 100vh;
   margin: 0;
   padding: 0;
 `;
 
-const FlexWrapper = styled.section`
-  display: flex;
-  align-items: center;
-  padding: 16px;
+const StyledDropdown = styled.select`
+  background-color: #f2b705;
+  font-family: inherit;
+  border: none;
+  border-radius: 30px;
+  width: 80%;
+  box-shadow: rgba(140, 14, 3, 0.4) 0px 8px 24px;
+  margin: 8px;
+
+  &:active {
+    border-radius: 30px;
+    font-family: inherit;
+  }
+`;
+
+const StyledOption = styled.option`
+  border: none;
+  border-radius: 30px;
 `;
