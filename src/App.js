@@ -78,7 +78,6 @@ function App() {
     const newCategory = newCard.categories.filter(
       category => !allCategories.includes(category)
     );
-    console.log(newCategory);
     setAllCategories([...allCategories, ...newCategory]);
   }
 
