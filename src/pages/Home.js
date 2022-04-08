@@ -4,6 +4,7 @@ import DeleteModal from '../components/modals/DeleteModal';
 import Navigation from '../components/navigations/Navigation';
 import { useState } from 'react';
 import StyledButton from '../components/StyledButton';
+import ScreenReaderOnly from '../components/ScreenReaderOnly';
 
 export default function Home({
   cards,
@@ -15,22 +16,32 @@ export default function Home({
   allCategories,
 }) {
   const [currentFilter, setCurrentFilter] = useState('');
-  const [values, setValues] = useState('');
+  const [value, setValue] = useState('');
   return (
     <GridWrapper>
       <FlexWrapper>
-        <StyledDropdown name="categories">
-          <option selected value="">
-            Wähle hier eine Kategorie:
-          </option>
+        <label>
+          <ScreenReaderOnly>Wähle hier eine Kategorie:</ScreenReaderOnly>
+        </label>
+        <StyledDropdown
+          id="categories"
+          defaultValue={''}
+          value={value}
+          onChange={handleChange}
+          name="categories"
+        >
+          <option value="">Wähle hier eine Kategorie:</option>
           {allCategories?.map(category => (
-            <option onClick={() => setCurrentFilter(category)} value={category}>
+            <option
+              onClick={() => setCurrentFilter(category)}
+              value={value.category}
+            >
               {category}
               {console.log(category)}
             </option>
           ))}
         </StyledDropdown>
-        <StyledButton onClick={() => s}>Reset</StyledButton>
+        <StyledButton onClick={handleResetFilter}>Alle</StyledButton>
       </FlexWrapper>
       <StyledList role="list" aria-label="Karten">
         {currentFilter
@@ -75,9 +86,13 @@ export default function Home({
     </GridWrapper>
   );
 
+  function handleChange(event) {
+    setValue(event.target.value);
+  }
+
   function handleResetFilter() {
     setCurrentFilter('');
-    select.reset();
+    setValue('');
   }
 }
 
