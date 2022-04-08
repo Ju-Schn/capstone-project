@@ -1,15 +1,23 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import Home from './pages/Home';
 import CreateCard from './pages/CreateCard';
 import Pinned from './pages/Pinned';
-import { useLocalStorage } from 'usehooks-ts';
+import { saveToLocal, loadFromLocal } from './utils/localStorage';
 
 function App() {
-  const [cards, setCards] = useLocalStorage('cards', []);
+  const [cards, setCards] = useState(loadFromLocal('cards') ?? []);
+  const [allCategories, setAllCategories] = useState(
+    loadFromLocal('allCategories') ?? []
+  );
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
+
+  useEffect(() => {
+    saveToLocal('allCategories', allCategories);
+    saveToLocal('cards', cards);
+  }, [cards, allCategories]);
 
   return (
     <Routes>
@@ -23,6 +31,7 @@ function App() {
             onTrashClick={handleTrashClick}
             showModal={showModal}
             onPinClick={handlePinClick}
+            allCategories={allCategories}
           />
         }
       />
@@ -40,6 +49,7 @@ function App() {
             showModal={showModal}
             onPinClick={handlePinClick}
             cards={cards}
+            allCategories={allCategories}
           />
         }
       ></Route>
@@ -61,7 +71,14 @@ function App() {
       isPinned: false,
     };
     setCards([newCard, ...cards]);
-    console.log(newCard);
+    handleCategories(newCard);
+  }
+
+  function handleCategories(newCard) {
+    const newCategory = newCard.categories.filter(
+      category => !allCategories.includes(category)
+    );
+    setAllCategories([...allCategories, ...newCategory]);
   }
 
   function handleTrashClick(id) {
