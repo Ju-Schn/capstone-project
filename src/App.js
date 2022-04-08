@@ -13,7 +13,6 @@ function App() {
   );
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
-  console.log(allCategories);
 
   useEffect(() => {
     saveToLocal('allCategories', allCategories);
@@ -76,13 +75,11 @@ function App() {
   }
 
   function handleCategories(newCard) {
-    newCard.categories.forEach(category => {
-      if (allCategories.includes(category)) {
-        setAllCategories([...allCategories]);
-      } else {
-        setAllCategories([...allCategories, category]);
-      }
-    });
+    const newCategory = newCard.categories.filter(
+      category => !allCategories.includes(category)
+    );
+    console.log(newCategory);
+    setAllCategories([...allCategories, ...newCategory]);
   }
 
   function handleTrashClick(id) {

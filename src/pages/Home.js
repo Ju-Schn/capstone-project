@@ -2,6 +2,8 @@ import Card from '../components/Card';
 import styled from 'styled-components';
 import DeleteModal from '../components/modals/DeleteModal';
 import Navigation from '../components/navigations/Navigation';
+import { useState } from 'react';
+import StyledButton from '../components/StyledButton';
 
 export default function Home({
   cards,
@@ -12,29 +14,56 @@ export default function Home({
   onPinClick,
   allCategories,
 }) {
+  const [currentFilter, setCurrentFilter] = useState('');
+  const [values, setValues] = useState('');
   return (
     <GridWrapper>
-      <StyledDropdown name="categories">
-        <StyledOption value="">Wähle hier eine Kategorie:</StyledOption>
-        {allCategories?.map(category => (
-          <StyledOption value={category}>{category}</StyledOption>
-        ))}
-      </StyledDropdown>
-
+      <FlexWrapper>
+        <StyledDropdown name="categories">
+          <option selected value="">
+            Wähle hier eine Kategorie:
+          </option>
+          {allCategories?.map(category => (
+            <option onClick={() => setCurrentFilter(category)} value={category}>
+              {category}
+              {console.log(category)}
+            </option>
+          ))}
+        </StyledDropdown>
+        <StyledButton onClick={() => s}>Reset</StyledButton>
+      </FlexWrapper>
       <StyledList role="list" aria-label="Karten">
-        {cards?.map(({ question, answer, _id, isPinned, categories }) => (
-          <li key={_id}>
-            <Card
-              _id={_id}
-              question={question}
-              answer={answer}
-              onTrashClick={onTrashClick}
-              onPinClick={onPinClick}
-              isPinned={isPinned}
-              categories={categories}
-            />
-          </li>
-        ))}
+        {currentFilter
+          ? cards?.map(({ question, answer, _id, isPinned, categories }) => {
+              if (categories.includes(currentFilter))
+                return (
+                  <li key={_id}>
+                    <Card
+                      _id={_id}
+                      question={question}
+                      answer={answer}
+                      onTrashClick={onTrashClick}
+                      onPinClick={onPinClick}
+                      isPinned={isPinned}
+                      categories={categories}
+                    />
+                  </li>
+                );
+              else return [];
+            })
+          : cards?.map(({ question, answer, _id, isPinned, categories }) => (
+              <li key={_id}>
+                <Card
+                  _id={_id}
+                  question={question}
+                  answer={answer}
+                  onTrashClick={onTrashClick}
+                  onPinClick={onPinClick}
+                  isPinned={isPinned}
+                  categories={categories}
+                />
+              </li>
+            ))}
       </StyledList>
       {showModal && (
         <DeleteModal
@@ -45,6 +74,11 @@ export default function Home({
       <Navigation />
     </GridWrapper>
   );
+
+  function handleResetFilter() {
+    setCurrentFilter('');
+    select.reset();
+  }
 }
 
 const StyledList = styled.ul`
@@ -67,6 +101,10 @@ const GridWrapper = styled.main`
   padding: 0;
 `;
 
+const FlexWrapper = styled.section`
+  display: flex;
+`;
+
 const StyledDropdown = styled.select`
   background-color: #f2b705;
   font-family: inherit;
@@ -75,15 +113,4 @@ const StyledDropdown = styled.select`
   width: 80%;
   box-shadow: rgba(140, 14, 3, 0.4) 0px 8px 24px;
   margin: 8px;
-
-  &:active {
-    border-radius: 30px;
-    font-family: inherit;
-  }
-`;
-
-const StyledOption = styled.option`
-  border: none;
-  border-radius: 30px;
-  font-family: 'Architects Daughter', sans-serif;
 `;

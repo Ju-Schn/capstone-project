@@ -19,7 +19,7 @@ export default function CreateCard({ cards, onAddNewCard }) {
 
   const navigate = useNavigate();
   const TEXT_MAX_LENGTH = 200;
-  const CATEGORY_MAY_LENGTH = 20;
+  const CATEGORY_MAX_LENGTH = 20;
   const initalValues = {
     question: '',
     answer: '',
@@ -74,7 +74,7 @@ export default function CreateCard({ cards, onAddNewCard }) {
           placeholder="z.B. react"
           required
           value={values.category1}
-          maxLength={CATEGORY_MAY_LENGTH}
+          maxLength={CATEGORY_MAX_LENGTH}
           labelText={'Gib hier eine Kategorie ein:'}
         ></Input>
         <Input
@@ -85,7 +85,7 @@ export default function CreateCard({ cards, onAddNewCard }) {
           id="category2"
           placeholder="z.B. javascript"
           value={values.category2}
-          maxLength={CATEGORY_MAY_LENGTH}
+          maxLength={CATEGORY_MAX_LENGTH}
           labelText={
             'Hier kannst du eine zweite Kategorie eingeben (freiwillig):'
           }
@@ -98,7 +98,7 @@ export default function CreateCard({ cards, onAddNewCard }) {
           id="category3"
           placeholder="z.B. coding"
           value={values.category3}
-          maxLength={CATEGORY_MAY_LENGTH}
+          maxLength={CATEGORY_MAX_LENGTH}
           labelText={'Und hier eine dritte (freiwillig):'}
         ></Input>
         <StyledButton variant="submitSticky">Erstellen</StyledButton>
