@@ -17,7 +17,7 @@ export default function Home({
 }) {
   const [currentFilter, setCurrentFilter] = useState('');
   const [value, setValue] = useState('');
-  console.log(currentFilter);
+  console.log(value);
   return (
     <GridWrapper>
       <FlexWrapper>
@@ -33,7 +33,11 @@ export default function Home({
           <option value="">Wähle hier eine Kategorie:</option>
           {allCategories?.map(category =>
             category ? (
-              <option onClick={() => setCurrentFilter(category)} value={value}>
+              <option
+                key={category}
+                onClick={() => setCurrentFilter(value)}
+                value={value}
+              >
                 {category}
               </option>
             ) : null

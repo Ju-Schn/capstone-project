@@ -127,6 +127,7 @@ const FileCard = styled.section`
 
 const CategoryWrapper = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   font-size: 16px;
   padding: 0;
   list-style: none;
