@@ -17,6 +17,7 @@ export default function Home({
 }) {
   const [currentFilter, setCurrentFilter] = useState('');
   const [value, setValue] = useState('');
+  console.log(value);
   return (
     <GridWrapper>
       <FlexWrapper>
@@ -25,7 +26,6 @@ export default function Home({
         </label>
         <StyledDropdown
           id="categories"
-          defaultValue={''}
           value={value}
           onChange={handleChange}
           name="categories"
@@ -34,11 +34,11 @@ export default function Home({
           {allCategories?.map(category =>
             category ? (
               <option
-                onClick={() => setCurrentFilter(category)}
-                value={value.category}
+                key={category}
+                onClick={() => setCurrentFilter(value)}
+                value={value}
               >
                 {category}
-                {console.log(category)}
               </option>
             ) : null
           )}
