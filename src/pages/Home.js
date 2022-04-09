@@ -31,15 +31,17 @@ export default function Home({
           name="categories"
         >
           <option value="">Wähle hier eine Kategorie:</option>
-          {allCategories?.map(category => (
-            <option
-              onClick={() => setCurrentFilter(category)}
-              value={value.category}
-            >
-              {category}
-              {console.log(category)}
-            </option>
-          ))}
+          {allCategories?.map(category =>
+            category ? (
+              <option
+                onClick={() => setCurrentFilter(category)}
+                value={value.category}
+              >
+                {category}
+                {console.log(category)}
+              </option>
+            ) : null
+          )}
         </StyledDropdown>
         <StyledButton onClick={handleResetFilter}>Alle</StyledButton>
       </FlexWrapper>
