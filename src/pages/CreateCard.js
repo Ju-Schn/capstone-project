@@ -30,11 +30,7 @@ export default function CreateCard({ cards, onAddNewCard }) {
 
   return (
     <FormWrapper>
-      <Header id="create-card">
-        {cards.length > 0
-          ? 'Erstelle eine Karte'
-          : 'Erstelle deine erste Karte!'}
-      </Header>
+      <Header id="create-card">Erstelle eine Karte</Header>
       <StyledForm
         onSubmit={handleSubmit}
         aria-labelledby="create-card"
