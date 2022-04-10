@@ -21,7 +21,6 @@ export default function Home({
   const [currentFilter, setCurrentFilter] = useState('');
   const [value, setValue] = useState('');
 
-  console.log(currentFilter);
   return (
     <GridWrapper>
       <FlexWrapper>
