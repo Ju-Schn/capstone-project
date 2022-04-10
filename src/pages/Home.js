@@ -14,10 +14,14 @@ export default function Home({
   showModal,
   onPinClick,
   allCategories,
+  onClickRight,
+  onClickWrong,
+  onShowHide,
 }) {
   const [currentFilter, setCurrentFilter] = useState('');
   const [value, setValue] = useState('');
-  console.log(value);
+
+  console.log(currentFilter);
   return (
     <GridWrapper>
       <FlexWrapper>
@@ -26,18 +30,14 @@ export default function Home({
         </label>
         <StyledDropdown
           id="categories"
-          value={value}
           onChange={handleChange}
           name="categories"
+          type="text"
         >
           <option value="">Wähle hier eine Kategorie:</option>
           {allCategories?.map(category =>
             category ? (
-              <option
-                key={category}
-                onClick={() => setCurrentFilter(value)}
-                value={value}
-              >
+              <option key={category} onClick={handleFilter} value={category}>
                 {category}
               </option>
             ) : null
@@ -47,36 +47,70 @@ export default function Home({
       </FlexWrapper>
       <StyledList role="list" aria-label="Karten">
         {currentFilter
-          ? cards?.map(({ question, answer, _id, isPinned, categories }) => {
-              if (categories.includes(currentFilter))
-                return (
-                  <li key={_id}>
-                    <Card
-                      _id={_id}
-                      question={question}
-                      answer={answer}
-                      onTrashClick={onTrashClick}
-                      onPinClick={onPinClick}
-                      isPinned={isPinned}
-                      categories={categories}
-                    />
-                  </li>
-                );
-              else return [];
-            })
-          : cards?.map(({ question, answer, _id, isPinned, categories }) => (
-              <li key={_id}>
-                <Card
-                  _id={_id}
-                  question={question}
-                  answer={answer}
-                  onTrashClick={onTrashClick}
-                  onPinClick={onPinClick}
-                  isPinned={isPinned}
-                  categories={categories}
-                />
-              </li>
-            ))}
+          ? cards?.map(
+              ({
+                question,
+                answer,
+                _id,
+                isPinned,
+                categories,
+                countRight,
+                countWrong,
+                showCounts,
+              }) => {
+                if (categories.includes(currentFilter))
+                  return (
+                    <li key={_id}>
+                      <Card
+                        _id={_id}
+                        question={question}
+                        answer={answer}
+                        onTrashClick={onTrashClick}
+                        onPinClick={onPinClick}
+                        isPinned={isPinned}
+                        showCounts={showCounts}
+                        categories={categories}
+                        countRight={countRight}
+                        countWrong={countWrong}
+                        onClickRight={onClickRight}
+                        onClickWrong={onClickWrong}
+                        onShowHide={onShowHide}
+                      />
+                    </li>
+                  );
+                else return [];
+              }
+            )
+          : cards?.map(
+              ({
+                question,
+                answer,
+                _id,
+                isPinned,
+                categories,
+                countRight,
+                countWrong,
+                showCounts,
+              }) => (
+                <li key={_id}>
+                  <Card
+                    _id={_id}
+                    question={question}
+                    answer={answer}
+                    onTrashClick={onTrashClick}
+                    onPinClick={onPinClick}
+                    isPinned={isPinned}
+                    showCounts={showCounts}
+                    categories={categories}
+                    countRight={countRight}
+                    countWrong={countWrong}
+                    onClickRight={onClickRight}
+                    onClickWrong={onClickWrong}
+                    onShowHide={onShowHide}
+                  />
+                </li>
+              )
+            )}
       </StyledList>
       {showModal && (
         <DeleteModal
@@ -90,6 +124,10 @@ export default function Home({
 
   function handleChange(event) {
     setValue(event.target.value);
+  }
+
+  function handleFilter() {
+    setCurrentFilter(value);
   }
 
   function handleResetFilter() {
