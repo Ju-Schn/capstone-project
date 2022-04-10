@@ -165,7 +165,7 @@ const FlexWrapper = styled.section`
 const StyledDropdown = styled.select`
   background-color: #f2b705;
   font-family: inherit;
-  font-size: 112.5%;
+  font-size: 100%;
   border: none;
   border-radius: 30px;
   width: 80%;
