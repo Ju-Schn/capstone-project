@@ -38,12 +38,13 @@ export default function Home({
           <option value="">Wähle hier eine Kategorie:</option>
           {allCategories?.map(category =>
             category ? (
-              <option key={category} onClick={handleFilter} value={category}>
+              <option key={category} value={category}>
                 {category}
               </option>
             ) : null
           )}
         </StyledDropdown>
+        <StyledButton onClick={handleFilter}>Filtern</StyledButton>
         <StyledButton onClick={handleResetFilter}>Alle</StyledButton>
       </FlexWrapper>
       <StyledList role="list" aria-label="Karten">
@@ -151,7 +152,7 @@ const StyledList = styled.ul`
 
 const GridWrapper = styled.main`
   display: grid;
-  grid-template-rows: 48px auto 48px;
+  grid-template-rows: 56px auto 48px;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -159,6 +160,7 @@ const GridWrapper = styled.main`
 
 const FlexWrapper = styled.section`
   display: flex;
+  gap: 8px;
 `;
 
 const StyledDropdown = styled.select`
