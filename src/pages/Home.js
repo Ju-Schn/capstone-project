@@ -33,6 +33,7 @@ export default function Home({
           onChange={handleChange}
           name="categories"
           type="text"
+          value={value}
         >
           <option value="">Wähle hier eine Kategorie:</option>
           {allCategories?.map(category =>
