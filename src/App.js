@@ -124,7 +124,6 @@ function App() {
     setCards(
       cards.map(card => {
         if (card._id === id) {
-          console.log(card.countWrong);
           return {
             ...card,
             countWrong: card.countWrong + 1,

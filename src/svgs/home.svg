@@ -1,0 +1,22 @@
+ <svg
+          fill="#820D03"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 32 32"
+          width="40px"
+          height="40px"
+        >
+          <path
+            fill="none"
+            stroke="#820D03"
+            strokeMiterlimit="10"
+            strokeWidth="2"
+            d="M3 17L16 4 29 17"
+          />
+          <path
+            fill="none"
+            stroke="#820D03"
+            strokeMiterlimit="10"
+            strokeWidth="2"
+            d="M6 14L6 27 13 27 13 17 19 17 19 27 26 27 26 14"
+          />
+        </svg>
