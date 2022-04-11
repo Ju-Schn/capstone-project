@@ -1,10 +1,11 @@
 import Card from '../components/Card';
-import styled from 'styled-components';
 import DeleteModal from '../components/modals/DeleteModal';
 import Navigation from '../components/navigations/Navigation';
-import { useState } from 'react';
-import StyledButton from '../components/StyledButton';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import StyledButton from '../components/StyledButton';
+
+import styled from 'styled-components';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home({
@@ -15,8 +16,8 @@ export default function Home({
   showModal,
   onPinClick,
   allCategories,
-  onClickRight,
-  onClickWrong,
+  onCountRights,
+  onCountWrongs,
   onShowHide,
 }) {
   const [value, setValue] = useState('');
@@ -84,8 +85,8 @@ export default function Home({
                           categories={categories}
                           countRight={countRight}
                           countWrong={countWrong}
-                          onClickRight={onClickRight}
-                          onClickWrong={onClickWrong}
+                          onCountRights={onCountRights}
+                          onCountWrongs={onCountWrongs}
                           onShowHide={onShowHide}
                         />
                       </li>
@@ -116,8 +117,8 @@ export default function Home({
                       categories={categories}
                       countRight={countRight}
                       countWrong={countWrong}
-                      onClickRight={onClickRight}
-                      onClickWrong={onClickWrong}
+                      onCountRights={onCountRights}
+                      onCountWrongs={onCountWrongs}
                       onShowHide={onShowHide}
                     />
                   </li>

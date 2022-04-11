@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Input from '../components/Input';
 
-export default function CreateCard({ cards, onAddNewCard }) {
+export default function CreateCard({ onAddNewCard }) {
   const [showFormModal, setShowFormModal] = useState(false);
   const [values, setValues] = useState({
     question: '',

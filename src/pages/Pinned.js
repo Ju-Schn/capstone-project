@@ -10,27 +10,45 @@ export default function Pinned({
   onKeepConfirm,
   showModal,
   onPinClick,
+  onCountRights,
+  onCountWrongs,
 }) {
   return (
     <GridWrapper>
       <StyledList role="list">
-        {cards.map(card => {
-          if (card.isPinned === true)
-            return (
-              <li key={card._id}>
-                <Card
-                  _id={card._id}
-                  question={card.question}
-                  answer={card.answer}
-                  onTrashClick={onTrashClick}
-                  onPinClick={onPinClick}
-                  isPinned={card.isPinned}
-                  categories={card.categories}
-                />
-              </li>
-            );
-          else return [];
-        })}
+        {cards?.map(
+          ({
+            question,
+            answer,
+            _id,
+            isPinned,
+            categories,
+            countRight,
+            countWrong,
+            showCounts,
+          }) => {
+            if (isPinned === true)
+              return (
+                <li key={_id}>
+                  <Card
+                    _id={_id}
+                    question={question}
+                    answer={answer}
+                    onTrashClick={onTrashClick}
+                    onPinClick={onPinClick}
+                    isPinned={isPinned}
+                    categories={categories}
+                    countRight={countRight}
+                    countWrong={countWrong}
+                    showCounts={showCounts}
+                    onCountRights={onCountRights}
+                    onCountWrongs={onCountWrongs}
+                  />
+                </li>
+              );
+            else return [];
+          }
+        )}
 
         {showModal && (
           <DeleteModal
