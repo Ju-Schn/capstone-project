@@ -32,8 +32,8 @@ function App() {
             showModal={showModal}
             onPinClick={handlePinClick}
             allCategories={allCategories}
-            onClickRight={handleClickRight}
-            onClickWrong={handleClickWrong}
+            onCountRight={handleCountRight}
+            onCountWrong={handleCountWrong}
           />
         }
       />
@@ -52,8 +52,8 @@ function App() {
             onPinClick={handlePinClick}
             cards={cards}
             allCategories={allCategories}
-            onClickRight={handleClickRight}
-            onClickWrong={handleClickWrong}
+            onCountRight={handleCountRight}
+            onCountWrong={handleCountWrong}
           />
         }
       ></Route>
@@ -108,7 +108,8 @@ function App() {
     );
   }
 
-  function handleClickRight(id) {
+  function handleCountRight(id) {
+    console.log(id);
     setCards(
       cards.map(card => {
         if (card._id === id) {
@@ -122,7 +123,7 @@ function App() {
     );
   }
 
-  function handleClickWrong(id) {
+  function handleCountWrong(id) {
     setCards(
       cards.map(card => {
         if (card._id === id) {

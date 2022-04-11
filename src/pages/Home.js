@@ -16,8 +16,8 @@ export default function Home({
   showModal,
   onPinClick,
   allCategories,
-  onClickRight,
-  onClickWrong,
+  onCountRight,
+  onCountWrong,
   onShowHide,
 }) {
   const [value, setValue] = useState('');
@@ -85,8 +85,8 @@ export default function Home({
                           categories={categories}
                           countRight={countRight}
                           countWrong={countWrong}
-                          onClickRight={onClickRight}
-                          onClickWrong={onClickWrong}
+                          onCountRight={onCountRight}
+                          onCountWrong={onCountWrong}
                           onShowHide={onShowHide}
                         />
                       </li>
@@ -117,8 +117,8 @@ export default function Home({
                       categories={categories}
                       countRight={countRight}
                       countWrong={countWrong}
-                      onClickRight={onClickRight}
-                      onClickWrong={onClickWrong}
+                      onCountRight={onCountRight}
+                      onCountWrong={onCountWrong}
                       onShowHide={onShowHide}
                     />
                   </li>
