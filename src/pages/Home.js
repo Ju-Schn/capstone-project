@@ -70,6 +70,7 @@ export default function Home({
                   countRight,
                   countWrong,
                   showCounts,
+                  quotient,
                 }) => {
                   if (categories.includes(value))
                     return (
@@ -88,6 +89,7 @@ export default function Home({
                           onCountRights={onCountRights}
                           onCountWrongs={onCountWrongs}
                           onShowHide={onShowHide}
+                          quotient={quotient}
                         />
                       </li>
                     );
@@ -104,6 +106,7 @@ export default function Home({
                   countRight,
                   countWrong,
                   showCounts,
+                  quotient,
                 }) => (
                   <li key={_id}>
                     <Card
@@ -120,6 +123,7 @@ export default function Home({
                       onCountRights={onCountRights}
                       onCountWrongs={onCountWrongs}
                       onShowHide={onShowHide}
+                      quotient={quotient}
                     />
                   </li>
                 )

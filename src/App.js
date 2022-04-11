@@ -13,6 +13,7 @@ function App() {
   );
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
+  // const [quotientCounts, setQuotientCounts] = useState(0);
 
   useEffect(() => {
     saveToLocal('allCategories', allCategories);
@@ -73,9 +74,10 @@ function App() {
       categories: [category1Text, category2Text, category3Text],
       _id: nanoid(),
       isPinned: false,
-      countRight: 0,
-      countWrong: 0,
-      showCount: false,
+      countRight: 0.0000000001,
+      countWrong: 0.0000000001,
+      quotient: 0,
+      showCounts: false,
     };
     setCards([newCard, ...cards]);
     handleCategories(newCard);
@@ -115,6 +117,7 @@ function App() {
           return {
             ...card,
             countRight: card.countRight + 1,
+            quotient: (card.countRight + 1) / card.countWrong,
             showCounts: !card.showCounts,
           };
         } else return card;
@@ -129,6 +132,7 @@ function App() {
           return {
             ...card,
             countWrong: card.countWrong + 1,
+            quotient: card.countRight / (card.countWrong + 1),
             showCounts: !card.showCounts,
           };
         } else return card;
