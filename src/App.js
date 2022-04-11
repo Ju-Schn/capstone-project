@@ -109,7 +109,6 @@ function App() {
   }
 
   function handleCountRight(id) {
-    console.log(id);
     setCards(
       cards.map(card => {
         if (card._id === id) {
