@@ -79,6 +79,34 @@ export default styled.button`
     `}
 
     ${props =>
+    props.variant === 'right' &&
+    css`
+      background-color: #618c03;
+      color: #f4e9c9;
+      border-radius: 40px;
+      margin: 16px 0;
+      padding: 8px 16px;
+      display: flex;
+      align-self: center;
+      align-items: center;
+      gap: 16px;
+    `}
+
+    ${props =>
+    props.variant === 'wrong' &&
+    css`
+      background-color: #d92b04;
+      color: #f4e9c9;
+      border-radius: 40px;
+      margin: 16px 0;
+      padding: 8px 16px;
+      display: flex;
+      align-self: center;
+      align-items: center;
+      gap: 16px;
+    `}
+
+    ${props =>
     props.variant === 'navigation' &&
     css`
       display: flex;

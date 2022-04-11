@@ -5,6 +5,7 @@ import Navigation from '../components/navigations/Navigation';
 import { useState } from 'react';
 import StyledButton from '../components/StyledButton';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home({
   cards,
@@ -14,42 +15,95 @@ export default function Home({
   showModal,
   onPinClick,
   allCategories,
+  onClickRight,
+  onClickWrong,
+  onShowHide,
 }) {
-  const [currentFilter, setCurrentFilter] = useState('');
   const [value, setValue] = useState('');
-  console.log(value);
-  return (
-    <GridWrapper>
-      <FlexWrapper>
-        <label>
-          <ScreenReaderOnly>Wähle hier eine Kategorie:</ScreenReaderOnly>
-        </label>
-        <StyledDropdown
-          id="categories"
-          value={value}
-          onChange={handleChange}
-          name="categories"
-        >
-          <option value="">Wähle hier eine Kategorie:</option>
-          {allCategories?.map(category =>
-            category ? (
-              <option
-                key={category}
-                onClick={() => setCurrentFilter(value)}
-                value={value}
-              >
-                {category}
-              </option>
-            ) : null
-          )}
-        </StyledDropdown>
-        <StyledButton onClick={handleResetFilter}>Alle</StyledButton>
-      </FlexWrapper>
-      <StyledList role="list" aria-label="Karten">
-        {currentFilter
-          ? cards?.map(({ question, answer, _id, isPinned, categories }) => {
-              if (categories.includes(currentFilter))
-                return (
+
+  const navigate = useNavigate();
+
+  if (cards.length === 0) {
+    return (
+      <StyledEmptyState>
+        <h2>Du hast bisher noch keine Karte</h2>
+        <StyledButton onClick={handleFirstCard}>
+          Erstelle deine erste Karte
+        </StyledButton>
+      </StyledEmptyState>
+    );
+  } else {
+    return (
+      <GridWrapper>
+        <FlexWrapper>
+          <label>
+            <ScreenReaderOnly>Kategorieauswahl:</ScreenReaderOnly>
+          </label>
+          <StyledDropdown
+            id="categories"
+            onChange={handleChange}
+            name="categories"
+            type="text"
+            value={value}
+          >
+            <option value="">Kategorieauswahl:</option>
+            {allCategories?.map(category =>
+              category ? (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ) : null
+            )}
+          </StyledDropdown>
+          <StyledButton onClick={handleResetFilter}>Alle</StyledButton>
+        </FlexWrapper>
+        <StyledList role="list" aria-label="Karten">
+          {value
+            ? cards?.map(
+                ({
+                  question,
+                  answer,
+                  _id,
+                  isPinned,
+                  categories,
+                  countRight,
+                  countWrong,
+                  showCounts,
+                }) => {
+                  if (categories.includes(value))
+                    return (
+                      <li key={_id}>
+                        <Card
+                          _id={_id}
+                          question={question}
+                          answer={answer}
+                          onTrashClick={onTrashClick}
+                          onPinClick={onPinClick}
+                          isPinned={isPinned}
+                          showCounts={showCounts}
+                          categories={categories}
+                          countRight={countRight}
+                          countWrong={countWrong}
+                          onClickRight={onClickRight}
+                          onClickWrong={onClickWrong}
+                          onShowHide={onShowHide}
+                        />
+                      </li>
+                    );
+                  else return [];
+                }
+              )
+            : cards?.map(
+                ({
+                  question,
+                  answer,
+                  _id,
+                  isPinned,
+                  categories,
+                  countRight,
+                  countWrong,
+                  showCounts,
+                }) => (
                   <li key={_id}>
                     <Card
                       _id={_id}
@@ -58,43 +112,39 @@ export default function Home({
                       onTrashClick={onTrashClick}
                       onPinClick={onPinClick}
                       isPinned={isPinned}
+                      showCounts={showCounts}
                       categories={categories}
+                      countRight={countRight}
+                      countWrong={countWrong}
+                      onClickRight={onClickRight}
+                      onClickWrong={onClickWrong}
+                      onShowHide={onShowHide}
                     />
                   </li>
-                );
-              else return [];
-            })
-          : cards?.map(({ question, answer, _id, isPinned, categories }) => (
-              <li key={_id}>
-                <Card
-                  _id={_id}
-                  question={question}
-                  answer={answer}
-                  onTrashClick={onTrashClick}
-                  onPinClick={onPinClick}
-                  isPinned={isPinned}
-                  categories={categories}
-                />
-              </li>
-            ))}
-      </StyledList>
-      {showModal && (
-        <DeleteModal
-          onDeleteConfirm={onDeleteConfirm}
-          onKeepConfirm={onKeepConfirm}
-        />
-      )}
-      <Navigation />
-    </GridWrapper>
-  );
+                )
+              )}
+        </StyledList>
+        {showModal && (
+          <DeleteModal
+            onDeleteConfirm={onDeleteConfirm}
+            onKeepConfirm={onKeepConfirm}
+          />
+        )}
+        <Navigation />
+      </GridWrapper>
+    );
+  }
 
   function handleChange(event) {
     setValue(event.target.value);
   }
 
   function handleResetFilter() {
-    setCurrentFilter('');
     setValue('');
+  }
+
+  function handleFirstCard() {
+    navigate('/create-card');
   }
 }
 
@@ -112,7 +162,7 @@ const StyledList = styled.ul`
 
 const GridWrapper = styled.main`
   display: grid;
-  grid-template-rows: 48px auto 48px;
+  grid-template-rows: 56px auto 48px;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -120,15 +170,25 @@ const GridWrapper = styled.main`
 
 const FlexWrapper = styled.section`
   display: flex;
+  gap: 8px;
 `;
 
 const StyledDropdown = styled.select`
   background-color: #f2b705;
   font-family: inherit;
-  font-size: 112.5%;
+  font-size: 100%;
   border: none;
   border-radius: 30px;
   width: 80%;
   box-shadow: rgba(140, 14, 3, 0.4) 0px 8px 24px;
   margin: 8px;
+`;
+
+const StyledEmptyState = styled.section`
+  padding: 16px;
+  padding-top: 160px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 16px;
 `;

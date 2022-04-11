@@ -32,6 +32,8 @@ function App() {
             showModal={showModal}
             onPinClick={handlePinClick}
             allCategories={allCategories}
+            onClickRight={handleClickRight}
+            onClickWrong={handleClickWrong}
           />
         }
       />
@@ -69,6 +71,9 @@ function App() {
       categories: [category1Text, category2Text, category3Text],
       _id: nanoid(),
       isPinned: false,
+      countRight: 0,
+      countWrong: 0,
+      showCount: false,
     };
     setCards([newCard, ...cards]);
     handleCategories(newCard);
@@ -96,6 +101,34 @@ function App() {
       cards.map(card => {
         if (card._id === id) {
           return { ...card, isPinned: !card.isPinned };
+        } else return card;
+      })
+    );
+  }
+
+  function handleClickRight(id) {
+    setCards(
+      cards.map(card => {
+        if (card._id === id) {
+          return {
+            ...card,
+            countRight: card.countRight + 1,
+            showCounts: !card.showCounts,
+          };
+        } else return card;
+      })
+    );
+  }
+
+  function handleClickWrong(id) {
+    setCards(
+      cards.map(card => {
+        if (card._id === id) {
+          return {
+            ...card,
+            countWrong: card.countWrong + 1,
+            showCounts: !card.showCounts,
+          };
         } else return card;
       })
     );
