@@ -1,10 +1,11 @@
 import Card from '../components/Card';
-import styled from 'styled-components';
 import DeleteModal from '../components/modals/DeleteModal';
 import Navigation from '../components/navigations/Navigation';
-import { useState } from 'react';
-import StyledButton from '../components/StyledButton';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import StyledButton from '../components/StyledButton';
+
+import styled from 'styled-components';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home({

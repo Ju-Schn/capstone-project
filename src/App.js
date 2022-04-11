@@ -52,6 +52,8 @@ function App() {
             onPinClick={handlePinClick}
             cards={cards}
             allCategories={allCategories}
+            onClickRight={handleClickRight}
+            onClickWrong={handleClickWrong}
           />
         }
       ></Route>
