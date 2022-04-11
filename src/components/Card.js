@@ -16,8 +16,8 @@ export default function Card({
   categories,
   countRight,
   countWrong,
-  onCountRight,
-  onCountWrong,
+  onCountRights,
+  onCountWrongs,
 }) {
   const [isAnswer, toggleAnswer] = useState(false);
   const [showCounts, setShowCounts] = useState(false);
@@ -154,12 +154,12 @@ export default function Card({
   function handleClickRight(_id) {
     console.log('--' + _id);
     setShowCounts(true);
-    onCountRight(_id);
+    onCountRights(_id);
   }
 
   function handleClickWrong(_id) {
     setShowCounts(true);
-    onCountWrong(_id);
+    onCountWrongs(_id);
   }
 }
 

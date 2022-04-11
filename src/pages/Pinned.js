@@ -10,8 +10,8 @@ export default function Pinned({
   onKeepConfirm,
   showModal,
   onPinClick,
-  onCountRight,
-  onCountWrong,
+  onCountRights,
+  onCountWrongs,
 }) {
   return (
     <GridWrapper>
@@ -41,8 +41,8 @@ export default function Pinned({
                     countRight={countRight}
                     countWrong={countWrong}
                     showCounts={showCounts}
-                    onCountRight={onCountRight}
-                    onCountWrong={onCountWrong}
+                    onCountRights={onCountRights}
+                    onCountWrongs={onCountWrongs}
                   />
                 </li>
               );
