@@ -1,6 +1,7 @@
 import Card from '../components/Card';
 import Navigation from '../components/navigations/Navigation';
 import DeleteModal from '../components/modals/DeleteModal';
+
 import styled from 'styled-components';
 
 export default function Pinned({

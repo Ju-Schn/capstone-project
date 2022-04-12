@@ -1,10 +1,11 @@
-import styled, { css } from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 import StyledButton from './StyledButton';
-import { useState } from 'react';
 import { ReactComponent as TrashcanRedIcon } from '../svgs/trashcanRed.svg';
 import { ReactComponent as RotateIcon } from '../svgs/drehen.svg';
+
+import { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
+import styled, { css } from 'styled-components';
 
 export default function Card({
   question,
@@ -46,19 +47,16 @@ export default function Card({
           <span>Kategorien:</span>
         </ScreenReaderOnly>
         <CategoryWrapper role="list">
-          {categories?.map((category, index) =>
-            category ? (
-              <Category key={`${category}-${index}`}>{category}</Category>
-            ) : (
-              ''
-            )
+          {categories?.map(
+            (category, index) =>
+              category && (
+                <Category key={`${category}-${index}`}>{category}</Category>
+              )
           )}
         </CategoryWrapper>
         <StyledButton onClick={handleFlipToBackClick} variant="showHide">
           <RotateIcon />
-          <ScreenReaderOnly>
-            {isAnswer ? 'Antwort verbergen' : 'Antwort anzeigen'}
-          </ScreenReaderOnly>
+          <ScreenReaderOnly>Antwort anzeigen</ScreenReaderOnly>
         </StyledButton>
         <StyledButton variant="noButtonTrash" onClick={() => onTrashClick(_id)}>
           <TrashcanRedIcon />
@@ -93,19 +91,16 @@ export default function Card({
         </ScreenReaderOnly>
         <span>{answer}</span>
         <CategoryWrapper role="list">
-          {categories?.map((category, index) =>
-            category ? (
-              <Category key={`${category}-${index}`}>{category}</Category>
-            ) : (
-              ''
-            )
+          {categories?.map(
+            (category, index) =>
+              category && (
+                <Category key={`${category}-${index}`}>{category}</Category>
+              )
           )}
         </CategoryWrapper>
         <StyledButton onClick={handleFlipToFrontClick} variant="showHide">
           <RotateIcon />
-          <ScreenReaderOnly>
-            {isAnswer ? 'Antwort verbergen' : 'Antwort anzeigen'}
-          </ScreenReaderOnly>
+          <ScreenReaderOnly>Antwort verbergen</ScreenReaderOnly>
         </StyledButton>
         <FlexWrapper>
           <StyledButton onClick={() => handleClickRight(_id)} variant="right">
@@ -121,7 +116,6 @@ export default function Card({
             </svg>
             {showCounts && <span>{Math.round(countRight)}</span>}
           </StyledButton>
-          <span>{Math.round(quotient)}</span>
           <StyledButton onClick={() => handleClickWrong(_id)} variant="wrong">
             <ScreenReaderOnly>Falsch</ScreenReaderOnly>
             {showCounts && <span>{Math.round(countWrong)}</span>}

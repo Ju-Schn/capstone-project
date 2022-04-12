@@ -1,24 +1,34 @@
-import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
 import Home from './pages/Home';
 import CreateCard from './pages/CreateCard';
 import Pinned from './pages/Pinned';
+
+import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 import { saveToLocal, loadFromLocal } from './utils/localStorage';
 
 function App() {
   const [cards, setCards] = useState(loadFromLocal('cards') ?? []);
+  const [easyCards, setEasyCards] = useState(loadFromLocal('easyCards') ?? []);
+  const [mediumCards, setMediumCards] = useState(
+    loadFromLocal('mediumCards') ?? []
+  );
+  const [difficultCards, setDifficultCards] = useState(
+    loadFromLocal('difficultCards') ?? []
+  );
   const [allCategories, setAllCategories] = useState(
     loadFromLocal('allCategories') ?? []
   );
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
-  // const [quotientCounts, setQuotientCounts] = useState(0);
 
   useEffect(() => {
     saveToLocal('allCategories', allCategories);
     saveToLocal('cards', cards);
-  }, [cards, allCategories]);
+    saveToLocal('easyCards', easyCards);
+    saveToLocal('mediumCards', mediumCards);
+    saveToLocal('difficultCards', difficultCards);
+  }, [cards, allCategories, easyCards, mediumCards, difficultCards]);
 
   return (
     <Routes>
@@ -76,7 +86,7 @@ function App() {
       isPinned: false,
       countRight: 0.0000000001,
       countWrong: 0.0000000001,
-      quotient: 0,
+      quotient: 1,
       showCounts: false,
     };
     setCards([newCard, ...cards]);
@@ -123,6 +133,7 @@ function App() {
         } else return card;
       })
     );
+    handleDifficulty();
   }
 
   function handleCountWrongs(id) {
@@ -137,6 +148,20 @@ function App() {
           };
         } else return card;
       })
+    );
+    handleDifficulty();
+  }
+
+  function handleDifficulty() {
+    setEasyCards(cards.filter(card => card.quotient >= 2));
+    setMediumCards(
+      cards.filter(card => card.quotient < 2 && card.quotient > 0.5)
+    );
+    setDifficultCards(cards.filter(card => card.quotient <= 0.5));
+    console.log(
+      'easy ' + easyCards.quotient,
+      'medium ' + mediumCards.quotient,
+      'difficult ' + difficultCards.quotient
     );
   }
 }
