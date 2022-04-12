@@ -45,6 +45,9 @@ function App() {
             allCategories={allCategories}
             onCountRights={handleCountRights}
             onCountWrongs={handleCountWrongs}
+            easyCards={easyCards}
+            mediumCards={mediumCards}
+            difficultCards={difficultCards}
           />
         }
       />

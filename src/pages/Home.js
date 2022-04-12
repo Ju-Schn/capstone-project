@@ -19,10 +19,16 @@ export default function Home({
   onCountRights,
   onCountWrongs,
   onShowHide,
+  easyCards,
+  mediumCards,
+  difficultCards,
 }) {
   const [value, setValue] = useState('');
+  const [difficulty, setDifficulty] = useState('');
 
   const navigate = useNavigate();
+
+  console.log(easyCards);
 
   if (cards.length === 0) {
     return (
@@ -48,19 +54,49 @@ export default function Home({
             value={value}
           >
             <option value="">Kategorieauswahl:</option>
-            {allCategories?.map(category =>
-              category ? (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ) : null
+            {allCategories?.map(
+              category =>
+                category && (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                )
             )}
           </StyledDropdown>
           <StyledButton onClick={handleResetFilter}>Alle</StyledButton>
         </FlexWrapper>
+        <ButtonWrapper>
+          <StyledButton name="" value="" onClick={handleDifficultyCards}>
+            Alle
+          </StyledButton>
+          <StyledButton
+            variant="submit"
+            name="easy"
+            value="easy"
+            onClick={handleDifficultyCards}
+          >
+            Leicht
+          </StyledButton>
+          <StyledButton
+            variant="yellow"
+            name="medium"
+            value="medium"
+            onClick={handleDifficultyCards}
+          >
+            Mittel
+          </StyledButton>
+          <StyledButton
+            variant="danger"
+            name="difficult"
+            value="difficult"
+            onClick={handleDifficultyCards}
+          >
+            Schwer
+          </StyledButton>
+        </ButtonWrapper>
         <StyledList role="list" aria-label="Karten">
-          {value
-            ? cards?.map(
+          {difficulty === 'easy'
+            ? easyCards?.map(
                 ({
                   question,
                   answer,
@@ -71,9 +107,9 @@ export default function Home({
                   countWrong,
                   showCounts,
                   quotient,
-                }) => {
-                  if (categories.includes(value))
-                    return (
+                }) =>
+                  value ? (
+                    categories.includes(value) && (
                       <li key={_id}>
                         <Card
                           _id={_id}
@@ -92,9 +128,27 @@ export default function Home({
                           quotient={quotient}
                         />
                       </li>
-                    );
-                  else return [];
-                }
+                    )
+                  ) : (
+                    <li key={_id}>
+                      <Card
+                        _id={_id}
+                        question={question}
+                        answer={answer}
+                        onTrashClick={onTrashClick}
+                        onPinClick={onPinClick}
+                        isPinned={isPinned}
+                        showCounts={showCounts}
+                        categories={categories}
+                        countRight={countRight}
+                        countWrong={countWrong}
+                        onCountRights={onCountRights}
+                        onCountWrongs={onCountWrongs}
+                        onShowHide={onShowHide}
+                        quotient={quotient}
+                      />
+                    </li>
+                  )
               )
             : cards?.map(
                 ({
@@ -107,26 +161,48 @@ export default function Home({
                   countWrong,
                   showCounts,
                   quotient,
-                }) => (
-                  <li key={_id}>
-                    <Card
-                      _id={_id}
-                      question={question}
-                      answer={answer}
-                      onTrashClick={onTrashClick}
-                      onPinClick={onPinClick}
-                      isPinned={isPinned}
-                      showCounts={showCounts}
-                      categories={categories}
-                      countRight={countRight}
-                      countWrong={countWrong}
-                      onCountRights={onCountRights}
-                      onCountWrongs={onCountWrongs}
-                      onShowHide={onShowHide}
-                      quotient={quotient}
-                    />
-                  </li>
-                )
+                }) =>
+                  value ? (
+                    categories.includes(value) && (
+                      <li key={_id}>
+                        <Card
+                          _id={_id}
+                          question={question}
+                          answer={answer}
+                          onTrashClick={onTrashClick}
+                          onPinClick={onPinClick}
+                          isPinned={isPinned}
+                          showCounts={showCounts}
+                          categories={categories}
+                          countRight={countRight}
+                          countWrong={countWrong}
+                          onCountRights={onCountRights}
+                          onCountWrongs={onCountWrongs}
+                          onShowHide={onShowHide}
+                          quotient={quotient}
+                        />
+                      </li>
+                    )
+                  ) : (
+                    <li key={_id}>
+                      <Card
+                        _id={_id}
+                        question={question}
+                        answer={answer}
+                        onTrashClick={onTrashClick}
+                        onPinClick={onPinClick}
+                        isPinned={isPinned}
+                        showCounts={showCounts}
+                        categories={categories}
+                        countRight={countRight}
+                        countWrong={countWrong}
+                        onCountRights={onCountRights}
+                        onCountWrongs={onCountWrongs}
+                        onShowHide={onShowHide}
+                        quotient={quotient}
+                      />
+                    </li>
+                  )
               )}
         </StyledList>
         {showModal && (
@@ -148,6 +224,10 @@ export default function Home({
     setValue('');
   }
 
+  function handleDifficultyCards(event) {
+    setDifficulty(event.target.value);
+  }
+
   function handleFirstCard() {
     navigate('/create-card');
   }
@@ -167,7 +247,7 @@ const StyledList = styled.ul`
 
 const GridWrapper = styled.main`
   display: grid;
-  grid-template-rows: 56px auto 48px;
+  grid-template-rows: 56px 56px auto 48px;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -176,6 +256,11 @@ const GridWrapper = styled.main`
 const FlexWrapper = styled.section`
   display: flex;
   gap: 8px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 const StyledDropdown = styled.select`
