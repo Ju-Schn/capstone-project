@@ -133,6 +133,7 @@ function App() {
     setCards(
       cards.map(card => {
         if (card._id === id) {
+          console.log(id);
           return {
             ...card,
             countWrong: card.countWrong + 1,
