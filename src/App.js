@@ -115,6 +115,7 @@ function App() {
     setCards(
       cards.map(card => {
         if (card._id === id) {
+          console.log(card.countRight);
           return {
             ...card,
             countRight: card.countRight + 1,
