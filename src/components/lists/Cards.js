@@ -3,7 +3,7 @@ import DeleteModal from '../modals/DeleteModal';
 
 import styled from 'styled-components';
 
-export default function EasyCards({
+export default function Cards({
   onDeleteConfirm,
   onTrashClick,
   onKeepConfirm,
@@ -11,13 +11,13 @@ export default function EasyCards({
   onPinClick,
   onCountRights,
   onCountWrongs,
-  easyCards,
+  cards,
   onShowHide,
   value,
 }) {
   return (
     <StyledList role="list" aria-label="Karten">
-      {easyCards?.map(
+      {cards?.map(
         ({
           question,
           answer,
@@ -28,6 +28,7 @@ export default function EasyCards({
           countWrong,
           showCounts,
           quotient,
+          difficulty,
         }) =>
           value ? (
             categories.includes(value) && (
@@ -41,6 +42,7 @@ export default function EasyCards({
                   categories={categories}
                   countRight={countRight}
                   countWrong={countWrong}
+                  difficulty={difficulty}
                   showCounts={showCounts}
                   onCountRights={onCountRights}
                   onCountWrongs={onCountWrongs}

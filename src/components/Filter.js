@@ -13,7 +13,7 @@ export default function Filter({
   return (
     <>
       <DropdownWrapper>
-        <label>
+        <label htmlFor="categories">
           <ScreenReaderOnly>Kategorieauswahl:</ScreenReaderOnly>
         </label>
         <StyledDropdown

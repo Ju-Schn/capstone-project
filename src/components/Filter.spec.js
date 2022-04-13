@@ -33,14 +33,6 @@ describe('Filter', () => {
     const resetFilterButtons = screen.getAllByRole('button', { name: /alle/i });
     await userEvent.click(resetFilterButtons[1]);
 
-    expect(callback).toHaveBeenCalled();
-  });
-
-  it('calls onResetFilter when clicking the reset filter button', async () => {
-    const callback = jest.fn();
-    render(<Filter onResetFilter={callback} />);
-
-    const resetFilterButtons = screen.getAllByRole('button', { name: /alle/i });
-    await userEvent.click(resetFilterButtons[0]);
+    expect(callback).toHaveBeenCalledTimes(4);
   });
 });

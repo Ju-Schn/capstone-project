@@ -33,8 +33,6 @@ export default function Card({
     >
       <FileCardFront
         isPinned={isPinned}
-        countWrong={countWrong}
-        countRight={countRight}
         showCounts={showCounts}
         variant={isPinned ? 'pinned' : 'default'}
         quotient={quotient}

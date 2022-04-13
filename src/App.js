@@ -9,13 +9,6 @@ import { saveToLocal, loadFromLocal } from './utils/localStorage';
 
 function App() {
   const [cards, setCards] = useState(loadFromLocal('cards') ?? []);
-  const [easyCards, setEasyCards] = useState(loadFromLocal('easyCards') ?? []);
-  const [mediumCards, setMediumCards] = useState(
-    loadFromLocal('mediumCards') ?? []
-  );
-  const [difficultCards, setDifficultCards] = useState(
-    loadFromLocal('difficultCards') ?? []
-  );
   const [allCategories, setAllCategories] = useState(
     loadFromLocal('allCategories') ?? []
   );
@@ -25,10 +18,7 @@ function App() {
   useEffect(() => {
     saveToLocal('allCategories', allCategories);
     saveToLocal('cards', cards);
-    saveToLocal('easyCards', easyCards);
-    saveToLocal('mediumCards', mediumCards);
-    saveToLocal('difficultCards', difficultCards);
-  }, [cards, allCategories, easyCards, mediumCards, difficultCards]);
+  }, [cards, allCategories]);
 
   return (
     <Routes>
@@ -45,9 +35,6 @@ function App() {
             allCategories={allCategories}
             onCountRights={handleCountRights}
             onCountWrongs={handleCountWrongs}
-            easyCards={easyCards}
-            mediumCards={mediumCards}
-            difficultCards={difficultCards}
           />
         }
       />
@@ -82,15 +69,16 @@ function App() {
     category3Text
   ) {
     const newCard = {
+      _id: nanoid(),
       question: questionText,
       answer: answerText,
       categories: [category1Text, category2Text, category3Text],
-      _id: nanoid(),
       isPinned: false,
+      showCounts: false,
       countRight: 0.0000000001,
       countWrong: 0.0000000001,
       quotient: 1,
-      showCounts: false,
+      difficulty: '',
     };
     setCards([newCard, ...cards]);
     handleCategories(newCard);
@@ -133,10 +121,12 @@ function App() {
             quotient: (card.countRight + 1) / card.countWrong,
             showCounts: !card.showCounts,
           };
-        } else return card;
+        } else {
+          return card;
+        }
       })
     );
-    handleDifficulty();
+    handleDifficulty(id);
   }
 
   function handleCountWrongs(id) {
@@ -152,19 +142,19 @@ function App() {
         } else return card;
       })
     );
-    handleDifficulty();
+    handleDifficulty(id);
   }
 
-  function handleDifficulty() {
-    setEasyCards(cards.filter(card => card.quotient >= 2));
-    setMediumCards(
-      cards.filter(card => card.quotient < 2 && card.quotient > 0.5)
-    );
-    setDifficultCards(cards.filter(card => card.quotient <= 0.5));
-    console.log(
-      'easy ' + easyCards.quotient,
-      'medium ' + mediumCards.quotient,
-      'difficult ' + difficultCards.quotient
+  function handleDifficulty(id) {
+    setCards(
+      cards.map(card => {
+        if (card._id === id) {
+          if (card.quotient >= 2) return { ...card, difficulty: 'easy' };
+          else if (card.quotient <= 0.5)
+            return { ...card, difficulty: 'difficult' };
+          else return { ...card, difficulty: 'medium' };
+        } else return card;
+      })
     );
   }
 }
