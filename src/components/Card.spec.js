@@ -1,5 +1,5 @@
 import { MemoryRouter } from 'react-router-dom';
-import { userEvent } from '@storybook/testing-library';
+import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import Card from './Card';
 
@@ -34,7 +34,7 @@ describe('Card', () => {
     expect(wrongButton).toBeInTheDocument();
   });
 
-  it('calls onTrashClick when clicking "Trashcan"', () => {
+  it('calls onTrashClick when clicking "Trashcan"', async () => {
     const callback = jest.fn();
     render(
       <Card
@@ -46,9 +46,9 @@ describe('Card', () => {
     );
 
     const trashButton1 = screen.getAllByRole('button', { name: /lösche/i });
-    userEvent.click(trashButton1[0]);
+    await userEvent.click(trashButton1[0]);
     const trashButton2 = screen.getAllByRole('button', { name: /lösche/i });
-    userEvent.click(trashButton2[1]);
+    await userEvent.click(trashButton2[1]);
 
     expect(callback).toHaveBeenCalled();
   });
