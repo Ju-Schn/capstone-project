@@ -72,15 +72,18 @@ export default function FilterAndList({
       setEasyActive(true);
       setMediumActive(false);
       setDifficultActive(false);
-    } else if (event.target.value === 'medium') {
+    }
+    if (event.target.value === 'medium') {
       setMediumActive(true);
       setEasyActive(false);
       setDifficultActive(false);
-    } else if (event.target.value === 'difficult') {
+    }
+    if (event.target.value === 'difficult') {
       setDifficultActive(true);
       setEasyActive(false);
       setMediumActive(false);
-    } else if (event.target.value === '') {
+    }
+    if (event.target.value === '') {
       setEasyActive(false);
       setMediumActive(false);
       setDifficultActive(false);
