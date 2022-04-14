@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 
 export default styled.button`
   border-radius: 30px;
-  background-color: #f2b705;
-  color: #8c0e03;
+  background-color: #8c0e03;
+  color: #f4e9c9;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -16,6 +16,34 @@ export default styled.button`
       background-color: #618c03;
       color: #f4e9c9;
       border-radius: 30px;
+    `}
+
+  ${props =>
+    props.variant === 'submitActive' &&
+    css`
+      background-color: #618c03;
+      color: #f4e9c9;
+      border-radius: 30px;
+      box-shadow: rgb(140, 14, 3, 0.5) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.2) -3px -3px 6px 1px inset;
+    `}
+
+  ${props =>
+    props.variant === 'yellow' &&
+    css`
+      background-color: #f2b705;
+      color: #8c0e03;
+      border-radius: 30px;
+    `}
+
+    ${props =>
+    props.variant === 'yellowActive' &&
+    css`
+      background-color: #f2b705;
+      color: #8c0e03;
+      border-radius: 30px;
+      box-shadow: rgb(140, 14, 3, 0.5) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.2) -3px -3px 6px 1px inset;
     `}
 
   ${props =>
@@ -76,6 +104,15 @@ export default styled.button`
     css`
       background-color: #d92b04;
       color: #f4e9c9;
+    `}
+    ${props =>
+    props.variant === 'dangerActive' &&
+    css`
+      background-color: #d92b04;
+      color: #f4e9c9;
+      border-radius: 30px;
+      box-shadow: rgb(140, 14, 3, 0.5) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.2) -3px -3px 6px 1px inset;
     `}
 
     ${props =>

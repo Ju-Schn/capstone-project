@@ -1,9 +1,10 @@
-import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
 import Home from './pages/Home';
 import CreateCard from './pages/CreateCard';
 import Pinned from './pages/Pinned';
+
+import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 import { saveToLocal, loadFromLocal } from './utils/localStorage';
 
 function App() {
@@ -68,14 +69,16 @@ function App() {
     category3Text
   ) {
     const newCard = {
+      _id: nanoid(),
       question: questionText,
       answer: answerText,
       categories: [category1Text, category2Text, category3Text],
-      _id: nanoid(),
       isPinned: false,
-      countRight: 0,
-      countWrong: 0,
-      showCount: false,
+      showCounts: false,
+      countRight: 0.0000000001,
+      countWrong: 0.0000000001,
+      quotient: 1,
+      difficulty: 'medium',
     };
     setCards([newCard, ...cards]);
     handleCategories(newCard);
@@ -115,6 +118,10 @@ function App() {
           return {
             ...card,
             countRight: card.countRight + 1,
+            quotient: (card.countRight + 1) / card.countWrong,
+            difficulty: handleDifficulty(
+              (card.countRight + 1) / card.countWrong
+            ),
             showCounts: !card.showCounts,
           };
         } else return card;
@@ -129,11 +136,21 @@ function App() {
           return {
             ...card,
             countWrong: card.countWrong + 1,
+            quotient: card.countRight / (card.countWrong + 1),
+            difficulty: handleDifficulty(
+              card.countRight / (card.countWrong + 1)
+            ),
             showCounts: !card.showCounts,
           };
         } else return card;
       })
     );
+  }
+
+  function handleDifficulty(quotient) {
+    if (quotient >= 2) return 'easy';
+    else if (quotient <= 0.5) return 'difficult';
+    else return 'medium';
   }
 }
 
