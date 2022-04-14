@@ -19,11 +19,31 @@ export default styled.button`
     `}
 
   ${props =>
+    props.variant === 'submitActive' &&
+    css`
+      background-color: #618c03;
+      color: #f4e9c9;
+      border-radius: 30px;
+      box-shadow: rgb(140, 14, 3, 0.5) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.2) -3px -3px 6px 1px inset;
+    `}
+
+  ${props =>
     props.variant === 'yellow' &&
     css`
       background-color: #f2b705;
       color: #8c0e03;
       border-radius: 30px;
+    `}
+
+    ${props =>
+    props.variant === 'yellowActive' &&
+    css`
+      background-color: #f2b705;
+      color: #8c0e03;
+      border-radius: 30px;
+      box-shadow: rgb(140, 14, 3, 0.5) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.2) -3px -3px 6px 1px inset;
     `}
 
   ${props =>
@@ -84,6 +104,15 @@ export default styled.button`
     css`
       background-color: #d92b04;
       color: #f4e9c9;
+    `}
+    ${props =>
+    props.variant === 'dangerActive' &&
+    css`
+      background-color: #d92b04;
+      color: #f4e9c9;
+      border-radius: 30px;
+      box-shadow: rgb(140, 14, 3, 0.5) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.2) -3px -3px 6px 1px inset;
     `}
 
     ${props =>

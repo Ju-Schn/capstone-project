@@ -9,6 +9,9 @@ export default function Filter({
   value,
   allCategories,
   onDifficultyCards,
+  easyActive,
+  mediumActive,
+  difficultActive,
 }) {
   return (
     <>
@@ -40,7 +43,7 @@ export default function Filter({
           Alle
         </StyledButton>
         <StyledButton
-          variant="submit"
+          variant={easyActive ? 'submitActive' : 'submit'}
           name="easy"
           value="easy"
           onClick={onDifficultyCards}
@@ -48,7 +51,7 @@ export default function Filter({
           Leicht
         </StyledButton>
         <StyledButton
-          variant="yellow"
+          variant={mediumActive ? 'yellowActive' : 'yellow'}
           name="medium"
           value="medium"
           onClick={onDifficultyCards}
@@ -56,7 +59,7 @@ export default function Filter({
           Mittel
         </StyledButton>
         <StyledButton
-          variant="danger"
+          variant={difficultActive ? 'dangerActive' : 'danger'}
           name="difficult"
           value="difficult"
           onClick={onDifficultyCards}

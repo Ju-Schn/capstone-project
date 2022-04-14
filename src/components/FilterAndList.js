@@ -22,6 +22,9 @@ export default function FilterAndList({
 }) {
   const [value, setValue] = useState('');
   const [difficulty, setDifficulty] = useState('');
+  const [easyActive, setEasyActive] = useState(false);
+  const [mediumActive, setMediumActive] = useState(false);
+  const [difficultActive, setDifficultActive] = useState(false);
 
   return (
     <GridWrapper>
@@ -31,6 +34,9 @@ export default function FilterAndList({
         onResetFilter={handleResetFilter}
         allCategories={allCategories}
         onDifficultyCards={handleDifficultyCards}
+        easyActive={easyActive}
+        mediumActive={mediumActive}
+        difficultActive={difficultActive}
       />
       <CardList
         difficulty={difficulty}
@@ -62,6 +68,23 @@ export default function FilterAndList({
 
   function handleDifficultyCards(event) {
     setDifficulty(event.target.value);
+    if (event.target.value === 'easy') {
+      setEasyActive(true);
+      setMediumActive(false);
+      setDifficultActive(false);
+    } else if (event.target.value === 'medium') {
+      setMediumActive(true);
+      setEasyActive(false);
+      setDifficultActive(false);
+    } else if (event.target.value === 'difficult') {
+      setDifficultActive(true);
+      setEasyActive(false);
+      setMediumActive(false);
+    } else if (event.target.value === '') {
+      setEasyActive(false);
+      setMediumActive(false);
+      setDifficultActive(false);
+    }
   }
 }
 
