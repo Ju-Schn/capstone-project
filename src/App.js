@@ -120,14 +120,14 @@ function App() {
             ...card,
             countRight: card.countRight + 1,
             quotient: (card.countRight + 1) / card.countWrong,
+            difficulty: handleDifficulty(
+              (card.countRight + 1) / card.countWrong
+            ),
             showCounts: !card.showCounts,
           };
-        } else {
-          return card;
-        }
+        } else return card;
       })
     );
-    handleDifficulty(id);
   }
 
   function handleCountWrongs(id) {
@@ -139,25 +139,21 @@ function App() {
             ...card,
             countWrong: card.countWrong + 1,
             quotient: card.countRight / (card.countWrong + 1),
+            difficulty: handleDifficulty(
+              card.countRight / (card.countWrong + 1)
+            ),
             showCounts: !card.showCounts,
           };
         } else return card;
       })
     );
-    handleDifficulty(id);
   }
 
-  function handleDifficulty(id) {
-    setCards(
-      cards.map(card => {
-        if (card._id === id) {
-          if (card.quotient >= 2) return { ...card, difficulty: 'easy' };
-          else if (card.quotient <= 0.5)
-            return { ...card, difficulty: 'difficult' };
-          else return { ...card, difficulty: 'medium' };
-        } else return card;
-      })
-    );
+  function handleDifficulty(quotient) {
+    console.log(quotient);
+    if (quotient >= 2) return 'easy';
+    else if (quotient <= 0.5) return 'difficult';
+    else return 'medium';
   }
 }
 
