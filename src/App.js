@@ -78,7 +78,7 @@ function App() {
       countRight: 0.0000000001,
       countWrong: 0.0000000001,
       quotient: 1,
-      difficulty: '',
+      difficulty: 'medium',
     };
     setCards([newCard, ...cards]);
     handleCategories(newCard);
