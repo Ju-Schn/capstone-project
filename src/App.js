@@ -115,7 +115,6 @@ function App() {
     setCards(
       cards.map(card => {
         if (card._id === id) {
-          console.log(card.countRight);
           return {
             ...card,
             countRight: card.countRight + 1,
@@ -134,7 +133,6 @@ function App() {
     setCards(
       cards.map(card => {
         if (card._id === id) {
-          console.log(id);
           return {
             ...card,
             countWrong: card.countWrong + 1,
@@ -150,7 +148,6 @@ function App() {
   }
 
   function handleDifficulty(quotient) {
-    console.log(quotient);
     if (quotient >= 2) return 'easy';
     else if (quotient <= 0.5) return 'difficult';
     else return 'medium';
