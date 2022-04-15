@@ -6,8 +6,9 @@ import CreateDeckModal from '../components/modals/CreateDeckModal';
 import useCategory from '../hooks/useCategory';
 import useDifficulty from '../hooks/useDifficulty';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { saveToLocal, loadFromLocal } from '../utils/localStorage';
 
 export default function Decks({ cards, allCategories }) {
   const [cardDeck, setCardDeck] = useState([]);
@@ -27,9 +28,24 @@ export default function Decks({ cards, allCategories }) {
   } = useDifficulty();
   const { category, handleChange, handleResetFilter, setCategory } =
     useCategory();
-  console.log(doneCards);
-  console.log(cardDeck);
 
+  useEffect(() => {
+    saveToLocal('difficulty', difficulty);
+    saveToLocal('easyActive', easyActive);
+    saveToLocal('mediumActive', mediumActive);
+    saveToLocal('difficultActive', difficultActive);
+    saveToLocal('cardDeck', cardDeck);
+    saveToLocal('doneCards', doneCards);
+  }, [
+    cardDeck,
+    difficulty,
+    doneCards,
+    easyActive,
+    mediumActive,
+    difficultActive,
+  ]);
+
+  console.log(difficulty);
   if (cardDeck.length === 0 && doneCards < 5)
     return (
       <>
@@ -148,7 +164,6 @@ export default function Decks({ cards, allCategories }) {
   }
 
   function handleNextCard(id) {
-    console.log(id);
     setCardDeck(cardDeck.filter(card => card._id !== id));
     const doneCard = cardDeck.filter(card => card._id === id);
     setDoneCards([...doneCards, ...doneCard]);
@@ -170,5 +185,7 @@ export default function Decks({ cards, allCategories }) {
   function handleQuitDeck() {
     setCardDeck([]);
     setDoneCards([]);
+    setCategory('');
+    setDifficulty('');
   }
 }

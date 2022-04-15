@@ -1,10 +1,19 @@
 import { useState } from 'react';
+import { loadFromLocal } from '../utils/localStorage';
 
 export default function useDifficulty() {
-  const [difficulty, setDifficulty] = useState('');
-  const [easyActive, setEasyActive] = useState(false);
-  const [mediumActive, setMediumActive] = useState(false);
-  const [difficultActive, setDifficultActive] = useState(false);
+  const [difficulty, setDifficulty] = useState(
+    loadFromLocal('difficulty') ?? ''
+  );
+  const [easyActive, setEasyActive] = useState(
+    loadFromLocal('easyActive') ?? false
+  );
+  const [mediumActive, setMediumActive] = useState(
+    loadFromLocal('mediumActive') ?? false
+  );
+  const [difficultActive, setDifficultActive] = useState(
+    loadFromLocal('difficultActive') ?? false
+  );
 
   function handleDifficultyCards(event) {
     event.preventDefault();

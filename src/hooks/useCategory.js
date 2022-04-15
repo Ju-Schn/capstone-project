@@ -8,8 +8,7 @@ export default function useCategory() {
     setCategory(event.target.value);
   }
 
-  function handleResetFilter(event) {
-    event.preventDefault();
+  function handleResetFilter() {
     setCategory('');
   }
 
