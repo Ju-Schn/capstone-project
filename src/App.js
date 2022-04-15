@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { saveToLocal, loadFromLocal } from './utils/localStorage';
+import Decks from './pages/Decks';
 
 function App() {
   const [cards, setCards] = useState(loadFromLocal('cards') ?? []);
@@ -57,6 +58,10 @@ function App() {
             onCountWrongs={handleCountWrongs}
           />
         }
+      ></Route>
+      <Route
+        path="/decks"
+        element={<Decks cards={cards} allCategories={allCategories} />}
       ></Route>
     </Routes>
   );

@@ -15,9 +15,6 @@ export default function Home({
   onCountRights,
   onCountWrongs,
   onShowHide,
-  easyCards,
-  mediumCards,
-  difficultCards,
 }) {
   const navigate = useNavigate();
 
@@ -43,9 +40,6 @@ export default function Home({
         onCountRights={onCountRights}
         onCountWrongs={onCountWrongs}
         onShowHide={onShowHide}
-        easyCards={easyCards}
-        mediumCards={mediumCards}
-        difficultCards={difficultCards}
       />
     );
   }

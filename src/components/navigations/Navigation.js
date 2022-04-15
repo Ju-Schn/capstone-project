@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ReactComponent as HomeIcon } from '../../svgs/home.svg';
 import { ReactComponent as CreateIcon } from '../../svgs/erstellen.svg';
 import { ReactComponent as PinnedIcon } from '../../svgs/pinned.svg';
+import { ReactComponent as DecksIcon } from '../../svgs/decks.svg';
 
 export default function Navigation() {
   return (
@@ -18,6 +19,10 @@ export default function Navigation() {
       <StyledLink to="/pinned">
         <PinnedIcon />
         Pinnwand
+      </StyledLink>
+      <StyledLink to="/decks">
+        <DecksIcon />
+        Stapel
       </StyledLink>
     </StyledNav>
   );

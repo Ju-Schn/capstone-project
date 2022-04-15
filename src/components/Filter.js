@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export default function Filter({
   onResetFilter,
   onChange,
-  value,
+  category,
   allCategories,
   onDifficultyCards,
   easyActive,
@@ -24,7 +24,7 @@ export default function Filter({
           onChange={onChange}
           name="categories"
           type="text"
-          value={value}
+          value={category}
         >
           <option value="">Kategorieauswahl:</option>
           {allCategories?.map(
@@ -39,7 +39,16 @@ export default function Filter({
         <StyledButton onClick={onResetFilter}>Alle</StyledButton>
       </DropdownWrapper>
       <ButtonWrapper>
-        <StyledButton name="" value="" onClick={onDifficultyCards}>
+        <StyledButton
+          name=""
+          value=""
+          onClick={onDifficultyCards}
+          variant={
+            !easyActive && !mediumActive && !difficultActive
+              ? 'active'
+              : 'default'
+          }
+        >
           Alle
         </StyledButton>
         <StyledButton

@@ -11,7 +11,7 @@ export default function CardList({
   onShowHide,
   difficulty,
   cards,
-  value,
+  category,
 }) {
   const filteredByDifficulty = difficulty
     ? cards.filter(card => card.difficulty === difficulty)
@@ -27,7 +27,7 @@ export default function CardList({
       onKeepConfirm={onKeepConfirm}
       onTrashClick={onTrashClick}
       onShowHide={onShowHide}
-      value={value}
+      category={category}
     />
   );
 }

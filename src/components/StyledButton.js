@@ -11,6 +11,13 @@ export default styled.button`
   align-self: center;
 
   ${props =>
+    props.variant === 'active' &&
+    css`
+      box-shadow: rgb(99, 10, 2, 1) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.4) -3px -3px 6px 1px inset;
+    `}
+
+  ${props =>
     props.variant === 'submit' &&
     css`
       background-color: #618c03;

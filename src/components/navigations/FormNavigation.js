@@ -3,6 +3,7 @@ import StyledButton from '../StyledButton';
 import { ReactComponent as HomeIcon } from '../../svgs/home.svg';
 import { ReactComponent as CreateIcon } from '../../svgs/erstellen.svg';
 import { ReactComponent as PinnedIcon } from '../../svgs/pinned.svg';
+import { ReactComponent as DecksIcon } from '../../svgs/decks.svg';
 
 export default function FormNavigation({ onNavClick }) {
   return (
@@ -21,6 +22,11 @@ export default function FormNavigation({ onNavClick }) {
       <StyledButton variant="navigation" onClick={() => onNavClick('/pinned')}>
         <PinnedIcon />
         Pinnwand
+      </StyledButton>
+
+      <StyledButton onClick={() => onNavClick('/decks')} variant="navigation">
+        <DecksIcon />
+        Stapel
       </StyledButton>
     </StyledNav>
   );
