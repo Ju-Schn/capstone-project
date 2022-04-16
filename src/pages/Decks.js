@@ -7,6 +7,7 @@ import useCategory from '../hooks/useCategory';
 import useDifficulty from '../hooks/useDifficulty';
 import useCardDecks from '../hooks/useCardDecks';
 import DeleteModal from '../components/modals/DeleteModal';
+import useCards from '../hooks/useCards';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +15,6 @@ import { saveToLocal } from '../utils/localStorage';
 import styled from 'styled-components';
 
 export default function Decks({
-  cards,
   allCategories,
   onDeleteConfirm,
   onKeepConfirm,
@@ -25,6 +25,7 @@ export default function Decks({
   onPinClick,
 }) {
   const [showCreateDeckModal, setShowCreateDeckModal] = useState(false);
+  const [cardDeck, setCardDeck] = useState([]);
 
   const navigate = useNavigate();
 
@@ -38,9 +39,12 @@ export default function Decks({
   } = useDifficulty();
   const { category, handleChange, handleResetFilter, setCategory } =
     useCategory();
-  const { cardDeck, setCardDeck, doneCards, setDoneCards } = useCardDecks();
+  const { cards } = useCards();
+  const { doneCards, setDoneCards } = useCardDecks();
 
-  console.log(cardDeck[0]);
+  let currentCard = cardDeck[0];
+
+  console.log(cards);
   console.log(cardDeck);
 
   useEffect(() => {
@@ -116,22 +120,22 @@ export default function Decks({
           />
         )}
         <StyledList role="list">
-          <li key={cardDeck[0]._id}>
+          <li key={currentCard._id}>
             <Card
-              _id={cardDeck[0]._id}
-              question={cardDeck[0].question}
-              answer={cardDeck[0].answer}
-              isPinned={cardDeck[0].isPinned}
-              categories={cardDeck[0].categories}
-              countRight={cardDeck[0].countRight}
-              countWrong={cardDeck[0].countWrong}
-              quotient={cardDeck[0].quotient}
-              difficulty={cardDeck[0].difficulty}
-              showCounts={cardDeck[0].showCounts}
-              onCountRights={() => handleCountRightsClick(cardDeck[0]._id)}
-              onCountWrongs={() => handleCountWrongsClick(cardDeck[0]._id)}
+              _id={currentCard._id}
+              question={currentCard.question}
+              answer={currentCard.answer}
+              isPinned={currentCard.isPinned}
+              categories={currentCard.categories}
+              countRight={currentCard.countRight}
+              countWrong={currentCard.countWrong}
+              quotient={currentCard.quotient}
+              difficulty={currentCard.difficulty}
+              showCounts={currentCard.showCounts}
+              onCountRights={() => handleCountRightsClick(currentCard._id)}
+              onCountWrongs={() => handleCountWrongsClick(currentCard._id)}
               onTrashClick={onTrashClick}
-              onPinClick={() => handlePinClick(cardDeck[0]._id)}
+              onPinClick={() => handlePinClick(currentCard._id)}
             />
           </li>
         </StyledList>
@@ -140,7 +144,7 @@ export default function Decks({
             Stapel verlassen
           </StyledButton>
           <StyledButton
-            onClick={() => handleNextCard(cardDeck[0]._id)}
+            onClick={() => handleNextCard(currentCard._id)}
             variant="submit"
           >
             Nächste Karte
