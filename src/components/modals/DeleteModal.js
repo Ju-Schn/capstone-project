@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 import StyledButton from '../StyledButton';
 
-export default function DeleteModal({ onKeepConfirm, onDeleteConfirm }) {
+export default function DeleteModal({
+  onKeepConfirm,
+  onDeleteConfirm,
+  additionalText,
+}) {
   return (
     <BackgroundModal>
       <GridModal>
         <span>Möchtest du die Karte wirklich löschen?</span>
+        <span>{additionalText}</span>
         <ButtonWrapper>
           <StyledButton variant="submit" onClick={onKeepConfirm}>
             Behalten

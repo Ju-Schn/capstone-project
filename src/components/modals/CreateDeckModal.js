@@ -24,7 +24,7 @@ export default function CreateDeckModal({
 }
 
 const BackgroundModal = styled.div`
-  background-color: rgba(rgba(217, 121, 4, 0.8));
+  background-color: rgba(217, 121, 4, 0.8);
   width: 100%;
   height: 100%;
   display: flex;

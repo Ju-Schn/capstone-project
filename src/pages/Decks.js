@@ -5,17 +5,27 @@ import Navigation from '../components/navigations/Navigation';
 import CreateDeckModal from '../components/modals/CreateDeckModal';
 import useCategory from '../hooks/useCategory';
 import useDifficulty from '../hooks/useDifficulty';
+import useCardDecks from '../hooks/useCardDecks';
+import DeleteModal from '../components/modals/DeleteModal';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { saveToLocal, loadFromLocal } from '../utils/localStorage';
+import { saveToLocal } from '../utils/localStorage';
+import styled from 'styled-components';
 
-export default function Decks({ cards, allCategories }) {
-  const [cardDeck, setCardDeck] = useState([]);
-  const [doneCards, setDoneCards] = useState([]);
+export default function Decks({
+  cards,
+  allCategories,
+  onDeleteConfirm,
+  onKeepConfirm,
+  showModal,
+  onCountRights,
+  onCountWrongs,
+  onTrashClick,
+  onPinClick,
+}) {
   const [showCreateDeckModal, setShowCreateDeckModal] = useState(false);
 
-  let currentCard = [cardDeck[Math.floor(Math.random() * cardDeck.length)]];
   const navigate = useNavigate();
 
   const {
@@ -28,6 +38,10 @@ export default function Decks({ cards, allCategories }) {
   } = useDifficulty();
   const { category, handleChange, handleResetFilter, setCategory } =
     useCategory();
+  const { cardDeck, setCardDeck, doneCards, setDoneCards } = useCardDecks();
+
+  console.log(cardDeck[0]);
+  console.log(cardDeck);
 
   useEffect(() => {
     saveToLocal('difficulty', difficulty);
@@ -45,12 +59,17 @@ export default function Decks({ cards, allCategories }) {
     difficultActive,
   ]);
 
-  console.log(difficulty);
   if (cardDeck.length === 0 && doneCards < 5)
     return (
-      <>
-        <h2 id="form-titel">Erstelle einen Karten-Stapel</h2>
-        <form aria-labelledby="form-titel">
+      <FlexWrapper>
+        {showCreateDeckModal && (
+          <CreateDeckModal
+            onChangeFilterClick={handleChangeFilterClick}
+            onCreateCardClick={handleCreateCardClick}
+          />
+        )}
+        <StyledTitle id="form-titel">Erstelle einen Karten-Stapel</StyledTitle>
+        <StyledFilters aria-labelledby="form-titel">
           <Filter
             allCategories={allCategories}
             onChange={handleChange}
@@ -63,70 +82,71 @@ export default function Decks({ cards, allCategories }) {
           <StyledButton onClick={handleCreateDeck} variant="submit">
             Erstellen
           </StyledButton>
-        </form>
-        {showCreateDeckModal && (
-          <CreateDeckModal
-            onChangeFilterClick={handleChangeFilterClick}
-            onCreateCardClick={handleCreateCardClick}
-          />
-        )}
+        </StyledFilters>
+
         <Navigation />
-      </>
+      </FlexWrapper>
     );
   if (cardDeck.length === 0 && doneCards.length === 5)
     return (
-      <>
-        <h2>SUPER! Du hast den Stapel geschafft!</h2>
-        <span>Was möchtest du als nächstes machen?</span>
-        <StyledButton onClick={handleRestart}>Wiederholen</StyledButton>
-        <StyledButton onClick={handleQuitDeck}>Neuer Stapel</StyledButton>
-      </>
+      <MessageWrapper>
+        <StyledTitle>SUPER! Du hast den Stapel geschafft!</StyledTitle>
+        <StyledMessage>
+          <span>Was möchtest du als nächstes machen?</span>
+
+          <ButtonWrapper>
+            <StyledButton variant="yellow" onClick={handleRestart}>
+              Wiederholen
+            </StyledButton>
+            <StyledButton variant="submit" onClick={handleQuitDeck}>
+              Neuer Stapel
+            </StyledButton>
+          </ButtonWrapper>
+        </StyledMessage>
+      </MessageWrapper>
     );
   else
     return (
-      <>
-        {currentCard.map(
-          ({
-            _id,
-            question,
-            answer,
-            onTrashClick,
-            onPinClick,
-            isPinned,
-            categories,
-            countRight,
-            countWrong,
-            showCounts,
-            onCountRights,
-            onCountWrongs,
-          }) => (
-            <Card
-              _id={_id}
-              question={question}
-              answer={answer}
-              onTrashClick={onTrashClick}
-              onPinClick={onPinClick}
-              isPinned={isPinned}
-              categories={categories}
-              countRight={countRight}
-              countWrong={countWrong}
-              showCounts={showCounts}
-              onCountRights={onCountRights}
-              onCountWrongs={onCountWrongs}
-            />
-          )
+      <FlexWrapper>
+        {showModal && (
+          <DeleteModal
+            onDeleteConfirm={onDeleteConfirm}
+            onKeepConfirm={onKeepConfirm}
+            additionalText="(Die Karte wird nach dem Verlassen des Stapels gelöscht)"
+          />
         )}
-
-        <StyledButton variant="danger" onClick={handleQuitDeck}>
-          Stapel verlassen
-        </StyledButton>
-        <StyledButton
-          onClick={() => handleNextCard(currentCard[0]._id)}
-          variant="submit"
-        >
-          Nächste Karte
-        </StyledButton>
-      </>
+        <StyledList role="list">
+          <li key={cardDeck[0]._id}>
+            <Card
+              _id={cardDeck[0]._id}
+              question={cardDeck[0].question}
+              answer={cardDeck[0].answer}
+              isPinned={cardDeck[0].isPinned}
+              categories={cardDeck[0].categories}
+              countRight={cardDeck[0].countRight}
+              countWrong={cardDeck[0].countWrong}
+              quotient={cardDeck[0].quotient}
+              difficulty={cardDeck[0].difficulty}
+              showCounts={cardDeck[0].showCounts}
+              onCountRights={() => handleCountRightsClick(cardDeck[0]._id)}
+              onCountWrongs={() => handleCountWrongsClick(cardDeck[0]._id)}
+              onTrashClick={onTrashClick}
+              onPinClick={() => handlePinClick(cardDeck[0]._id)}
+            />
+          </li>
+        </StyledList>
+        <ButtonWrapper>
+          <StyledButton variant="danger" onClick={handleQuitDeck}>
+            Stapel verlassen
+          </StyledButton>
+          <StyledButton
+            onClick={() => handleNextCard(cardDeck[0]._id)}
+            variant="submit"
+          >
+            Nächste Karte
+          </StyledButton>
+        </ButtonWrapper>
+      </FlexWrapper>
     );
 
   // Using the Fisher Yates Shuffle Algorithm
@@ -178,7 +198,7 @@ export default function Decks({ cards, allCategories }) {
   }
 
   function handleRestart() {
-    setCardDeck(doneCards);
+    setCardDeck(shuffle(doneCards));
     setDoneCards([]);
   }
 
@@ -188,4 +208,108 @@ export default function Decks({ cards, allCategories }) {
     setCategory('');
     setDifficulty('');
   }
+
+  function handleCountRightsClick(_id) {
+    setCardDeck(
+      cardDeck.map(card => {
+        if (card._id === _id) {
+          return {
+            showCounts: !card.showCounts,
+            ...card,
+            countRight: card.countRight + 1,
+            quotient: (card.countRight + 1) / card.countWrong,
+            difficulty: handleDifficulty(
+              (card.countRight + 1) / card.countWrong
+            ),
+          };
+        } else return card;
+      })
+    );
+    onCountRights(_id);
+  }
+
+  function handleCountWrongsClick(_id) {
+    setCardDeck(
+      cardDeck.map(card => {
+        if (card._id === _id) {
+          return {
+            showCounts: !card.showCounts,
+            ...card,
+            countWrong: card.countWrong + 1,
+            quotient: card.countRight / (card.countWrong + 1),
+            difficulty: handleDifficulty(
+              (card.countRight + 1) / card.countWrong
+            ),
+          };
+        } else return card;
+      })
+    );
+    onCountWrongs(_id);
+  }
+
+  function handleDifficulty(quotient) {
+    if (quotient >= 2) return 'easy';
+    else if (quotient <= 0.5) return 'difficult';
+    else return 'medium';
+  }
+
+  function handlePinClick(_id) {
+    setCardDeck(
+      cardDeck.map(card => {
+        if (card._id === _id) {
+          return { ...card, isPinned: !card.isPinned };
+        } else return card;
+      })
+    );
+    onPinClick(_id);
+  }
 }
+
+const FlexWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const ButtonWrapper = styled.div`
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const StyledFilters = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  margin: 16px;
+`;
+
+const StyledTitle = styled.h2`
+  margin: 32px 0 16px 0;
+  text-align: center;
+`;
+
+const StyledList = styled.ul`
+  list-style: none;
+  padding: 0;
+  padding-top: 80px;
+  display: flex;
+  justify-content: center;
+`;
+
+const MessageWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+`;
+
+const StyledMessage = styled.section`
+  width: 350px;
+  border-radius: 30px;
+  background-color: #f4e9c9;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 16px;
+  text-align: center;
+`;

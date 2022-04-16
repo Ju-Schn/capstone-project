@@ -1,20 +1,23 @@
 import Home from './pages/Home';
 import CreateCard from './pages/CreateCard';
 import Pinned from './pages/Pinned';
+import useCardDecks from './hooks/useCardDecks';
 
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { saveToLocal, loadFromLocal } from './utils/localStorage';
+import useCards from './hooks/useCards';
 import Decks from './pages/Decks';
 
 function App() {
-  const [cards, setCards] = useState(loadFromLocal('cards') ?? []);
   const [allCategories, setAllCategories] = useState(
     loadFromLocal('allCategories') ?? []
   );
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
+  const { cards, setCards } = useCards();
+  const { cardDeck, setCardDeck, doneCards, setDoneCards } = useCardDecks();
 
   useEffect(() => {
     saveToLocal('allCategories', allCategories);
@@ -61,7 +64,19 @@ function App() {
       ></Route>
       <Route
         path="/decks"
-        element={<Decks cards={cards} allCategories={allCategories} />}
+        element={
+          <Decks
+            cards={cards}
+            allCategories={allCategories}
+            onDeleteConfirm={handleDeleteCard}
+            onKeepConfirm={() => setShowModal(false)}
+            showModal={showModal}
+            onTrashClick={handleTrashClick}
+            onPinClick={handlePinClick}
+            onCountRights={handleCountRights}
+            onCountWrongs={handleCountWrongs}
+          />
+        }
       ></Route>
     </Routes>
   );
