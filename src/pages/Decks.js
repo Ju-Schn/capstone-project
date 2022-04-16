@@ -11,7 +11,7 @@ import useCards from '../hooks/useCards';
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { saveToLocal } from '../utils/localStorage';
+import { saveToLocal, loadFromLocal } from '../utils/localStorage';
 import styled from 'styled-components';
 
 export default function Decks({
@@ -25,7 +25,7 @@ export default function Decks({
   onPinClick,
 }) {
   const [showCreateDeckModal, setShowCreateDeckModal] = useState(false);
-  const [cardDeck, setCardDeck] = useState([]);
+  const [cardDeck, setCardDeck] = useState(loadFromLocal('cardDeck') ?? []);
 
   const navigate = useNavigate();
 
