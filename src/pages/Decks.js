@@ -9,9 +9,8 @@ import useCardDecks from '../hooks/useCardDecks';
 import DeleteModal from '../components/modals/DeleteModal';
 import useCards from '../hooks/useCards';
 
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { saveToLocal, loadFromLocal } from '../utils/localStorage';
+// import { saveToLocal, loadFromLocal } from '../utils/localStorage';
 import styled from 'styled-components';
 
 export default function Decks({
@@ -24,44 +23,28 @@ export default function Decks({
   onTrashClick,
   onPinClick,
 }) {
-  const [showCreateDeckModal, setShowCreateDeckModal] = useState(false);
-  const [cardDeck, setCardDeck] = useState(loadFromLocal('cardDeck') ?? []);
-
   const navigate = useNavigate();
 
-  const {
-    difficulty,
-    setDifficulty,
-    handleDifficultyCards,
-    easyActive,
-    mediumActive,
-    difficultActive,
-  } = useDifficulty();
-  const { category, handleChange, handleResetFilter, setCategory } =
-    useCategory();
   const { cards } = useCards();
-  const { doneCards, setDoneCards } = useCardDecks();
+  const {
+    handleQuitDeck,
+    handleCreateDeck,
+    doneCards,
+    setDoneCards,
+    cardDeck,
+    setCardDeck,
+    handleRestart,
+    showCreateDeckModal,
+    handleChangeFilterClick,
+  } = useCardDecks();
+  const { handleDifficultyCards, easyActive, mediumActive, difficultActive } =
+    useDifficulty();
+  const { handleChange, handleResetFilter } = useCategory();
 
   let currentCard = cardDeck[0];
 
   console.log(cards);
   console.log(cardDeck);
-
-  useEffect(() => {
-    saveToLocal('difficulty', difficulty);
-    saveToLocal('easyActive', easyActive);
-    saveToLocal('mediumActive', mediumActive);
-    saveToLocal('difficultActive', difficultActive);
-    saveToLocal('cardDeck', cardDeck);
-    saveToLocal('doneCards', doneCards);
-  }, [
-    cardDeck,
-    difficulty,
-    doneCards,
-    easyActive,
-    mediumActive,
-    difficultActive,
-  ]);
 
   if (cardDeck.length === 0 && doneCards < 5)
     return (
@@ -69,7 +52,7 @@ export default function Decks({
         {showCreateDeckModal && (
           <CreateDeckModal
             onChangeFilterClick={handleChangeFilterClick}
-            onCreateCardClick={handleCreateCardClick}
+            onCreateCardClick={() => navigate('/create-card')}
           />
         )}
         <StyledTitle id="form-titel">Erstelle einen Karten-Stapel</StyledTitle>
@@ -154,63 +137,11 @@ export default function Decks({
     );
 
   // Using the Fisher Yates Shuffle Algorithm
-  function shuffle(array) {
-    let currentIndex = array.length,
-      randomIndex;
-
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-    return array;
-  }
-
-  function handleCreateDeck(event) {
-    event.preventDefault();
-    const filteredByDifficulty = cards.filter(card =>
-      difficulty ? card.difficulty === difficulty : card
-    );
-
-    const filteredByCategory = filteredByDifficulty.filter(card =>
-      category ? card.categories.includes(category) : card
-    );
-    if (filteredByCategory.length < 5) {
-      setShowCreateDeckModal(true);
-    } else {
-      setCategory('');
-      setDifficulty('');
-      setCardDeck(shuffle(filteredByCategory).slice(0, 5));
-    }
-  }
 
   function handleNextCard(id) {
     setCardDeck(cardDeck.filter(card => card._id !== id));
     const doneCard = cardDeck.filter(card => card._id === id);
     setDoneCards([...doneCards, ...doneCard]);
-  }
-
-  function handleChangeFilterClick() {
-    setShowCreateDeckModal(false);
-  }
-
-  function handleCreateCardClick() {
-    navigate('/create-card');
-  }
-
-  function handleRestart() {
-    setCardDeck(shuffle(doneCards));
-    setDoneCards([]);
-  }
-
-  function handleQuitDeck() {
-    setCardDeck([]);
-    setDoneCards([]);
-    setCategory('');
-    setDifficulty('');
   }
 
   function handleCountRightsClick(_id) {
