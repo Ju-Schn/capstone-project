@@ -10,7 +10,6 @@ import DeleteModal from '../components/modals/DeleteModal';
 import useCards from '../hooks/useCards';
 
 import { useNavigate } from 'react-router-dom';
-// import { saveToLocal, loadFromLocal } from '../utils/localStorage';
 import styled from 'styled-components';
 
 export default function Decks({
@@ -135,8 +134,6 @@ export default function Decks({
         </ButtonWrapper>
       </FlexWrapper>
     );
-
-  // Using the Fisher Yates Shuffle Algorithm
 
   function handleNextCard(id) {
     setCardDeck(cardDeck.filter(card => card._id !== id));
