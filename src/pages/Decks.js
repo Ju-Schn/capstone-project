@@ -8,6 +8,7 @@ import useDifficulty from '../hooks/useDifficulty';
 import useCardDecks from '../hooks/useCardDecks';
 import DeleteModal from '../components/modals/DeleteModal';
 import useCards from '../hooks/useCards';
+import ScreenReaderOnly from '../components/ScreenReaderOnly';
 
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -25,25 +26,39 @@ export default function Decks({
   const navigate = useNavigate();
 
   const { cards } = useCards();
+
   const {
     handleQuitDeck,
-    handleCreateDeck,
     doneCards,
-    setDoneCards,
     cardDeck,
     setCardDeck,
     handleRestart,
     showCreateDeckModal,
     handleChangeFilterClick,
+    handleSizeChange,
+    decksize,
+    handleDifficulty,
+    handleNextCard,
+    setShowCreateDeckModal,
+    shuffle,
   } = useCardDecks();
-  const { handleDifficultyCards, easyActive, mediumActive, difficultActive } =
-    useDifficulty();
-  const { handleChange, handleResetFilter } = useCategory();
+
+  const {
+    handleDifficultyCards,
+    setDifficulty,
+    difficulty,
+    easyActive,
+    mediumActive,
+    difficultActive,
+  } = useDifficulty();
+
+  const { category, setCategory, handleChange, handleResetFilter } =
+    useCategory();
 
   let currentCard = cardDeck[0];
 
-  console.log(cards);
-  console.log(cardDeck);
+  console.log(decksize);
+  console.log(doneCards);
 
   if (cardDeck.length === 0 && doneCards < 5)
     return (
@@ -55,6 +70,30 @@ export default function Decks({
           />
         )}
         <StyledTitle id="form-titel">Erstelle einen Karten-Stapel</StyledTitle>
+        <label htmlFor="decksize">
+          <ScreenReaderOnly>Stapelgröße:</ScreenReaderOnly>
+        </label>
+        <StyledDropdown
+          id="decksize"
+          onChange={handleSizeChange}
+          name="decksize"
+          type="number"
+          required
+        >
+          <option value="">Stapelgröße: *erforderlich</option>
+          <option disabled={cards.length < 5} value={5}>
+            5
+          </option>
+          <option disabled={cards.length < 10} value={10}>
+            10
+          </option>
+          <option disabled={cards.length < 20} value={20}>
+            20
+          </option>
+          <option disabled={cards.length < 40} value={40}>
+            40
+          </option>
+        </StyledDropdown>
         <StyledFilters aria-labelledby="form-titel">
           <Filter
             allCategories={allCategories}
@@ -65,6 +104,7 @@ export default function Decks({
             mediumActive={mediumActive}
             difficultActive={difficultActive}
           />
+
           <StyledButton onClick={handleCreateDeck} variant="submit">
             Erstellen
           </StyledButton>
@@ -73,7 +113,7 @@ export default function Decks({
         <Navigation />
       </FlexWrapper>
     );
-  if (cardDeck.length === 0 && doneCards.length === 5)
+  if (cardDeck?.length === 0)
     return (
       <MessageWrapper>
         <StyledTitle>SUPER! Du hast den Stapel geschafft!</StyledTitle>
@@ -135,10 +175,33 @@ export default function Decks({
       </FlexWrapper>
     );
 
-  function handleNextCard(id) {
-    setCardDeck(cardDeck.filter(card => card._id !== id));
-    const doneCard = cardDeck.filter(card => card._id === id);
-    setDoneCards([...doneCards, ...doneCard]);
+  function handleCreateDeck(event) {
+    event.preventDefault();
+    const filteredByDifficulty = cards.filter(card =>
+      difficulty ? card.difficulty === difficulty : card
+    );
+
+    const filteredByCategory = filteredByDifficulty.filter(card =>
+      category ? card.categories.includes(category) : card
+    );
+    if (filteredByCategory.length < decksize) {
+      setShowCreateDeckModal(true);
+    } else {
+      setCategory('');
+      setDifficulty('');
+      setCardDeck(shuffle(filteredByCategory).slice(0, decksize));
+    }
+  }
+
+  function handlePinClick(_id) {
+    setCardDeck(
+      cardDeck.map(card => {
+        if (card._id === _id) {
+          return { ...card, isPinned: !card.isPinned };
+        } else return card;
+      })
+    );
+    onPinClick(_id);
   }
 
   function handleCountRightsClick(_id) {
@@ -177,23 +240,6 @@ export default function Decks({
       })
     );
     onCountWrongs(_id);
-  }
-
-  function handleDifficulty(quotient) {
-    if (quotient >= 2) return 'easy';
-    else if (quotient <= 0.5) return 'difficult';
-    else return 'medium';
-  }
-
-  function handlePinClick(_id) {
-    setCardDeck(
-      cardDeck.map(card => {
-        if (card._id === _id) {
-          return { ...card, isPinned: !card.isPinned };
-        } else return card;
-      })
-    );
-    onPinClick(_id);
   }
 }
 
@@ -244,4 +290,16 @@ const StyledMessage = styled.section`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 16px;
   text-align: center;
+`;
+
+const StyledDropdown = styled.select`
+  background-color: #f2b705;
+  font-family: inherit;
+  font-size: 100%;
+  border: none;
+  border-radius: 30px;
+  width: 60%;
+  box-shadow: rgba(140, 14, 3, 0.4) 0px 8px 24px;
+  margin: 8px;
+  align-self: center;
 `;
