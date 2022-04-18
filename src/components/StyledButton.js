@@ -11,6 +11,13 @@ export default styled.button`
   align-self: center;
 
   ${props =>
+    props.variant === 'active' &&
+    css`
+      box-shadow: rgb(99, 10, 2, 1) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    `}
+
+  ${props =>
     props.variant === 'submit' &&
     css`
       background-color: #618c03;
@@ -24,8 +31,8 @@ export default styled.button`
       background-color: #618c03;
       color: #f4e9c9;
       border-radius: 30px;
-      box-shadow: rgb(140, 14, 3, 0.5) 3px 3px 6px 0px inset,
-        rgba(255, 255, 255, 0.2) -3px -3px 6px 1px inset;
+      box-shadow: rgb(140, 14, 3, 1) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
     `}
 
   ${props =>
@@ -42,8 +49,8 @@ export default styled.button`
       background-color: #f2b705;
       color: #8c0e03;
       border-radius: 30px;
-      box-shadow: rgb(140, 14, 3, 0.5) 3px 3px 6px 0px inset,
-        rgba(255, 255, 255, 0.2) -3px -3px 6px 1px inset;
+      box-shadow: rgb(140, 14, 3, 1) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
     `}
 
   ${props =>
@@ -111,8 +118,9 @@ export default styled.button`
       background-color: #d92b04;
       color: #f4e9c9;
       border-radius: 30px;
-      box-shadow: rgb(140, 14, 3, 0.5) 3px 3px 6px 0px inset,
-        rgba(255, 255, 255, 0.2) -3px -3px 6px 1px inset;
+      box-shadow: rgb(140, 14, 3, 1) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+      /* border: 1px solid #8c0e03; */
     `}
 
     ${props =>

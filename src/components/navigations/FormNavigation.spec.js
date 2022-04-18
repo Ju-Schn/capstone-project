@@ -4,7 +4,7 @@ import FormNavigation from './FormNavigation';
 import userEvent from '@testing-library/user-event';
 
 describe('Navigation', () => {
-  it('renders three navigation buttons', () => {
+  it('renders four navigation buttons', () => {
     render(
       <MemoryRouter>
         <FormNavigation />
@@ -12,7 +12,7 @@ describe('Navigation', () => {
     );
 
     const navigationLinks = screen.getAllByRole('button');
-    expect(navigationLinks).toHaveLength(3);
+    expect(navigationLinks).toHaveLength(4);
   });
   it('calls onNavClick function and changes page', async () => {
     const onNavClickFunctionality = jest.fn();

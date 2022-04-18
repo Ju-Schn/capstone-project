@@ -1,22 +1,21 @@
-import styled from 'styled-components';
 import StyledButton from '../StyledButton';
 
-export default function DeleteModal({
-  onKeepConfirm,
-  onDeleteConfirm,
-  additionalText,
+import styled from 'styled-components';
+
+export default function CreateDeckModal({
+  onChangeFilterClick,
+  onCreateCardClick,
 }) {
   return (
     <BackgroundModal>
       <GridModal>
-        <span>Möchtest du die Karte wirklich löschen?</span>
-        <span>{additionalText}</span>
+        <span> Du hast nicht genug Karten in den ausgewählten Kategorien.</span>
         <ButtonWrapper>
-          <StyledButton variant="submit" onClick={onKeepConfirm}>
-            Behalten
+          <StyledButton variant="yellow" onClick={onChangeFilterClick}>
+            Ändere deine Filtereinstellungen
           </StyledButton>
-          <StyledButton variant="danger" onClick={onDeleteConfirm}>
-            Löschen
+          <StyledButton variant="submit" onClick={onCreateCardClick}>
+            Erstelle mehr Karten
           </StyledButton>
         </ButtonWrapper>
       </GridModal>
@@ -25,7 +24,7 @@ export default function DeleteModal({
 }
 
 const BackgroundModal = styled.div`
-  background-color: rgba(140, 14, 3, 0.8);
+  background-color: rgba(217, 121, 4, 0.8);
   width: 100%;
   height: 100%;
   display: flex;
@@ -40,7 +39,7 @@ const GridModal = styled.section`
   grid-template-rows: auto auto;
   background-color: #f4e9c9;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  width: 300px;
+  width: 350px;
 
   span {
     padding: 16px;

@@ -13,7 +13,7 @@ export default function Cards({
   onCountWrongs,
   cards,
   onShowHide,
-  value,
+  category,
 }) {
   return (
     <StyledList role="list" aria-label="Karten">
@@ -30,8 +30,8 @@ export default function Cards({
           quotient,
           difficulty,
         }) =>
-          value ? (
-            categories.includes(value) && (
+          category ? (
+            categories.includes(category) && (
               <li key={_id}>
                 <Card
                   _id={_id}
