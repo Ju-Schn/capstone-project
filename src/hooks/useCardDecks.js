@@ -4,10 +4,11 @@ import useCategory from './useCategory';
 import useDifficulty from './useDifficulty';
 import useCards from './useCards';
 
-export default function useCardDecks() {
+export default function useCardDecks(_id) {
   const [cardDeck, setCardDeck] = useState(loadFromLocal('cardDeck') ?? []);
   const [doneCards, setDoneCards] = useState(loadFromLocal('doneCards') ?? []);
   const [showCreateDeckModal, setShowCreateDeckModal] = useState(false);
+  const [decksize, setDecksize] = useState(loadFromLocal('decksize') ?? '');
 
   const { cards } = useCards();
 
@@ -27,6 +28,7 @@ export default function useCardDecks() {
     saveToLocal('easyActive', easyActive);
     saveToLocal('mediumActive', mediumActive);
     saveToLocal('difficultActive', difficultActive);
+    saveToLocal('decksize', decksize);
   }, [
     cardDeck,
     doneCards,
@@ -34,6 +36,7 @@ export default function useCardDecks() {
     easyActive,
     mediumActive,
     difficultActive,
+    decksize,
   ]);
 
   // Using the Fisher Yates Shuffle Algorithm
@@ -52,24 +55,6 @@ export default function useCardDecks() {
     return array;
   }
 
-  function handleCreateDeck(event) {
-    event.preventDefault();
-    const filteredByDifficulty = cards.filter(card =>
-      difficulty ? card.difficulty === difficulty : card
-    );
-
-    const filteredByCategory = filteredByDifficulty.filter(card =>
-      category ? card.categories.includes(category) : card
-    );
-    if (filteredByCategory.length < 5) {
-      setShowCreateDeckModal(true);
-    } else {
-      setCategory('');
-      setDifficulty('');
-      setCardDeck(shuffle(filteredByCategory).slice(0, 5));
-    }
-  }
-
   function handleRestart() {
     setCardDeck(shuffle(doneCards));
     setDoneCards([]);
@@ -80,21 +65,44 @@ export default function useCardDecks() {
     setDoneCards([]);
     setCategory('');
     setDifficulty('');
+    setDecksize('');
   }
 
   function handleChangeFilterClick() {
     setShowCreateDeckModal(false);
   }
 
+  function handleSizeChange(event) {
+    event.preventDefault();
+    setDecksize(event.target.value);
+  }
+
+  function handleNextCard(_id) {
+    setCardDeck(cardDeck.filter(card => card._id !== _id));
+    const doneCard = cardDeck.filter(card => card._id === _id);
+    setDoneCards([...doneCards, ...doneCard]);
+  }
+
+  function handleDifficulty(quotient) {
+    if (quotient >= 2) return 'easy';
+    else if (quotient <= 0.5) return 'difficult';
+    else return 'medium';
+  }
+
   return {
     handleChangeFilterClick,
     showCreateDeckModal,
     handleQuitDeck,
-    handleCreateDeck,
     cardDeck,
     setCardDeck,
     doneCards,
     setDoneCards,
     handleRestart,
+    handleSizeChange,
+    decksize,
+    handleNextCard,
+    handleDifficulty,
+    setShowCreateDeckModal,
+    shuffle,
   };
 }

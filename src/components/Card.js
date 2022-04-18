@@ -41,6 +41,9 @@ export default function Card({
         quotient={quotient}
       >
         <ScreenReaderOnly>
+          {isPinned ? 'gepinnte Karte' : 'nicht gepinnt'}
+        </ScreenReaderOnly>
+        <ScreenReaderOnly>
           <h2>Frage: </h2>
         </ScreenReaderOnly>
         <span>{question}</span>
@@ -71,6 +74,9 @@ export default function Card({
         _id={_id}
         quotient={quotient}
       >
+        <ScreenReaderOnly>
+          {isPinned ? 'gepinnte Karte' : 'nicht gepinnt'}
+        </ScreenReaderOnly>
         <StyledButton variant="noButtonPin" onClick={() => onPinClick(_id)}>
           <PinIcon fill={isPinned ? '#415E02' : '#8c0e03'} />
           <ScreenReaderOnly>Pinne diese Karte</ScreenReaderOnly>

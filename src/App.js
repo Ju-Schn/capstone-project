@@ -1,7 +1,6 @@
 import Home from './pages/Home';
 import CreateCard from './pages/CreateCard';
 import Pinned from './pages/Pinned';
-import useCardDecks from './hooks/useCardDecks';
 
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -17,7 +16,6 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
   const { cards, setCards } = useCards();
-  const { cardDeck, setCardDeck, doneCards, setDoneCards } = useCardDecks();
 
   useEffect(() => {
     saveToLocal('allCategories', allCategories);
