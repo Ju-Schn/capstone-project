@@ -9,6 +9,7 @@ import { ReactComponent as PinIcon } from '../svgs/pin.svg';
 import { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import styled, { css } from 'styled-components';
+import { toast } from 'react-toastify';
 
 export default function Card({
   question,
@@ -131,11 +132,13 @@ export default function Card({
   function handleClickRight(_id) {
     setShowCounts(true);
     onCountRights(_id);
+    toast.success('Yay! Richtig geantwortet! 🎈');
   }
 
   function handleClickWrong(_id) {
     setShowCounts(true);
     onCountWrongs(_id);
+    toast.error('Bleib dran! Übung macht den Meister 📚🤓');
   }
 }
 
