@@ -1,10 +1,12 @@
 import StyledButton from '../components/StyledButton';
-import styled from 'styled-components';
 import FormNavigation from '../components/navigations/FormNavigation';
 import FormModal from '../components/modals/FormModal';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import Input from '../components/Input';
+
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function CreateCard({ onAddNewCard }) {
   const [showFormModal, setShowFormModal] = useState(false);
@@ -97,6 +99,7 @@ export default function CreateCard({ onAddNewCard }) {
           maxLength={CATEGORY_MAX_LENGTH}
           labelText={'Und hier eine dritte (freiwillig):'}
         ></Input>
+
         <StyledButton variant="submitSticky">Erstellen</StyledButton>
       </StyledForm>
       {showFormModal && (
@@ -122,6 +125,7 @@ export default function CreateCard({ onAddNewCard }) {
         category3Text
       );
       setValues(initalValues);
+      toast.success('🎉 Karte erfolgreich erstellt!');
     }
   }
 

@@ -1,3 +1,5 @@
+import 'react-toastify/dist/ReactToastify.css';
+
 import Home from './pages/Home';
 import CreateCard from './pages/CreateCard';
 import Pinned from './pages/Pinned';
@@ -8,6 +10,7 @@ import { nanoid } from 'nanoid';
 import { saveToLocal, loadFromLocal } from './utils/localStorage';
 import useCards from './hooks/useCards';
 import Decks from './pages/Decks';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [allCategories, setAllCategories] = useState(
@@ -23,60 +26,75 @@ function App() {
   }, [cards, allCategories]);
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Home
-            cards={cards}
-            onDeleteConfirm={handleDeleteCard}
-            onKeepConfirm={() => setShowModal(false)}
-            onTrashClick={handleTrashClick}
-            showModal={showModal}
-            onPinClick={handlePinClick}
-            allCategories={allCategories}
-            onCountRights={handleCountRights}
-            onCountWrongs={handleCountWrongs}
-          />
-        }
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              cards={cards}
+              onDeleteConfirm={handleDeleteCard}
+              onKeepConfirm={() => setShowModal(false)}
+              onTrashClick={handleTrashClick}
+              showModal={showModal}
+              onPinClick={handlePinClick}
+              allCategories={allCategories}
+              onCountRights={handleCountRights}
+              onCountWrongs={handleCountWrongs}
+            />
+          }
+        />
+        <Route
+          path="/create-card"
+          element={<CreateCard cards={cards} onAddNewCard={handleNewCard} />}
+        ></Route>
+        <Route
+          path="/pinned"
+          element={
+            <Pinned
+              onDeleteConfirm={handleDeleteCard}
+              onKeepConfirm={() => setShowModal(false)}
+              onTrashClick={handleTrashClick}
+              showModal={showModal}
+              onPinClick={handlePinClick}
+              cards={cards}
+              allCategories={allCategories}
+              onCountRights={handleCountRights}
+              onCountWrongs={handleCountWrongs}
+            />
+          }
+        ></Route>
+        <Route
+          path="/decks"
+          element={
+            <Decks
+              cards={cards}
+              allCategories={allCategories}
+              onDeleteConfirm={handleDeleteCard}
+              onKeepConfirm={() => setShowModal(false)}
+              showModal={showModal}
+              onTrashClick={handleTrashClick}
+              onPinClick={handlePinClick}
+              onCountRights={handleCountRights}
+              onCountWrongs={handleCountWrongs}
+            />
+          }
+        ></Route>
+      </Routes>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        role="alert"
       />
-      <Route
-        path="/create-card"
-        element={<CreateCard cards={cards} onAddNewCard={handleNewCard} />}
-      ></Route>
-      <Route
-        path="/pinned"
-        element={
-          <Pinned
-            onDeleteConfirm={handleDeleteCard}
-            onKeepConfirm={() => setShowModal(false)}
-            onTrashClick={handleTrashClick}
-            showModal={showModal}
-            onPinClick={handlePinClick}
-            cards={cards}
-            allCategories={allCategories}
-            onCountRights={handleCountRights}
-            onCountWrongs={handleCountWrongs}
-          />
-        }
-      ></Route>
-      <Route
-        path="/decks"
-        element={
-          <Decks
-            cards={cards}
-            allCategories={allCategories}
-            onDeleteConfirm={handleDeleteCard}
-            onKeepConfirm={() => setShowModal(false)}
-            showModal={showModal}
-            onTrashClick={handleTrashClick}
-            onPinClick={handlePinClick}
-            onCountRights={handleCountRights}
-            onCountWrongs={handleCountWrongs}
-          />
-        }
-      ></Route>
-    </Routes>
+    </>
   );
 
   function handleNewCard(
