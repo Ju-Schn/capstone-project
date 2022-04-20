@@ -10,7 +10,7 @@ export default createGlobalStyle`
   --toastify-color-info: #3498db;
   --toastify-color-success: #618c03;
   --toastify-color-warning: #f1c40f;
-  --toastify-color-error: #e74c3c;
+  --toastify-color-error: #d92b04;
   --toastify-color-transparent: rgba(255, 255, 255, 0.7);
 
   --toastify-toast-width: 350px;
@@ -19,7 +19,7 @@ export default createGlobalStyle`
   --toastify-text-color-info: #fff;
   --toastify-text-color-success: #f4e9c9;
   --toastify-text-color-warning: #fff;
-  --toastify-text-color-error: #fff;
+  --toastify-text-color-error: #f4e9c9;
 
 }
 

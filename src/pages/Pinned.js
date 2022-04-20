@@ -50,7 +50,6 @@ export default function Pinned({
             else return [];
           }
         )}
-
         {showModal && (
           <DeleteModal
             onDeleteConfirm={onDeleteConfirm}

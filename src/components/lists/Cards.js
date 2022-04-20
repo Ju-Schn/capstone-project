@@ -1,13 +1,9 @@
 import Card from '../Card';
-import DeleteModal from '../modals/DeleteModal';
 
 import styled from 'styled-components';
 
 export default function Cards({
-  onDeleteConfirm,
   onTrashClick,
-  onKeepConfirm,
-  showModal,
   onPinClick,
   onCountRights,
   onCountWrongs,
@@ -72,12 +68,6 @@ export default function Cards({
               />
             </li>
           )
-      )}
-      {showModal && (
-        <DeleteModal
-          onDeleteConfirm={onDeleteConfirm}
-          onKeepConfirm={onKeepConfirm}
-        />
       )}
     </StyledList>
   );
