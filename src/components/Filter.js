@@ -2,7 +2,6 @@ import StyledButton from './StyledButton';
 import ScreenReaderOnly from './ScreenReaderOnly';
 
 import styled from 'styled-components';
-import Cards from './lists/Cards';
 
 export default function Filter({
   onResetFilter,
