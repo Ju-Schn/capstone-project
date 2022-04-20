@@ -1,4 +1,4 @@
-<h1> Capstone Projekt: Cardify 📚</h1>
+# Capstone Projekt: Cardify 📚
 
 Do you want the english version? Click [here](#englishVersion).
 
