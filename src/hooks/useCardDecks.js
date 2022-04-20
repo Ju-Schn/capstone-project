@@ -2,15 +2,12 @@ import { useState, useEffect } from 'react';
 import { loadFromLocal, saveToLocal } from '../utils/localStorage';
 import useCategory from './useCategory';
 import useDifficulty from './useDifficulty';
-import useCards from './useCards';
 
 export default function useCardDecks(_id) {
   const [cardDeck, setCardDeck] = useState(loadFromLocal('cardDeck') ?? []);
   const [doneCards, setDoneCards] = useState(loadFromLocal('doneCards') ?? []);
   const [showCreateDeckModal, setShowCreateDeckModal] = useState(false);
   const [decksize, setDecksize] = useState(loadFromLocal('decksize') ?? '');
-
-  const { cards } = useCards();
 
   const {
     difficulty,
@@ -19,7 +16,7 @@ export default function useCardDecks(_id) {
     mediumActive,
     difficultActive,
   } = useDifficulty();
-  const { category, setCategory } = useCategory();
+  const { setCategory } = useCategory();
 
   useEffect(() => {
     saveToLocal('cardDeck', cardDeck);
