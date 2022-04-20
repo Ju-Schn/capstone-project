@@ -6,6 +6,22 @@ export default createGlobalStyle`
   
 };
 
+:root {
+  --toastify-color-info: #3498db;
+  --toastify-color-success: #618c03;
+  --toastify-color-warning: #f1c40f;
+  --toastify-color-error: #e74c3c;
+  --toastify-color-transparent: rgba(255, 255, 255, 0.7);
+
+  --toastify-toast-width: 350px;
+  --toastify-font-family: inherit;
+
+  --toastify-text-color-info: #fff;
+  --toastify-text-color-success: #f4e9c9;
+  --toastify-text-color-warning: #fff;
+  --toastify-text-color-error: #fff;
+
+}
 
 body {
   margin: 0;
