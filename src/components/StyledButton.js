@@ -120,7 +120,6 @@ export default styled.button`
       border-radius: 30px;
       box-shadow: rgb(140, 14, 3, 1) 3px 3px 6px 0px inset,
         rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-      /* border: 1px solid #8c0e03; */
     `}
 
     ${props =>

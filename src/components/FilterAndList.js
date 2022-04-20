@@ -3,6 +3,7 @@ import Filter from './Filter';
 import CardList from './lists/CardList';
 import useCategory from '../hooks/useCategory';
 import useDifficulty from '../hooks/useDifficulty';
+import DeleteModal from './modals/DeleteModal';
 
 import styled from 'styled-components';
 
@@ -29,6 +30,12 @@ export default function FilterAndList({
 
   return (
     <GridWrapper>
+      {showModal && (
+        <DeleteModal
+          onDeleteConfirm={onDeleteConfirm}
+          onKeepConfirm={onKeepConfirm}
+        />
+      )}
       <Filter
         value={category}
         onChange={handleChange}
