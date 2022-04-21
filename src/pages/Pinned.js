@@ -16,6 +16,12 @@ export default function Pinned({
 }) {
   return (
     <GridWrapper>
+      {showModal && (
+        <DeleteModal
+          onDeleteConfirm={onDeleteConfirm}
+          onKeepConfirm={onKeepConfirm}
+        />
+      )}
       <StyledList role="list">
         {cards?.map(
           ({
@@ -49,12 +55,6 @@ export default function Pinned({
               );
             else return [];
           }
-        )}
-        {showModal && (
-          <DeleteModal
-            onDeleteConfirm={onDeleteConfirm}
-            onKeepConfirm={onKeepConfirm}
-          />
         )}
       </StyledList>
       <Navigation />

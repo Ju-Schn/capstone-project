@@ -83,6 +83,7 @@ export default function Filter({
 const DropdownWrapper = styled.section`
   display: flex;
   gap: 8px;
+  margin-right: 8px; ;
 `;
 
 const ButtonWrapper = styled.div`

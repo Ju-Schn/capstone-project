@@ -151,7 +151,7 @@ const FileCardFront = styled.section`
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 350px;
+  width: 325px;
   padding: 16px 16px 8px 32px;
   word-wrap: break-word;
 
@@ -170,7 +170,7 @@ const FileCardBack = styled.section`
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 350px;
+  width: 325px;
   padding: 16px 16px 8px 32px;
   word-wrap: break-word;
 
@@ -184,6 +184,7 @@ const FileCardBack = styled.section`
 const CategoryWrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   font-size: 16px;
   padding: 0;
   list-style: none;
