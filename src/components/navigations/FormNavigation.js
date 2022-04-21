@@ -10,7 +10,7 @@ export default function FormNavigation({ onNavClick }) {
     <StyledNav>
       <StyledButton onClick={() => onNavClick('/')} variant="navigation">
         <HomeIcon />
-        Alle Karten
+        Karten
       </StyledButton>
       <StyledButton
         onClick={() => onNavClick('/create-card')}

@@ -10,7 +10,7 @@ export default function Navigation() {
     <StyledNav>
       <StyledLink to="/">
         <HomeIcon />
-        Alle Karten
+        Karten
       </StyledLink>
       <StyledLink to="/create-card">
         <CreateIcon />
