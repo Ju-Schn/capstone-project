@@ -22,6 +22,7 @@ export default function Pinned({
           onKeepConfirm={onKeepConfirm}
         />
       )}
+      <Header>Deine Pinnwand 📌</Header>
       <StyledList role="list">
         {cards?.map(
           ({
@@ -75,6 +76,13 @@ const StyledList = styled.ul`
 
 const GridWrapper = styled.section`
   display: grid;
-  grid-template-rows: auto 48px;
+  grid-template-rows: 48px auto 48px;
   height: 100vh;
+`;
+
+const Header = styled.h2`
+  text-align: center;
+  font-size: 32px;
+  margin-top: 16px;
+  margin-bottom: 8px;
 `;
