@@ -10,7 +10,7 @@ export default function FormNavigation({ onNavClick }) {
     <StyledNav>
       <StyledButton onClick={() => onNavClick('/')} variant="navigation">
         <HomeIcon />
-        Alle Karten
+        Karten
       </StyledButton>
       <StyledButton
         onClick={() => onNavClick('/create-card')}
@@ -35,6 +35,7 @@ export default function FormNavigation({ onNavClick }) {
 const StyledNav = styled.div`
   display: flex;
   justify-content: space-evenly;
+  font-size: 90%;
   align-items: baseline;
   width: 100%;
   z-index: 1;

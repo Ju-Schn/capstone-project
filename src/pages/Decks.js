@@ -57,9 +57,6 @@ export default function Decks({
 
   let currentCard = cardDeck[0];
 
-  console.log(decksize);
-  console.log(doneCards);
-
   if (cardDeck.length === 0 && doneCards < 5)
     return (
       <FlexWrapper>
@@ -295,7 +292,7 @@ const StyledMessage = styled.section`
 const StyledDropdown = styled.select`
   background-color: #f2b705;
   font-family: inherit;
-  font-size: 100%;
+  font-size: 85%;
   border: none;
   border-radius: 30px;
   width: 60%;

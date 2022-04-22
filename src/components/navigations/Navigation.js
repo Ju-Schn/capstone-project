@@ -10,7 +10,7 @@ export default function Navigation() {
     <StyledNav>
       <StyledLink to="/">
         <HomeIcon />
-        Alle Karten
+        Karten
       </StyledLink>
       <StyledLink to="/create-card">
         <CreateIcon />
@@ -31,7 +31,8 @@ export default function Navigation() {
 const StyledNav = styled.div`
   display: flex;
   justify-content: space-evenly;
-  align-items: baseline;
+  align-items: flex-end;
+  font-size: 90%;
   width: 100%;
   position: fixed;
   bottom: 0;

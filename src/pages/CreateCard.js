@@ -179,11 +179,12 @@ const StyledForm = styled.form`
 
 const FormWrapper = styled.div`
   display: grid;
-  grid-template-rows: 48px auto 87px;
+  grid-template-rows: 75px auto 87px;
   height: 100vh;
 `;
 
 const Header = styled.h2`
   text-align: center;
   font-size: 32px;
+  margin-top: 16px;
 `;

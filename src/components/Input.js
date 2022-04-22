@@ -40,14 +40,6 @@ const StyledInput = styled.input`
   font-size: 16px;
   font-family: inherit;
   margin-bottom: 24px;
-
-  ${props =>
-    props.variant === 'search' &&
-    css`
-      background-color: #f2b705;
-      margin-right: 8px;
-      margin-bottom: 0;
-    `}
 `;
 
 const FlexWrapper = styled.div`
