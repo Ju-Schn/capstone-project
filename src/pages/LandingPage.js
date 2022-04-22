@@ -14,7 +14,7 @@ export default function LandingPage() {
     <FlexWrapper>
       <h2>Willkommen bei Cardify! 🤓</h2>
       <p>
-        Möchste du direkt neue Karten erstellen oder vielleicht sogar deine
+        Möchtest du direkt neue Karten erstellen oder vielleicht sogar deine
         erste Karte?
       </p>
       <StyledButton variant="yellow" onClick={() => navigate('/create')}>
@@ -50,9 +50,5 @@ const FlexWrapper = styled.section`
     margin: 0;
     margin-top: 32px;
     margin-bottom: 8px;
-  }
-
-  h2 {
-    margin-bottom: 0;
   }
 `;
