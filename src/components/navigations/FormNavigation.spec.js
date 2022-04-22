@@ -18,7 +18,7 @@ describe('Navigation', () => {
     const onNavClickFunctionality = jest.fn();
     render(<FormNavigation onNavClick={onNavClickFunctionality} />);
 
-    const homeButton = screen.getByRole('button', { name: /alle/i });
+    const homeButton = screen.getByRole('button', { name: /karten/i });
     const formButton = screen.getByRole('button', { name: /erstellen/i });
     const pinnedButton = screen.getByRole('button', { name: /pinnwand/i });
 
