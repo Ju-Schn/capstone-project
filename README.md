@@ -12,11 +12,13 @@ Richtig? Falsch! Cardify holt die guten alten Karteikarten ins 21. Jahrhundert! 
 
 <br />
 
+
 ## Demo:
 
 Erstelle dir gleich deine ersten Karten in der Demo auf Vercel: [Das will ich ausprobieren!](https://capstone-project-cardify.vercel.app/)
 
 **Wichtig:** Diese Demo ist für Smartphones optimiert.
+
 
 <img src="./src/images/Banner2.png" />
 
@@ -37,6 +39,7 @@ Erstelle dir gleich deine ersten Karten in der Demo auf Vercel: [Das will ich au
 - [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
 <br/>
+
 
 ## Projekt Setup
 
@@ -71,6 +74,7 @@ Create your first cards right now in the demo on Vercel: [I want to try this out
 
 **Important:** This demo is optimized for mobile screen.
 
+
 <img src="./src/images/Banner2.png" />
 
 <br />
@@ -90,6 +94,7 @@ Create your first cards right now in the demo on Vercel: [I want to try this out
 - [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
 <br />
+
 
 ## Project Setup
 
