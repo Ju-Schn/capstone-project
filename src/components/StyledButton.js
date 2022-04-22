@@ -38,9 +38,12 @@ export default styled.button`
   ${props =>
     props.variant === 'yellow' &&
     css`
+      display: flex;
       background-color: #f2b705;
       color: #8c0e03;
       border-radius: 30px;
+      align-items: center;
+      gap: 4px;
     `}
 
     ${props =>

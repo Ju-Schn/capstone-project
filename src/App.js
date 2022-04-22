@@ -3,13 +3,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home';
 import CreateCard from './pages/CreateCard';
 import Pinned from './pages/Pinned';
+import LandingPage from './pages/LandingPage';
+import Decks from './pages/Decks';
 
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { saveToLocal, loadFromLocal } from './utils/localStorage';
 import useCards from './hooks/useCards';
-import Decks from './pages/Decks';
+
 import { ToastContainer } from 'react-toastify';
 
 function App() {
@@ -28,8 +30,9 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route
-          path="/"
+          path="/cards"
           element={
             <Home
               cards={cards}
@@ -45,7 +48,7 @@ function App() {
           }
         />
         <Route
-          path="/create-card"
+          path="/create"
           element={<CreateCard cards={cards} onAddNewCard={handleNewCard} />}
         ></Route>
         <Route
