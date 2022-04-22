@@ -1,15 +1,12 @@
-import StyledButton from '../components/StyledButton';
 import { ReactComponent as HomeIcon } from '../svgs/home.svg';
 import { ReactComponent as CreateIcon } from '../svgs/erstellen.svg';
 import { ReactComponent as PinnedIcon } from '../svgs/pinned.svg';
 import { ReactComponent as DecksIcon } from '../svgs/decks.svg';
 
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function LandingPage() {
-  const navigate = useNavigate();
-
   return (
     <FlexWrapper>
       <h2>Willkommen bei Cardify! 🤓</h2>
@@ -17,25 +14,25 @@ export default function LandingPage() {
         Möchtest du direkt neue Karten erstellen oder vielleicht sogar deine
         erste Karte?
       </p>
-      <StyledButton variant="yellow" onClick={() => navigate('/create')}>
+      <StyledNavLink to="/create">
         <CreateIcon />
         Erstellen
-      </StyledButton>
+      </StyledNavLink>
       <p>Oder willst du dir deine bereits erstellten Karten ansehen?</p>
-      <StyledButton variant="yellow" onClick={() => navigate('/cards')}>
+      <StyledNavLink to="/cards">
         <HomeIcon />
         Karten
-      </StyledButton>
+      </StyledNavLink>
       <p>Hast du Karten gepinnt, die du wiederholen möchtest?</p>
-      <StyledButton variant="yellow" onClick={() => navigate('/pinned')}>
+      <StyledNavLink to="/pinned">
         <PinnedIcon />
         Pinnwand
-      </StyledButton>
+      </StyledNavLink>
       <p>Oder hast du Lust direkt mit einem Lernstapel zu starten?</p>
-      <StyledButton variant="yellow" onClick={() => navigate('/decks')}>
+      <StyledNavLink to="/decks">
         <DecksIcon />
         Stapel
-      </StyledButton>
+      </StyledNavLink>
     </FlexWrapper>
   );
 }
@@ -51,4 +48,20 @@ const FlexWrapper = styled.section`
     margin-top: 32px;
     margin-bottom: 8px;
   }
+`;
+
+const StyledNavLink = styled(NavLink)`
+  display: flex;
+  background-color: #f2b705;
+  color: #8c0e03;
+  border-radius: 30px;
+  align-items: center;
+  gap: 4px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  padding: 8px 16px;
+  align-self: center;
+  border-radius: 30px;
+  text-decoration: none;
 `;
