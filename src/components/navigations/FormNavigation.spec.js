@@ -18,15 +18,18 @@ describe('Navigation', () => {
     const onNavClickFunctionality = jest.fn();
     render(<FormNavigation onNavClick={onNavClickFunctionality} />);
 
-    const homeButton = screen.getByRole('button', { name: /alle/i });
+    const homeButton = screen.getByRole('button', { name: /karten/i });
     const formButton = screen.getByRole('button', { name: /erstellen/i });
     const pinnedButton = screen.getByRole('button', { name: /pinnwand/i });
+    const decksButton = screen.getByRole('button', { name: /stapel/i });
 
     await userEvent.click(homeButton);
-    expect(onNavClickFunctionality).toHaveBeenCalledWith('/');
+    expect(onNavClickFunctionality).toHaveBeenCalledWith('/cards');
     await userEvent.click(formButton);
-    expect(onNavClickFunctionality).toHaveBeenCalledWith('/create-card');
+    expect(onNavClickFunctionality).toHaveBeenCalledWith('/create');
     await userEvent.click(pinnedButton);
     expect(onNavClickFunctionality).toHaveBeenCalledWith('/pinned');
+    await userEvent.click(decksButton);
+    expect(onNavClickFunctionality).toHaveBeenCalledWith('/decks');
   });
 });

@@ -8,11 +8,11 @@ import { ReactComponent as DecksIcon } from '../../svgs/decks.svg';
 export default function Navigation() {
   return (
     <StyledNav>
-      <StyledLink to="/">
+      <StyledLink to="/cards">
         <HomeIcon />
         Karten
       </StyledLink>
-      <StyledLink to="/create-card">
+      <StyledLink to="/create">
         <CreateIcon />
         Erstellen
       </StyledLink>

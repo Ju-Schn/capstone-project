@@ -8,12 +8,12 @@ import { ReactComponent as DecksIcon } from '../../svgs/decks.svg';
 export default function FormNavigation({ onNavClick }) {
   return (
     <StyledNav>
-      <StyledButton onClick={() => onNavClick('/')} variant="navigation">
+      <StyledButton onClick={() => onNavClick('/cards')} variant="navigation">
         <HomeIcon />
         Karten
       </StyledButton>
       <StyledButton
-        onClick={() => onNavClick('/create-card')}
+        onClick={() => onNavClick('/create')}
         variant="navigationActive"
       >
         <CreateIcon />

@@ -63,7 +63,7 @@ export default function Decks({
         {showCreateDeckModal && (
           <CreateDeckModal
             onChangeFilterClick={handleChangeFilterClick}
-            onCreateCardClick={() => navigate('/create-card')}
+            onCreateCardClick={() => navigate('/create')}
           />
         )}
         <StyledTitle id="form-titel">Erstelle einen Karten-Stapel</StyledTitle>
