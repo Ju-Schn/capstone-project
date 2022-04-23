@@ -9,6 +9,7 @@ export default function Home({
   onDeleteConfirm,
   onTrashClick,
   onKeepConfirm,
+  onDeleteFromDatabaseConfirm,
   showModal,
   onPinClick,
   allCategories,
@@ -34,6 +35,7 @@ export default function Home({
         onDeleteConfirm={onDeleteConfirm}
         onTrashClick={onTrashClick}
         onKeepConfirm={onKeepConfirm}
+        onDeleteFromDatabaseConfirm={onDeleteFromDatabaseConfirm}
         showModal={showModal}
         onPinClick={onPinClick}
         allCategories={allCategories}

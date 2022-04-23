@@ -4,6 +4,7 @@ import StyledButton from '../StyledButton';
 export default function DeleteModal({
   onKeepConfirm,
   onDeleteConfirm,
+  onDeleteFromDatabaseConfirm,
   additionalText,
 }) {
   return (
@@ -17,6 +18,9 @@ export default function DeleteModal({
           </StyledButton>
           <StyledButton variant="danger" onClick={onDeleteConfirm}>
             Löschen
+          </StyledButton>
+          <StyledButton variant="danger" onClick={onDeleteFromDatabaseConfirm}>
+            Für ALLE löschen 💣
           </StyledButton>
         </ButtonWrapper>
       </GridModal>

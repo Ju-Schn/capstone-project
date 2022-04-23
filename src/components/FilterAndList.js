@@ -12,6 +12,7 @@ export default function FilterAndList({
   onDeleteConfirm,
   onTrashClick,
   onKeepConfirm,
+  onDeleteFromDatabaseConfirm,
   showModal,
   onPinClick,
   onCountRights,
@@ -34,6 +35,7 @@ export default function FilterAndList({
         <DeleteModal
           onDeleteConfirm={onDeleteConfirm}
           onKeepConfirm={onKeepConfirm}
+          onDeleteFromDatabaseConfirm={onDeleteFromDatabaseConfirm}
         />
       )}
       <Filter
