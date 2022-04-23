@@ -38,7 +38,7 @@ function App() {
     error: cardsError,
     mutate: mutatePublicCards,
   } = useSWR('/api/public-cards', fetcher);
-  console.log(personalCardsIds);
+  console.log(currentId);
 
   if (cardsError) return <h1>Keine Verbindung zur Datenbank 👻</h1>;
   if (!publicCards && !cardsError) return <p>... loading ...</p>;
@@ -192,7 +192,21 @@ function App() {
     setShowModal(false);
   }
 
-  function handleDeleteFromDatabase() {}
+  async function handleDeleteFromDatabase() {
+    const filteredEntries = publicCards.filter(card => card._id !== currentId);
+    mutatePublicCards(filteredEntries, false);
+    await fetch('/api/public-cards', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ currentId }),
+    });
+
+    mutatePublicCards();
+    setPersonalCards(personalCards.filter(card => card._id !== currentId));
+    setShowModal(false);
+  }
 
   function handlePinClick(id) {
     setPersonalCards(
