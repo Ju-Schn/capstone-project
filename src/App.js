@@ -60,6 +60,7 @@ function App() {
               allCategories={allCategories}
               onCountRights={handleCountRights}
               onCountWrongs={handleCountWrongs}
+              onDeleteFromDatabaseConfirm={handleDeleteFromDatabase}
             />
           }
         />
@@ -190,6 +191,8 @@ function App() {
     setPersonalCards(personalCards.filter(card => card._id !== currentId));
     setShowModal(false);
   }
+
+  function handleDeleteFromDatabase() {}
 
   function handlePinClick(id) {
     setPersonalCards(
