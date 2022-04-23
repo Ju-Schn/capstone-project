@@ -10,15 +10,15 @@ export default function CardList({
   onCountWrongs,
   onShowHide,
   difficulty,
-  cards,
+  personalCards,
   category,
 }) {
   const filteredByDifficulty = difficulty
-    ? cards.filter(card => card.difficulty === difficulty)
-    : cards;
+    ? personalCards.filter(card => card.difficulty === difficulty)
+    : personalCards;
   return (
     <Cards
-      cards={filteredByDifficulty}
+      personalCards={filteredByDifficulty}
       showModal={showModal}
       onPinClick={onPinClick}
       onCountRights={onCountRights}

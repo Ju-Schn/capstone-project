@@ -1,10 +1,10 @@
 @baseUrl = http://localhost:3000/api
 
 ### GET ALL ENTRIES
-GET {{baseUrl}}/cards
+GET {{baseUrl}}/public-cards
 
 ### CREATE NEW ENTRY
-POST {{baseUrl}}/cards
+POST {{baseUrl}}/public-cards
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 
 ### DELETE
 
-DELETE {{baseUrl}}/entries
+DELETE {{baseUrl}}/public-cards
 Content-Type: application/json
 
 {

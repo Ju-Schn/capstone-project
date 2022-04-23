@@ -25,7 +25,7 @@ export default function Decks({
 }) {
   const navigate = useNavigate();
 
-  const { cards } = useCards();
+  const { personalCards } = useCards();
 
   const {
     handleQuitDeck,
@@ -78,16 +78,16 @@ export default function Decks({
           required
         >
           <option value="">Stapelgröße: *erforderlich</option>
-          <option disabled={cards.length < 5} value={5}>
+          <option disabled={personalCards.length < 5} value={5}>
             5
           </option>
-          <option disabled={cards.length < 10} value={10}>
+          <option disabled={personalCards.length < 10} value={10}>
             10
           </option>
-          <option disabled={cards.length < 20} value={20}>
+          <option disabled={personalCards.length < 20} value={20}>
             20
           </option>
-          <option disabled={cards.length < 40} value={40}>
+          <option disabled={personalCards.length < 40} value={40}>
             40
           </option>
         </StyledDropdown>
@@ -174,7 +174,7 @@ export default function Decks({
 
   function handleCreateDeck(event) {
     event.preventDefault();
-    const filteredByDifficulty = cards.filter(card =>
+    const filteredByDifficulty = personalCards.filter(card =>
       difficulty ? card.difficulty === difficulty : card
     );
 

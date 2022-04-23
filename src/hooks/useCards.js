@@ -1,8 +1,10 @@
 import { loadFromLocal } from '../utils/localStorage';
 import { useState } from 'react';
 
-export default function useCards() {
-  const [cards, setCards] = useState(loadFromLocal('cards') ?? []);
+export default function usePersonalCards() {
+  const [personalCards, setPersonalCards] = useState(
+    loadFromLocal('personalCards') ?? []
+  );
 
-  return { cards, setCards };
+  return { personalCards, setPersonalCards };
 }

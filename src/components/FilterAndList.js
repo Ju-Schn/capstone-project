@@ -8,7 +8,7 @@ import DeleteModal from './modals/DeleteModal';
 import styled from 'styled-components';
 
 export default function FilterAndList({
-  cards,
+  personalCards,
   onDeleteConfirm,
   onTrashClick,
   onKeepConfirm,
@@ -48,7 +48,7 @@ export default function FilterAndList({
       />
       <CardList
         difficulty={difficulty}
-        cards={cards}
+        personalCards={personalCards}
         showModal={showModal}
         onPinClick={onPinClick}
         onCountRights={onCountRights}
