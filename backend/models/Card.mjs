@@ -24,4 +24,4 @@ const schema = new Schema(
   }
 );
 
-export default model('Cards', schema);
+export default model('Card', schema);
