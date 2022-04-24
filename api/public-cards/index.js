@@ -1,5 +1,5 @@
-import dbConnect from '../../backend/lib/dbConnect.mjs';
-import Card from '../../backend/models/Card.mjs';
+import dbConnect from '../../backend/lib/dbConnect.js';
+import Card from '../../backend/models/Card.js';
 
 export default async function handler(req, res) {
   await dbConnect();
