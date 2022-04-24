@@ -37,7 +37,7 @@ function App() {
     data: publicCards,
     error: cardsError,
     mutate: mutatePublicCards,
-  } = useSWR('/api/public-cards', fetcher);
+  } = useSWR('/api/public-cards/', fetcher);
   console.log(currentId);
 
   if (cardsError) return <h1>Keine Verbindung zur Datenbank 👻</h1>;
