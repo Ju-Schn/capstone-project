@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
   if (req.method === 'DELETE') {
     const { currentId } = req.body;
-    console.log(currentId);
+
     await Card.findByIdAndDelete(currentId);
     return res.status(204).send();
   }
