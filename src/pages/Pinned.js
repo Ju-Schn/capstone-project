@@ -5,7 +5,7 @@ import DeleteModal from '../components/modals/DeleteModal';
 import styled from 'styled-components';
 
 export default function Pinned({
-  cards,
+  personalCards,
   onDeleteConfirm,
   onTrashClick,
   onKeepConfirm,
@@ -24,7 +24,7 @@ export default function Pinned({
       )}
       <Header>Deine Pinnwand 📌</Header>
       <StyledList role="list">
-        {cards?.map(
+        {personalCards?.map(
           ({
             question,
             answer,

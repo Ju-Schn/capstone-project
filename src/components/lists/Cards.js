@@ -7,13 +7,13 @@ export default function Cards({
   onPinClick,
   onCountRights,
   onCountWrongs,
-  cards,
+  personalCards,
   onShowHide,
   category,
 }) {
   return (
     <StyledList role="list" aria-label="Karten">
-      {cards?.map(
+      {personalCards?.map(
         ({
           question,
           answer,

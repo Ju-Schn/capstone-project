@@ -5,10 +5,11 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home({
-  cards,
+  personalCards,
   onDeleteConfirm,
   onTrashClick,
   onKeepConfirm,
+  onDeleteFromDatabaseConfirm,
   showModal,
   onPinClick,
   allCategories,
@@ -18,7 +19,7 @@ export default function Home({
 }) {
   const navigate = useNavigate();
 
-  if (cards.length === 0) {
+  if (personalCards.length === 0) {
     return (
       <StyledEmptyState>
         <h2>Du hast bisher noch keine Karte</h2>
@@ -30,10 +31,11 @@ export default function Home({
   } else {
     return (
       <FilterAndList
-        cards={cards}
+        personalCards={personalCards}
         onDeleteConfirm={onDeleteConfirm}
         onTrashClick={onTrashClick}
         onKeepConfirm={onKeepConfirm}
+        onDeleteFromDatabaseConfirm={onDeleteFromDatabaseConfirm}
         showModal={showModal}
         onPinClick={onPinClick}
         allCategories={allCategories}

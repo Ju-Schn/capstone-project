@@ -1,0 +1,30 @@
+@baseUrl = http://localhost:3000/api
+
+### GET ALL ENTRIES
+GET {{baseUrl}}/public-cards
+
+### CREATE NEW ENTRY
+POST {{baseUrl}}/public-cards
+Content-Type: application/json
+
+{
+  "question": "Why?",
+  "answer": "Because..",
+  "categories": ["category1", "category2", "category3"]
+}
+
+
+### DELETE
+
+DELETE {{baseUrl}}/public-cards
+Content-Type: application/json
+
+{
+  "_id": "623c6c96d5c80882037b6351"
+}
+
+### ERROR: GET /api - 404
+GET {{baseUrl}}
+
+### ERROR: GET non existing path - 404
+GET {{baseUrl}}/does-not-exist
