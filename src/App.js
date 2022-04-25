@@ -1,17 +1,18 @@
 import 'react-toastify/dist/ReactToastify.css';
 
+import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
 import CreateCard from './pages/CreateCard';
 import Pinned from './pages/Pinned';
-import LandingPage from './pages/LandingPage';
 import Decks from './pages/Decks';
+
+import usePersonalCards from './hooks/useCards';
+import { saveToLocal, loadFromLocal } from './utils/localStorage';
 
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { nanoid } from 'nanoid';
-import { saveToLocal, loadFromLocal } from './utils/localStorage';
-import usePersonalCards from './hooks/useCards';
 import { ToastContainer } from 'react-toastify';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json());
@@ -158,7 +159,7 @@ function App() {
 
   function handleNewPersonalCard() {
     const newPersonalCards = publicCards?.filter(
-      publicCard => personalCardsIds.includes(publicCard._id) === false
+      publicCard => !personalCardsIds.includes(publicCard._id)
     );
     setPersonalCards([
       ...newPersonalCards.map(personalCard => {
@@ -204,8 +205,7 @@ function App() {
     });
 
     mutatePublicCards();
-    setPersonalCards(personalCards.filter(card => card._id !== currentId));
-    setShowModal(false);
+    handleDeleteCard();
   }
 
   function handlePinClick(id) {

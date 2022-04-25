@@ -17,7 +17,7 @@ export default function DeleteModal({
             Behalten
           </StyledButton>
           <StyledButton variant="danger" onClick={onDeleteConfirm}>
-            Löschen
+            🚮 Lokal löschen
           </StyledButton>
           <StyledButton variant="danger" onClick={onDeleteFromDatabaseConfirm}>
             Für ALLE löschen 💣
@@ -54,6 +54,8 @@ const GridModal = styled.section`
 
 const ButtonWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
+  gap: 8px;
   margin-bottom: 16px; ;
 `;
