@@ -6,41 +6,24 @@ import CreateCard from './pages/CreateCard';
 import Pinned from './pages/Pinned';
 import Decks from './pages/Decks';
 
-import usePersonalCards from './hooks/useCards';
-import { saveToLocal, loadFromLocal } from './utils/localStorage';
+import useCards from './hooks/useCards';
+import useFetch from './hooks/useFetch';
+import { loadFromLocal } from './utils/localStorage';
 
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import useSWR from 'swr';
-import { nanoid } from 'nanoid';
+import { useState } from 'react';
+
 import { ToastContainer } from 'react-toastify';
 
-const fetcher = (...args) => fetch(...args).then(res => res.json());
-
 function App() {
-  const [allCategories, setAllCategories] = useState(
-    loadFromLocal('allCategories') ?? []
-  );
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState('');
-  const [personalCardsIds, setPersonalCardsIds] = useState(
-    loadFromLocal('personalCardsIds') ?? []
-  );
-  const { personalCards, setPersonalCards } = usePersonalCards();
 
-  useEffect(() => {
-    saveToLocal('allCategories', allCategories);
-    saveToLocal('personalCards', personalCards);
-    saveToLocal('personalCardsIds', personalCardsIds);
-  }, [personalCards, allCategories, personalCardsIds]);
+  const { publicCards, mutatePublicCards, cardsError } = useFetch();
+  const { personalCards, setPersonalCards, handleNewCard, allCategories } =
+    useCards();
 
-  const {
-    data: publicCards,
-    error: cardsError,
-    mutate: mutatePublicCards,
-  } = useSWR('/api/public-cards/', fetcher);
-  console.log(currentId);
-
+  console.log(publicCards);
   if (cardsError) return <h1>Keine Verbindung zur Datenbank 👻</h1>;
   if (!publicCards && !cardsError) return <p>... loading ...</p>;
 
@@ -122,66 +105,6 @@ function App() {
       />
     </>
   );
-
-  async function handleNewCard(
-    questionText,
-    answerText,
-    category1Text,
-    category2Text,
-    category3Text
-  ) {
-    const newPublicCard = {
-      question: questionText,
-      answer: answerText,
-      categories: [category1Text, category2Text, category3Text],
-      tempId: nanoid(),
-    };
-
-    mutatePublicCards([...publicCards, newPublicCard], false);
-
-    await fetch('/api/public-cards', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newPublicCard),
-    });
-
-    mutatePublicCards();
-    setAllCategories([
-      ...allCategories,
-      ...newPublicCard.categories.filter(
-        category => !allCategories.includes(category)
-      ),
-    ]);
-    handleNewPersonalCard();
-  }
-
-  function handleNewPersonalCard() {
-    const newPersonalCards = publicCards?.filter(
-      publicCard => !personalCardsIds.includes(publicCard._id)
-    );
-    setPersonalCards([
-      ...newPersonalCards.map(personalCard => {
-        return {
-          ...personalCard,
-          isPinned: false,
-          showCounts: false,
-          countRight: 0.0000000001,
-          countWrong: 0.0000000001,
-          quotient: 1,
-          difficulty: 'medium',
-        };
-      }),
-      ...personalCards,
-    ]);
-    setPersonalCardsIds([
-      ...personalCardsIds,
-      ...newPersonalCards.map(personalCard => {
-        return personalCard._id;
-      }),
-    ]);
-  }
 
   function handleTrashClick(id) {
     setShowModal(true);
