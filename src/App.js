@@ -2,7 +2,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import LandingPage from './pages/LandingPage';
 import Home from './pages/Home';
-import CreateCard from './pages/CreateCard';
+import CreateCard from './pages/Create';
 import Pinned from './pages/Pinned';
 import Decks from './pages/Decks';
 
