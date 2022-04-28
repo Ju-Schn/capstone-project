@@ -10,8 +10,8 @@ export default function CardList({
   onCountWrongs,
   onShowHide,
   difficulty,
-  personalCards,
   category,
+  personalCards,
 }) {
   const filteredByDifficulty = difficulty
     ? personalCards.filter(card => card.difficulty === difficulty)

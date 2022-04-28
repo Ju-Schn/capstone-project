@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home({
-  personalCards,
   onDeleteConfirm,
   onTrashClick,
   onKeepConfirm,
@@ -16,6 +15,7 @@ export default function Home({
   onCountRights,
   onCountWrongs,
   onShowHide,
+  personalCards,
 }) {
   const navigate = useNavigate();
 

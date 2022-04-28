@@ -8,22 +8,23 @@ import Decks from './pages/Decks';
 
 import useCards from './hooks/useCards';
 import useFetch from './hooks/useFetch';
-import { loadFromLocal } from './utils/localStorage';
+import useDelete from './hooks/useDelete';
 
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
-
 import { ToastContainer } from 'react-toastify';
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
-  const [currentId, setCurrentId] = useState('');
-
-  const { publicCards, mutatePublicCards, cardsError } = useFetch();
+  const {
+    handleDeleteFromDatabase,
+    handleTrashClick,
+    showModal,
+    setShowModal,
+    handleDeleteCard,
+  } = useDelete();
+  const { publicCards, cardsError } = useFetch();
   const { personalCards, setPersonalCards, handleNewCard, allCategories } =
     useCards();
 
-  console.log(publicCards);
   if (cardsError) return <h1>Keine Verbindung zur Datenbank 👻</h1>;
   if (!publicCards && !cardsError) return <p>... loading ...</p>;
 
@@ -105,31 +106,6 @@ function App() {
       />
     </>
   );
-
-  function handleTrashClick(id) {
-    setShowModal(true);
-    setCurrentId(id);
-  }
-
-  function handleDeleteCard() {
-    setPersonalCards(personalCards.filter(card => card._id !== currentId));
-    setShowModal(false);
-  }
-
-  async function handleDeleteFromDatabase() {
-    const filteredEntries = publicCards.filter(card => card._id !== currentId);
-    mutatePublicCards(filteredEntries, false);
-    await fetch('/api/public-cards', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ currentId }),
-    });
-
-    mutatePublicCards();
-    handleDeleteCard();
-  }
 
   function handlePinClick(id) {
     setPersonalCards(

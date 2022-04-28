@@ -5,14 +5,14 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
 export default function useCards() {
-  const [personalCards, setPersonalCards] = useState(
-    loadFromLocal('personalCards') ?? []
-  );
   const [personalCardsIds, setPersonalCardsIds] = useState(
     loadFromLocal('personalCardsIds') ?? []
   );
   const [allCategories, setAllCategories] = useState(
     loadFromLocal('allCategories') ?? []
+  );
+  const [personalCards, setPersonalCards] = useState(
+    loadFromLocal('personalCards') ?? []
   );
 
   const { publicCards, mutatePublicCards } = useFetch();
