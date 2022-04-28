@@ -1,14 +1,14 @@
 import Navigation from './navigations/Navigation';
 import Filter from './Filter';
 import CardList from './lists/CardList';
+import DeleteModal from './modals/DeleteModal';
+
 import useCategory from '../hooks/useCategory';
 import useDifficulty from '../hooks/useDifficulty';
-import DeleteModal from './modals/DeleteModal';
 
 import styled from 'styled-components';
 
 export default function FilterAndList({
-  personalCards,
   onDeleteConfirm,
   onTrashClick,
   onKeepConfirm,
@@ -19,6 +19,7 @@ export default function FilterAndList({
   onCountWrongs,
   allCategories,
   onShowHide,
+  personalCards,
 }) {
   const {
     difficulty,
@@ -48,9 +49,9 @@ export default function FilterAndList({
         mediumActive={mediumActive}
         difficultActive={difficultActive}
       />
+
       <CardList
         difficulty={difficulty}
-        personalCards={personalCards}
         showModal={showModal}
         onPinClick={onPinClick}
         onCountRights={onCountRights}
@@ -60,6 +61,7 @@ export default function FilterAndList({
         onTrashClick={onTrashClick}
         onShowHide={onShowHide}
         category={category}
+        personalCards={personalCards}
       />
       <Navigation />
     </GridWrapper>

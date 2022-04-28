@@ -7,9 +7,9 @@ export default function Cards({
   onPinClick,
   onCountRights,
   onCountWrongs,
-  personalCards,
   onShowHide,
   category,
+  personalCards,
 }) {
   return (
     <StyledList role="list" aria-label="Karten">
