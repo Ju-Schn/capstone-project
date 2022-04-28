@@ -3,12 +3,13 @@ import StyledButton from '../components/StyledButton';
 import Card from '../components/Card';
 import Navigation from '../components/navigations/Navigation';
 import CreateDeckModal from '../components/modals/CreateDeckModal';
-import useCategory from '../hooks/useCategory';
+import DeleteModal from '../components/modals/DeleteModal';
+import ScreenReaderOnly from '../components/ScreenReaderOnly';
+
 import useDifficulty from '../hooks/useDifficulty';
 import useCardDecks from '../hooks/useCardDecks';
-import DeleteModal from '../components/modals/DeleteModal';
 import useCards from '../hooks/useCards';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import useCategory from '../hooks/useCategory';
 
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
