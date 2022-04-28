@@ -9,6 +9,7 @@ import Decks from './pages/Decks';
 import useCards from './hooks/useCards';
 import useFetch from './hooks/useFetch';
 import useDelete from './hooks/useDelete';
+import useDifficulty from './hooks/useDifficulty';
 
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -24,6 +25,7 @@ function App() {
   const { publicCards, cardsError } = useFetch();
   const { personalCards, setPersonalCards, handleNewCard, allCategories } =
     useCards();
+  const { handleDifficulty } = useDifficulty();
 
   if (cardsError) return <h1>Keine Verbindung zur Datenbank 👻</h1>;
   if (!publicCards && !cardsError) return <p>... loading ...</p>;
@@ -107,16 +109,6 @@ function App() {
     </>
   );
 
-  function handlePinClick(id) {
-    setPersonalCards(
-      personalCards.map(card => {
-        if (card._id === id) {
-          return { ...card, isPinned: !card.isPinned };
-        } else return card;
-      })
-    );
-  }
-
   function handleCountRights(id) {
     setPersonalCards(
       personalCards.map(card => {
@@ -153,10 +145,14 @@ function App() {
     );
   }
 
-  function handleDifficulty(quotient) {
-    if (quotient >= 2) return 'easy';
-    else if (quotient <= 0.5) return 'difficult';
-    else return 'medium';
+  function handlePinClick(id) {
+    setPersonalCards(
+      personalCards.map(card => {
+        if (card._id === id) {
+          return { ...card, isPinned: !card.isPinned };
+        } else return card;
+      })
+    );
   }
 }
 

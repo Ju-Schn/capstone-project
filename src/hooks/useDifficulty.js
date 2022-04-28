@@ -40,6 +40,13 @@ export default function useDifficulty() {
       setDifficultActive(false);
     }
   }
+
+  function handleDifficulty(quotient) {
+    if (quotient >= 2) return 'easy';
+    else if (quotient <= 0.5) return 'difficult';
+    else return 'medium';
+  }
+
   return {
     difficulty,
     easyActive,
@@ -47,5 +54,6 @@ export default function useDifficulty() {
     difficultActive,
     setDifficulty,
     handleDifficultyCards,
+    handleDifficulty,
   };
 }
