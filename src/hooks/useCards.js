@@ -37,7 +37,7 @@ export default function useCards() {
       tempId: nanoid(),
     };
 
-    mutatePublicCards([...publicCards, newPublicCard], false);
+    mutatePublicCards([newPublicCard, ...publicCards], false);
 
     await fetch('/api/public-cards', {
       method: 'POST',
@@ -83,5 +83,11 @@ export default function useCards() {
     ]);
   }
 
-  return { personalCards, setPersonalCards, handleNewCard, allCategories };
+  return {
+    handleNewPersonalCard,
+    personalCards,
+    setPersonalCards,
+    handleNewCard,
+    allCategories,
+  };
 }

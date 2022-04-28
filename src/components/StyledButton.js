@@ -148,6 +148,24 @@ export default styled.button`
     `}
 
     ${props =>
+    props.variant === 'synchro' &&
+    css`
+      background-color: #618c03;
+      border-radius: 50%;
+      width: 60px;
+      margin: 16px 0;
+      padding: 8px;
+      display: flex;
+      justify-content: flex-end;
+      align-self: flex-end;
+      position: fixed;
+      top: 90px;
+      right: 0;
+      z-index: 1;
+      align-items: center;
+    `}
+
+    ${props =>
     props.variant === 'wrong' &&
     css`
       background-color: #d92b04;

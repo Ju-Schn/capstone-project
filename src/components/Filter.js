@@ -1,5 +1,8 @@
 import StyledButton from './StyledButton';
 import ScreenReaderOnly from './ScreenReaderOnly';
+import { ReactComponent as SyncIcon } from '../svgs/sync.svg';
+
+import useCards from '../hooks/useCards';
 
 import styled from 'styled-components';
 
@@ -13,6 +16,7 @@ export default function Filter({
   mediumActive,
   difficultActive,
 }) {
+  const { handleNewPersonalCard } = useCards();
   return (
     <>
       <DropdownWrapper>
@@ -76,8 +80,17 @@ export default function Filter({
           Schwer
         </StyledButton>
       </ButtonWrapper>
+      <StyledButton variant="synchro" onClick={handleSynchro}>
+        <ScreenReaderOnly>synchronisieren</ScreenReaderOnly>
+        <SyncIcon />
+      </StyledButton>
     </>
   );
+
+  function handleSynchro() {
+    handleNewPersonalCard();
+    window.location.reload();
+  }
 }
 
 const DropdownWrapper = styled.section`

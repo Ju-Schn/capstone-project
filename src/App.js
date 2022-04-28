@@ -26,6 +26,8 @@ function App() {
   const { personalCards, setPersonalCards, handleNewCard, allCategories } =
     useCards();
   const { handleDifficulty } = useDifficulty();
+  console.log(personalCards);
+  console.log(publicCards);
 
   if (cardsError) return <h1>Keine Verbindung zur Datenbank 👻</h1>;
   if (!publicCards && !cardsError) return <p>... loading ...</p>;

@@ -49,6 +49,7 @@ export default function FilterAndList({
         mediumActive={mediumActive}
         difficultActive={difficultActive}
       />
+
       <CardList
         difficulty={difficulty}
         showModal={showModal}

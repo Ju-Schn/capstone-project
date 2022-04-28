@@ -30,19 +30,21 @@ export default function Home({
     );
   } else {
     return (
-      <FilterAndList
-        personalCards={personalCards}
-        onDeleteConfirm={onDeleteConfirm}
-        onTrashClick={onTrashClick}
-        onKeepConfirm={onKeepConfirm}
-        onDeleteFromDatabaseConfirm={onDeleteFromDatabaseConfirm}
-        showModal={showModal}
-        onPinClick={onPinClick}
-        allCategories={allCategories}
-        onCountRights={onCountRights}
-        onCountWrongs={onCountWrongs}
-        onShowHide={onShowHide}
-      />
+      <>
+        <FilterAndList
+          personalCards={personalCards}
+          onDeleteConfirm={onDeleteConfirm}
+          onTrashClick={onTrashClick}
+          onKeepConfirm={onKeepConfirm}
+          onDeleteFromDatabaseConfirm={onDeleteFromDatabaseConfirm}
+          showModal={showModal}
+          onPinClick={onPinClick}
+          allCategories={allCategories}
+          onCountRights={onCountRights}
+          onCountWrongs={onCountWrongs}
+          onShowHide={onShowHide}
+        />
+      </>
     );
   }
 
