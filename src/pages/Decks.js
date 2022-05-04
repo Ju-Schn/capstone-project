@@ -10,23 +10,22 @@ import useDifficulty from '../hooks/useDifficulty';
 import useCardDecks from '../hooks/useCardDecks';
 import useCards from '../hooks/useCards';
 import useCategory from '../hooks/useCategory';
+import useDelete from '../hooks/useDelete';
 
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Decks({
   allCategories,
-  onDeleteConfirm,
-  onKeepConfirm,
-  showModal,
   onCountRights,
   onCountWrongs,
-  onTrashClick,
   onPinClick,
 }) {
   const navigate = useNavigate();
 
   const { personalCards } = useCards();
+
+  const {handleTrashClick, handleDeleteCard, handleDeleteFromDatabase, showModal, setShowModal} = useDelete()
 
   const {
     handleQuitDeck,
@@ -134,8 +133,9 @@ export default function Decks({
       <FlexWrapper>
         {showModal && (
           <DeleteModal
-            onDeleteConfirm={onDeleteConfirm}
-            onKeepConfirm={onKeepConfirm}
+            onDeleteConfirm={handleDeleteCard}
+            onKeepConfirm={() => setShowModal(false)}
+            onDeleteFromDatabaseConfirm={handleDeleteFromDatabase}
             additionalText="(Die Karte wird nach dem Verlassen des Stapels gelöscht)"
           />
         )}
@@ -154,7 +154,7 @@ export default function Decks({
               showCounts={currentCard.showCounts}
               onCountRights={() => handleCountRightsClick(currentCard._id)}
               onCountWrongs={() => handleCountWrongsClick(currentCard._id)}
-              onTrashClick={onTrashClick}
+              onTrashClick={() => handleTrashClick(currentCard._id)}
               onPinClick={() => handlePinClick(currentCard._id)}
             />
           </li>
