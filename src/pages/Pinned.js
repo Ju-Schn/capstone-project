@@ -2,24 +2,25 @@ import Card from '../components/Card';
 import Navigation from '../components/navigations/Navigation';
 import DeleteModal from '../components/modals/DeleteModal';
 
+import useCards from '../hooks/useCards';
+import useDelete from '../hooks/useDelete';
+
 import styled from 'styled-components';
 
 export default function Pinned({
-  personalCards,
-  onDeleteConfirm,
-  onTrashClick,
-  onKeepConfirm,
-  showModal,
   onPinClick,
   onCountRights,
   onCountWrongs,
 }) {
+  const {personalCards} = useCards();
+  const {handleTrashClick, handleDeleteCard, handleDeleteFromDatabase, showModal, setShowModal} = useDelete()
   return (
     <GridWrapper>
       {showModal && (
         <DeleteModal
-          onDeleteConfirm={onDeleteConfirm}
-          onKeepConfirm={onKeepConfirm}
+          onDeleteConfirm={handleDeleteCard}
+          onKeepConfirm={() => setShowModal(false)}
+          onDeleteFromDatabaseConfirm={handleDeleteFromDatabase}
         />
       )}
       <Header>Deine Pinnwand 📌</Header>
@@ -42,7 +43,7 @@ export default function Pinned({
                     _id={_id}
                     question={question}
                     answer={answer}
-                    onTrashClick={onTrashClick}
+                    onTrashClick={() => handleTrashClick(_id)}
                     onPinClick={onPinClick}
                     isPinned={isPinned}
                     categories={categories}
