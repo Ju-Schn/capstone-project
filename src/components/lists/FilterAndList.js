@@ -1,10 +1,10 @@
-import Navigation from './navigations/Navigation';
-import Filter from './Filter';
-import CardList from './lists/CardList';
-import DeleteModal from './modals/DeleteModal';
+import Navigation from '../navigations/Navigation';
+import Filter from '../Filter';
+import CardList from './CardList';
+import DeleteModal from '../modals/DeleteModal';
 
-import useCategory from '../hooks/useCategory';
-import useDifficulty from '../hooks/useDifficulty';
+import useCategory from '../../hooks/useCategory';
+import useDifficulty from '../../hooks/useDifficulty';
 
 import styled from 'styled-components';
 
