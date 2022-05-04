@@ -70,8 +70,7 @@ function App() {
               onKeepConfirm={() => setShowModal(false)}
               onTrashClick={handleTrashClick}
               showModal={showModal}
-              onPinClick={handlePinClick}
-              personalCards={personalCards}
+              onPinClick={handlePinClick}             
               allCategories={allCategories}
               onCountRights={handleCountRights}
               onCountWrongs={handleCountWrongs}
@@ -82,7 +81,7 @@ function App() {
           path="/decks"
           element={
             <Decks
-              personalCards={personalCards}
+
               allCategories={allCategories}
               onDeleteConfirm={handleDeleteCard}
               onKeepConfirm={() => setShowModal(false)}

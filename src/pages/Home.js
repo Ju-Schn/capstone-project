@@ -1,5 +1,5 @@
 import StyledButton from '../components/StyledButton';
-import FilterAndList from '../components/FilterAndList';
+import FilterAndList from '../components/lists/FilterAndList';
 import { ReactComponent as SyncIcon } from '../svgs/sync.svg';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 
