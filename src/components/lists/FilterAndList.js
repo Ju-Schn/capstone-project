@@ -80,7 +80,7 @@ export default function FilterAndList({
 
 const GridWrapper = styled.main`
   display: grid;
-  grid-template-rows: 48px 56px 56px auto 48px;
+  grid-template-rows: 56px 56px 56px auto 48px;
   height: 100vh;
   margin: 0;
   padding: 0;
