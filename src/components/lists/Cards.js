@@ -3,13 +3,12 @@ import Card from '../Card';
 import styled from 'styled-components';
 
 export default function Cards({
-  onTrashClick,
   onPinClick,
   onCountRights,
   onCountWrongs,
-  onShowHide,
   category,
   personalCards,
+  onTrashClick
 }) {
   return (
     <StyledList role="list" aria-label="Karten">
@@ -42,7 +41,6 @@ export default function Cards({
                   showCounts={showCounts}
                   onCountRights={onCountRights}
                   onCountWrongs={onCountWrongs}
-                  onShowHide={onShowHide}
                   onTrashClick={onTrashClick}
                   onPinClick={onPinClick}
                 />
@@ -62,7 +60,6 @@ export default function Cards({
                 showCounts={showCounts}
                 onCountRights={onCountRights}
                 onCountWrongs={onCountWrongs}
-                onShowHide={onShowHide}
                 onTrashClick={onTrashClick}
                 onPinClick={onPinClick}
               />

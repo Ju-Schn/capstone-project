@@ -8,20 +8,13 @@ import Decks from './pages/Decks';
 
 import useCards from './hooks/useCards';
 import useFetch from './hooks/useFetch';
-import useDelete from './hooks/useDelete';
 import useDifficulty from './hooks/useDifficulty';
 
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 function App() {
-  const {
-    handleDeleteFromDatabase,
-    handleTrashClick,
-    showModal,
-    setShowModal,
-    handleDeleteCard,
-  } = useDelete();
+
   const { publicCards, cardsError } = useFetch();
   const { personalCards, setPersonalCards, handleNewCard, allCategories } =
     useCards();
@@ -40,16 +33,11 @@ function App() {
           path="/cards"
           element={
             <Home
-              personalCards={personalCards}
-              onDeleteConfirm={handleDeleteCard}
-              onKeepConfirm={() => setShowModal(false)}
-              onTrashClick={handleTrashClick}
-              showModal={showModal}
               onPinClick={handlePinClick}
               allCategories={allCategories}
               onCountRights={handleCountRights}
               onCountWrongs={handleCountWrongs}
-              onDeleteFromDatabaseConfirm={handleDeleteFromDatabase}
+              personalCards={personalCards}
             />
           }
         />
@@ -66,12 +54,7 @@ function App() {
           path="/pinned"
           element={
             <Pinned
-              onDeleteConfirm={handleDeleteCard}
-              onKeepConfirm={() => setShowModal(false)}
-              onTrashClick={handleTrashClick}
-              showModal={showModal}
-              onPinClick={handlePinClick}
-              personalCards={personalCards}
+              onPinClick={handlePinClick}             
               allCategories={allCategories}
               onCountRights={handleCountRights}
               onCountWrongs={handleCountWrongs}
@@ -82,12 +65,7 @@ function App() {
           path="/decks"
           element={
             <Decks
-              personalCards={personalCards}
               allCategories={allCategories}
-              onDeleteConfirm={handleDeleteCard}
-              onKeepConfirm={() => setShowModal(false)}
-              showModal={showModal}
-              onTrashClick={handleTrashClick}
               onPinClick={handlePinClick}
               onCountRights={handleCountRights}
               onCountWrongs={handleCountWrongs}
